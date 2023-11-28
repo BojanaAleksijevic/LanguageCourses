@@ -1,0 +1,105 @@
+
+.glavnidivg {
+    background-color: FloralWhite;
+}
+
+.nav {
+    display: flex;
+    justify-content: center; /* Center the items horizontally */
+    align-items: center;
+    background-color: DarkOliveGreen;
+    box-shadow: 0px 8px 8px rgba(42, 97, 3, 0.5);
+  }
+  
+  .nav-items {
+    list-style: none;
+    display: flex;
+    align-items: center; /* Center the items vertically */
+    color: white;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  
+  .nav-items > li {
+    padding: 10px;
+    margin-right: 20px; /* Add some horizontal spacing between list items */
+  }
+  
+
+.main{
+    background: FloralWhite;
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+
+.main-opis {
+    margin-left: 1cm;
+    margin-right: 0.3cm;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.footer{
+  
+    text-align: center;
+    color: white;
+    background-color:DarkOliveGreen;
+}
+
+.bold{
+    font-weight: bold; 
+    
+}
+
+.img {
+    float: left;
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Stil.css */
+
+.glavnidiv {
+    display: flex; /* Koristi flex kontejner */
+  }
+  
+  .main-left {
+    flex: 1; /* Prvi div zauzima polovinu širine */
+    padding: 20px; /* Dodajte potrebne margine ili razmak između divova */
+  }
+  
+  .main-right {
+    flex: 1; /* Drugi div zauzima polovinu širine */
+    padding: 20px; /* Dodajte potrebne margine ili razmak između divova */
+  }
+
+  .login{
+    margin-left: auto;
+   
+  }
+  
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px; /* Prilagodite veličinu po potrebi */
+    font-size: 16px; /* Prilagodite veličinu teksta po potrebi */
+    background-color: #0d3115; /* Boja pozadine dugmeta */
+    color: #fff; /* Boja teksta */
+    border: none; /* Uklonite ivicu */
+    border-radius: 5px; /* Zaobljeni uglovi */
+    cursor: pointer;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+  }
+
+  .button1 {
+    background-color: floralwhite;
+    color: black; 
+    border: 2px solid darkolivegreen;
+  }
+
+  .button1:hover {
+    background-color:  #0d3115;
+    color: white;
+  }
+  
