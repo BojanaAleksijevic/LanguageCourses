@@ -1,0 +1,1 @@
+Borim se da naucim da koristim github
