@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fjova\\OneDrive\\Radna površina\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {}
+    "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fjova\\OneDrive\\Radna površina\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {
+    "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fjova\\OneDrive\\Radna površina\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
+        "projectUniqueName": "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
         "projectName": "LanguageCourses.API",
-        "projectPath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
+        "projectPath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
         "packagesPath": "C:\\Users\\fjova\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\LanguageCourses.API\\LanguageCourses.API\\obj\\",
+        "outputPath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

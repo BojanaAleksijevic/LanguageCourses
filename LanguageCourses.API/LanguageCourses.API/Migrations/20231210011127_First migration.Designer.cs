@@ -4,6 +4,7 @@ using LanguageCourses.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguageCourses.API.Migrations
 {
     [DbContext(typeof(LanguageCoursesDbContext))]
-    partial class LanguageCoursesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231210011127_First migration")]
+    partial class Firstmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -11,6 +11,16 @@ public class LanguageCoursesDbContext : DbContext
 
     }
 
+    public DbSet<Course> Courses { get; set; }
+
+    public DbSet<Enrollment> Enrollments { get; set; }
+
+    public DbSet<Forum> Forums { get; set; }
+
+    public DbSet<Lesson> Lessons { get; set; }
+
+    public DbSet<Post> Posts { get; set; }
+
     public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,6 +30,11 @@ public class LanguageCoursesDbContext : DbContext
         modelBuilder.Entity<User>(builder =>
         {
             builder.ToTable("Users");
+
+            /* builder
+                .HasMany(user => user.Courses)
+                .WithMany(course => course.Users)
+                .UsingEntity<Enrollment>(); */
 
             builder.HasData(
                 new User
