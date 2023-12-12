@@ -48,10 +48,9 @@ namespace LanguageCourses.API.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("LanguageCourses.API.Models.Enrollment", b =>
+            modelBuilder.Entity("LanguageCourses.API.Models.CourseUser", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CourseId")
@@ -63,14 +62,9 @@ namespace LanguageCourses.API.Migrations
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "CourseId");
 
                     b.HasIndex("CourseId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Enrollments");
                 });
@@ -163,16 +157,32 @@ namespace LanguageCourses.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("PasswordResetToken")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("ResetTokenExpires")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Role")
                         .HasColumnType("int");
+
+                    b.Property<string>("VerificationToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("VerifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -181,66 +191,29 @@ namespace LanguageCourses.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cfeb0e5e-5d09-464a-82dd-fe5d39e45ad9"),
-                            Email = "filipj@gmail.com",
+                            Id = new Guid("9150584f-eb77-4a84-a13f-698a581985d8"),
+                            Email = "fjovanovic284@gmail.com",
                             FirstName = "Filip",
-                            LastName = "Jovanovic",
-                            Password = "password1",
-                            Phone = "062 3856 142",
-                            Role = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("af19ba81-1376-4a55-b2f3-a0cb6782f491"),
-                            Email = "lukap@gmail.com",
-                            FirstName = "Luka",
-                            LastName = "Petrovic",
-                            Password = "password2",
-                            Phone = "065 9934 376",
-                            Role = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("998902da-c58d-4963-ae0d-39079971e5cd"),
-                            Email = "bojanaa@gmail.com",
-                            FirstName = "Bojana",
-                            LastName = "Aleksijevic",
-                            Password = "password3",
-                            Phone = "060 9603 672",
-                            Role = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("b0f6f6f3-9077-4186-a22e-8f9df4198d71"),
-                            Email = "andrijanam@gmail.com",
-                            FirstName = "Andrijana",
-                            LastName = "Mihailovic",
-                            Password = "password4",
-                            Phone = "060 9603 672",
-                            Role = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("c8d54e95-6d30-4667-b07e-cd30c4160d59"),
-                            Email = "aleksandardj@gmail.com",
-                            FirstName = "Aleksandar",
-                            LastName = "Djordjevic",
-                            Password = "password5",
-                            Phone = "060 4622 672",
-                            Role = 1
+                            LastName = "Jovanović",
+                            PasswordHash = new byte[] { 174, 146, 71, 55, 75, 194, 151, 177, 6, 255, 12, 153, 100, 213, 131, 107, 109, 34, 186, 218, 70, 47, 57, 195, 141, 27, 244, 61, 14, 168, 125, 147, 55, 56, 255, 22, 116, 115, 140, 154, 198, 215, 79, 109, 50, 186, 159, 253, 48, 241, 232, 200, 25, 203, 93, 185, 86, 247, 189, 233, 134, 38, 93, 125 },
+                            PasswordSalt = new byte[] { 108, 109, 200, 211, 40, 33, 73, 104, 189, 236, 98, 101, 116, 236, 231, 180, 219, 8, 207, 91, 146, 187, 194, 119, 136, 246, 42, 213, 86, 192, 168, 232, 128, 212, 147, 60, 35, 246, 91, 47, 166, 144, 252, 168, 163, 26, 175, 141, 111, 1, 248, 71, 129, 30, 165, 80, 207, 10, 221, 93, 135, 230, 219, 38, 73, 137, 51, 216, 202, 248, 178, 225, 123, 75, 103, 93, 236, 20, 8, 158, 86, 60, 189, 185, 37, 253, 95, 50, 43, 239, 212, 203, 84, 193, 83, 75, 179, 34, 195, 142, 137, 89, 73, 42, 213, 25, 217, 253, 13, 161, 30, 241, 227, 253, 36, 62, 206, 97, 55, 69, 218, 47, 19, 173, 224, 244, 91, 184 },
+                            Phone = "061 755 8995",
+                            Role = 2,
+                            VerificationToken = "5F45B93720DC19529CCE5AADB38BD70BB5159E6B11D4C485C4B1A5D1DA6981122B408E5DB23A2DC3A55E066F1295DB63273D05B28346C4A2F74BEC2309F452EF",
+                            VerifiedAt = new DateTime(2023, 12, 12, 18, 35, 30, 507, DateTimeKind.Local).AddTicks(6444)
                         });
                 });
 
-            modelBuilder.Entity("LanguageCourses.API.Models.Enrollment", b =>
+            modelBuilder.Entity("LanguageCourses.API.Models.CourseUser", b =>
                 {
                     b.HasOne("LanguageCourses.API.Models.Course", "Course")
-                        .WithMany("MyProperty")
+                        .WithMany("CourseUsers")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("LanguageCourses.API.Models.User", "User")
-                        .WithMany("Enrollments")
+                        .WithMany("CourseUsers")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -285,11 +258,11 @@ namespace LanguageCourses.API.Migrations
 
             modelBuilder.Entity("LanguageCourses.API.Models.Course", b =>
                 {
+                    b.Navigation("CourseUsers");
+
                     b.Navigation("Forums");
 
                     b.Navigation("Lessons");
-
-                    b.Navigation("MyProperty");
                 });
 
             modelBuilder.Entity("LanguageCourses.API.Models.Forum", b =>
@@ -299,7 +272,7 @@ namespace LanguageCourses.API.Migrations
 
             modelBuilder.Entity("LanguageCourses.API.Models.User", b =>
                 {
-                    b.Navigation("Enrollments");
+                    b.Navigation("CourseUsers");
                 });
 #pragma warning restore 612, 618
         }

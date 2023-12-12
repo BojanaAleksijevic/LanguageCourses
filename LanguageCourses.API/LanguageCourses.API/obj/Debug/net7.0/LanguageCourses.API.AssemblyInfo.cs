@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LanguageCourses.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e015376489e75e7e29f91279b4142b065a01131")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+466da006b148c5eae591a185a07aec7150858b61")]
 [assembly: System.Reflection.AssemblyProductAttribute("LanguageCourses.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LanguageCourses.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

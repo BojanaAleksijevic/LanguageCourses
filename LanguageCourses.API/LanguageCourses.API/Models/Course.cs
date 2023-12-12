@@ -12,7 +12,9 @@ public class Course
 
     public string Level { get; set; }
 
-    public List<Enrollment> MyProperty { get; } = new();
+    public List<User> Users { get; } = new();
+
+    public List<CourseUser> CourseUsers { get; } = new();
 
     public List<Lesson> Lessons { get; } = new();
 

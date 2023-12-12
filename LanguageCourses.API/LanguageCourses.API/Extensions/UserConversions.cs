@@ -1,12 +1,13 @@
 ﻿using LanguageCourses.API.Enums;
 using LanguageCourses.API.Models;
 using UsedCars.API.DTOs;
+using System.Security.Cryptography;
 
 namespace LanguageCourses.API.Extensions;
 
 public static class UserConversions
 {
-    public static User ConvertToUser(this UserRegisterDto userRegisterDto)
+    public static User ConvertToUser(this UserRegisterDto userRegisterDto, byte[] passwordHash, byte[] passwordSalt)
     {
         return new User
         {
@@ -15,7 +16,9 @@ public static class UserConversions
             LastName = userRegisterDto.LastName,
             Phone = userRegisterDto.Phone,
             Email = userRegisterDto.Email,
-            Password = userRegisterDto.Password,
+            PasswordHash = passwordHash,
+            PasswordSalt = passwordSalt,
+            VerificationToken = CreateRandomToken(),
             Role = Role.STUDENT
         };
     }
@@ -31,5 +34,10 @@ public static class UserConversions
             Email = user.Email,
             Role = user.Role
         };
+    }
+
+    public static string CreateRandomToken()
+    {
+        return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
     }
 }

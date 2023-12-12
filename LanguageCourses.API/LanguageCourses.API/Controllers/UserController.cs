@@ -20,40 +20,89 @@ namespace UsedCars.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
-        [Route("login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
-        {
-            var user = await _userRepository.Authenticate(userLoginDto);
-
-            if (user != null)
-            {
-                var token = _userRepository.Generate(user);
-
-                return Ok(new
-                {
-                    Token = token,
-                    user.Id,
-                    user.FirstName,
-                    user.LastName,
-                    user.Role,
-                    user.Email
-                });
-            }
-
-            return NotFound("User not found!");
-        }
-
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> AddUser([FromBody] UserRegisterDto userRegisterDto)
         {
             try
             {
-                var user = userRegisterDto.ConvertToUser();
-                await _userRepository.AddUserAsync(user);
+                var user = await _userRepository.Authenticate(userLoginDto);
+
+                if (user != null)
+                {
+                    var token = _userRepository.Generate(user);
+
+                    return Ok(new
+                    {
+                        Token = token,
+                        user.Id,
+                        user.FirstName,
+                        user.LastName,
+                        user.Role,
+                        user.Email
+                    });
+                }
+
+                return NotFound("User not found!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
+        {
+            try
+            {
+                await _userRepository.RegisterAsync(userRegisterDto);
 
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("verify")]
+        public async Task<IActionResult> Verify(string token)
+        {
+            try
+            {
+                await _userRepository.VerifyAsync(token);
+
+                return Ok("User verified!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            try
+            {
+                await _userRepository.ForgotPasswordAsync(email);
+
+                return Ok("You may now reset your password!");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(UserResetPasswordDto userResetPasswordDto)
+        {
+            try
+            {
+                await _userRepository.ResetPasswordAsync(userResetPasswordDto);
+
+                return Ok("Password successfully reset!");
             }
             catch (Exception ex)
             {
