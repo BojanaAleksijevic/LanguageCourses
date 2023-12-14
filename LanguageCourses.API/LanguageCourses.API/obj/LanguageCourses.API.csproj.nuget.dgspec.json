@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {}
+    "C:\\Users\\W10\\Desktop\\E poslovanje projekat\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {
+    "C:\\Users\\W10\\Desktop\\E poslovanje projekat\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
+        "projectUniqueName": "C:\\Users\\W10\\Desktop\\E poslovanje projekat\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
         "projectName": "LanguageCourses.API",
-        "projectPath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
-        "packagesPath": "C:\\Users\\fjova\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\Filip\\Projekat E poslovanje\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\obj\\",
+        "projectPath": "C:\\Users\\W10\\Desktop\\E poslovanje projekat\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
+        "packagesPath": "C:\\Users\\W10\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\W10\\Desktop\\E poslovanje projekat\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\fjova\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\W10\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
