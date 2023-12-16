@@ -62,7 +62,7 @@ namespace LanguageCourses.API.Repositories
 
                         <p style=""color: #555;"">Dobrodošli na Kurs jezika! Molimo Vas da potvrdite nalog klikom na sledeći link:</p>
 
-                        <a href=""https://localhost:5001/api/User/verify?token={user.VerificationToken}"" 
+                        <a href=""http://localhost:3000/verifikacija?token={user.VerificationToken}"" 
                             style=""display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;"">
                             Potvrdi nalog
                         </a>

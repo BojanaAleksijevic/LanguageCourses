@@ -5,8 +5,9 @@ import { useState } from 'react';
 function Login (){
     
     return (
-        <div>
-          <p>Login forma</p>
+        <div className='body'>
+        <div className='card2'>
+          <h1>Login forma</h1>
 
           <label>Email</label>
             <input type="text" id="txtEmail" placeholder="Enter email" />  <br></br>
@@ -16,11 +17,11 @@ function Login (){
 
 
 
-
+            <button>Login</button>
 
         <Link to="/registruj">
-             <button className='button button1'>
-                Ako nisi logovan, registruj se 
+             <button className=''>
+                Ako nemas nalog, registruj se! 
             </button>
         </Link>
 
@@ -30,7 +31,7 @@ function Login (){
         
         </div>
         
-        
+        </div>
     )
 
 }

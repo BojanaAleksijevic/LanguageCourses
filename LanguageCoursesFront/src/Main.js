@@ -29,7 +29,7 @@ const Main = () =>{
                 <ul className='bold'>
                     <li>Engleski - prof Ivana Djurdjevic i prof Jelisaveta Miladinovic</li>
                     <img src="./britanija3.png" width="80px" />
-                    <li>Spanski - prof Milica Ćirović</li>
+                    <li>Spanski - prof Milica Cirovic</li>
                     <img src="./spanija3.png" width="80px" />
                     <li>Italijanski - prof Milena Radojkovic</li>
                     <img src="./italija3.png" width="80px" />

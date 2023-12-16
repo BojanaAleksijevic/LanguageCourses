@@ -165,6 +165,7 @@ import Cenovnik from './Stranice/Cenovnik.js';
 import Kontakt from './Stranice/Kontakt.js';
 import Lokacija from './Stranice/Lokacija.js';
 import Registracija from './Stranice/Registracija.js';
+import Verifikacija from './Stranice/Verifikacija.js';
 
 const App = () => {
   return (
@@ -206,6 +207,10 @@ const router = createBrowserRouter([
       {
         path: "registruj",
         element: <Registracija/>,
+      },
+      {
+        path: "verifikacija",
+        element: <Verifikacija/>,
       }
   ]);
 
