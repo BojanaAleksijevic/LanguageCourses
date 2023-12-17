@@ -8,7 +8,15 @@
     justify-content: center; /* Center the items horizontally */
     align-items: center;
     background-color: DarkOliveGreen;
-    box-shadow: 0px 8px 8px rgba(42, 97, 3, 0.5);
+    box-shadow: 0px 10px 8px rgba(42, 97, 3, 0.5);
+    background: linear-gradient(to right, DarkOliveGreen, rgb(147, 194, 78));
+    transition: background 0.8s ease-in-out;
+    padding: 5px;
+    
+  }
+
+  .nav:hover {
+    background: linear-gradient(to right, rgb(147, 194, 78), DarkOliveGreen); /* Promenite boje za hover efekat */
   }
   
   .nav-items {
@@ -23,8 +31,21 @@
   .nav-items > li {
     padding: 10px;
     margin-right: 20px; /* Add some horizontal spacing between list items */
+    
   }
   
+
+.logo {
+  transition: transform 0.5s ease-in-out;
+}
+
+.logo:hover {
+  transform: rotate(360deg);
+}
+
+
+
+
 
 .main{
     background: FloralWhite;
@@ -42,8 +63,11 @@
 .footer{
   
     text-align: center;
-    color: white;
+    color: rgba(51, 42, 42, 0.986);
+    
     background-color:DarkOliveGreen;
+    background: linear-gradient(to right, DarkOliveGreen, rgb(147, 194, 78));
+    padding: 50px;
 }
 
 .bold{
@@ -97,9 +121,7 @@
         padding: 10px;
     }
 
-    .footer {
-        padding: 10px;
-    }
+    
 }
 
 
@@ -121,11 +143,14 @@
   .button1 {
     background-color: floralwhite;
     color: black; 
-    border: 2px solid darkolivegreen;
+    border: 2px solid rgb(41, 53, 21);
+    box-shadow: 10px 10px 3px rgba(0, 0, 0, 0.2);
+    
   }
 
   .button1:hover {
     background-color:  #0d3115;
     color: white;
+    
   }
   

@@ -65,4 +65,17 @@ body {
   text-align: center;
   /*}*/
 }
+
+.card3 {
+  background-color: darkolivegreen;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-radius: 18px;
+padding: 20px;
+margin: 20px auto; /* Dodajte margin kako biste centrirali karticu */
+margin-top: 110px;
+margin-bottom: 170px;
+max-width: 400px; /* Postavite maksimalnu širinu prema potrebi */
+text-align: center;
+/*}*/
+}
   

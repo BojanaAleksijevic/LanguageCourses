@@ -1,12 +1,26 @@
 
-import React from 'react'
+import React, { useState } from 'react';
 import { Link } from "react-router-dom"; /* Koristi se link da se ne bi refresovala stranica*/
 
 const Header = () =>{
+
+    const [isLogoRotated, setLogoRotation] = useState(false);
+
+  const handleLogoHover = () => {
+    setLogoRotation(true);
+  };
+
+  const handleLogoLeave = () => {
+    setLogoRotation(false);
+  };
+
+
     return (
         <header>
             <nav className="nav">
-                <img src="./sova.png" width="120px"className='logo'/>
+                <img src="./sova.png" width="120px" className={`logo ${isLogoRotated ? 'rotate' : ''}`}
+          onMouseEnter={handleLogoHover}
+          onMouseLeave={handleLogoLeave}/>
                 
                 <ul className="nav-items">
                     <Link to="/uloguj">
