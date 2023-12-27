@@ -78,10 +78,10 @@ function Login (){
       </div>
 
 
-      <button onClick={() => handleLogin()}>Register</button>
+      <button onClick={() => handleLogin()} class="log-btn">Prijavi se</button>
 
         <Link to="/registruj">
-             <button className=''>
+             <button className='log-btn'>
                 Ako nemas nalog, registruj se! 
             </button>
         </Link>
