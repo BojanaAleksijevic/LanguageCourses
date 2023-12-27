@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LanguageCourses.API</name>
+    </assembly>
+    <members>
+        <member name="M:UsedCars.API.Controllers.UserController.Login(LanguageCourses.API.DTOs.UserLoginDto)">
+            <summary>
+            Returns user token for verification
+            </summary>
+        </member>
+        <member name="M:UsedCars.API.Controllers.UserController.Register(UsedCars.API.DTOs.UserRegisterDto)">
+            <summary>
+            Adds a new user to the database
+            </summary>
+        </member>
+        <member name="M:UsedCars.API.Controllers.UserController.Verify(System.String)">
+            <summary>
+            Verifies the users account
+            </summary>
+        </member>
+        <member name="M:UsedCars.API.Controllers.UserController.GetUser">
+            <summary>
+            Returns user information
+            </summary>
+        </member>
+    </members>
+</doc>

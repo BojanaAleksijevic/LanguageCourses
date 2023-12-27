@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qO3DFtvynCJoky2J/Vd6t9VeV8Nxtjfk5gYyf5agTOS/kDT4MKPLeI+f4wMoCYr961kq+M6e25XJTtGr4uR5PA==",
+  "dgSpecHash": "IhujiRdt5QvihuRAg022naU29L888QLM5Wggt7Jp8ZVea5A0eb2qU7mDMXfwQdgcsfCot7wx/0uXKMeTvzv3Hg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\najnaj\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
+  "projectFilePath": "C:\\Users\\fjova\\OneDrive\\Radna površina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\LanguageCourses.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fjova\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\fjova\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
