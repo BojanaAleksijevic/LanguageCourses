@@ -13,4 +13,6 @@ public class Post
     public DateTime PostDate { get; set; }
 
     public Forum Forum { get; set; } = null!;
+
+    public User User { get; set; } = null!;
 }
