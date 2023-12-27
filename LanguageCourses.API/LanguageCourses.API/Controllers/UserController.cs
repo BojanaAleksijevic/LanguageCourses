@@ -19,7 +19,9 @@ namespace UsedCars.API.Controllers
             _userRepository = userRepository;
         }
 
-        [AllowAnonymous]
+        /// <summary>
+        /// Returns user token for verification
+        /// </summary>
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
         {
@@ -50,6 +52,9 @@ namespace UsedCars.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Adds a new user to the database
+        /// </summary>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
         {
@@ -65,6 +70,9 @@ namespace UsedCars.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Verifies the users account
+        /// </summary>
         [HttpPost("verify")]
         public async Task<IActionResult> Verify(string token)
         {
@@ -110,6 +118,9 @@ namespace UsedCars.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns user information
+        /// </summary>
         [HttpGet]
         [Authorize(Roles = "ADMIN,PROFESSOR,STUDENT")]
         [ProducesResponseType(200, Type = typeof(UserDto))]

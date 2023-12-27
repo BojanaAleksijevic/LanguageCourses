@@ -1,4 +1,6 @@
-﻿namespace LanguageCourses.API.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LanguageCourses.API.Models;
 
 public class Forum
 {
