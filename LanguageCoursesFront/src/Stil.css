@@ -140,17 +140,21 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif
   }
 
-  .button1 {
-    background-color: floralwhite;
-    color: black; 
-    border: 2px solid rgb(41, 53, 21);
-    box-shadow: 10px 10px 3px rgba(0, 0, 0, 0.2);
+  .log-btn {
+    background-color:#88AB8E;
+    color: white; 
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    transition:all 0.5s ease-in-out;
+    width: 80%;
     
   }
 
-  .button1:hover {
-    background-color:  #0d3115;
+  .log-btn:hover {
+    background-color:  #AFC8AD;
     color: white;
-    
+    transform: scale(1.1);
+    border: 1px solid #88AB8E;    
   }
   
+
