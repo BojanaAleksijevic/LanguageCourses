@@ -89,12 +89,9 @@ function Kursevi() {
                                 <p>Cena: {kurs.cena}</p>
                             </div>
                             <button onClick={() => console.log(`Prijavi se na kurs ${kurs.naziv}`)}>
-                                Prijavi se
+                                Pogledaj detaljnije
                             </button>
-                            <hr></hr>
-                            <button onClick={() => console.log(`Označi kurs ${kurs.naziv} za čuvanje`)}>
-                                Sačuvaj
-                            </button>
+                            
                         </div>
                     </div>
                 ))}

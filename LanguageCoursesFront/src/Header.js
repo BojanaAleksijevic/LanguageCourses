@@ -23,15 +23,22 @@ const Header = () =>{
           onMouseLeave={handleLogoLeave}/>
                 
                 <ul className="nav-items">
+                <Link to="/">
+                        <button className='button button1'>
+                            Pocetna
+                        </button>
+                    </Link>
+                    
+                    
                     <Link to="/uloguj">
                         <button className='button button1'>
                             Prijavi se 
                         </button>
                     </Link>
 
-                    <Link to="/">
+                    <Link to="/registruj">
                         <button className='button button1'>
-                            O nama
+                            Registruj se 
                         </button>
                     </Link>
                     
@@ -51,7 +58,7 @@ const Header = () =>{
 
                     <Link to="/akcije">
                         <button className='button button1'>
-                            Akcije
+                            Popusti
                         </button>
                     </Link>
                    

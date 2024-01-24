@@ -19,7 +19,7 @@ const Footer = () => {
       
       <div class="tooltip">
         Javi nam se putem mejla
-        <div class="tooltiptext">skolastrjezika@gmail.com</div>
+        <div class="tooltiptext">languagecourses.fin@gmail.com</div>
       </div>
 
 

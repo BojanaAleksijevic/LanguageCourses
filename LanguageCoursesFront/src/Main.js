@@ -101,7 +101,7 @@ const Main = () => {
             
             </div>
             <br></br>
-            <h1 className='naslov-utisci'>Sta drugi misle o nasem kursu?</h1>
+            <h1 className='naslov-utisci'>Sta drugi misle o nasim kursevima?</h1>
             <div class="div-utisaka">
                 <div class="box">
                     <div class="slika-osobe">

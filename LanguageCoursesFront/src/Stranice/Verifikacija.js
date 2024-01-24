@@ -5,7 +5,7 @@ import axios from 'axios';
 import Header from '../Header.js';
 import Footer from '../Footer.js'
 
-function VerifikacijaComponent() {
+function Verifikacija() {
   
   const [isLogoRotated, setLogoRotation] = useState(false);
 
@@ -61,4 +61,4 @@ function VerifikacijaComponent() {
   );
 }
 
-export default VerifikacijaComponent;
+export default Verifikacija;
