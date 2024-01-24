@@ -13,9 +13,16 @@ const Footer = () => {
           <img src="./facebook.png" alt="Facebook" width="50" />
         </a>
       </div>
-
+      
+      <p>Kontakt: 📞064/31-37-991</p>
       <p>Happy Kids Center Topola</p>
-      <p>Kontakt 0600926196</p>
+      
+      <div class="tooltip">
+        Javi nam se putem mejla
+        <div class="tooltiptext">skolastrjezika@gmail.com</div>
+      </div>
+
+
     </footer>
   );
 }

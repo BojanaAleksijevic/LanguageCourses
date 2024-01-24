@@ -158,6 +158,7 @@ function Register() {
       </div>
 
       <button onClick={() => handleRegister()}>Register</button>
+      <hr></hr>
 
       <Link to="/uloguj">
         <button className=''>
