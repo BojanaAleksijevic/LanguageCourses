@@ -1,14 +1,37 @@
+.naslov {
+  display: block;
+}
+
+.text-naslov {
+  text-align: center; /* Centriranje teksta */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
+  color: #2c3e50; /* Boja teksta */
+  font-size: 2.5em; /* Veličina fonta */
+  margin-bottom: 20px; /* Margina sa donje strane */
+  text-transform: uppercase; /* Pretvaranje teksta u velika slova */
+  letter-spacing: 2px; /* Razmak između slova */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Senka teksta */
+}
+
+.text-podnaslov {
+  text-align: center; /* Centriranje teksta */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
+  color: #2c3e50; /* Boja teksta */
+}
 
 .glavnidivg {
     background-color: FloralWhite;
 }
+
+
+
 
 .nav {
     display: flex;
     justify-content: center; /* Center the items horizontally */
     align-items: center;
     background-color: DarkOliveGreen;
-    box-shadow: 0px 10px 8px rgba(42, 97, 3, 0.5);
+    /*box-shadow: 0px 10px 8px rgba(42, 97, 3, 0.5);*/
     background: linear-gradient(to right, DarkOliveGreen, rgb(147, 194, 78));
     transition: background 0.8s ease-in-out;
     padding: 5px;
@@ -25,7 +48,7 @@
     align-items: center; /* Center the items vertically */
     color: white;
     font-weight: bold;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
   }
   
   .nav-items > li {
@@ -37,37 +60,42 @@
 
 .logo {
   transition: transform 0.5s ease-in-out;
+  margin: 10px 0; /* DODATO Dodajte razmak između loga i ostatka header-a */
+    
 }
 
 .logo:hover {
   transform: rotate(360deg);
+  
 }
 
 
-
+.druga-lista {
+  list-style-type: '✔️'; /* Tip obeležja */
+}
 
 
 .main{
     background: FloralWhite;
     text-align: center;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
     
 }
 
 .main-opis {
     margin-left: 1cm;
     margin-right: 0.3cm;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
+  }
 
 .footer{
-  
     text-align: center;
     color: rgba(51, 42, 42, 0.986);
-    
+    /*box-shadow: 0px -10px 8px rgba(42, 97, 3, 0.5);*/
     background-color:DarkOliveGreen;
     background: linear-gradient(to right, DarkOliveGreen, rgb(147, 194, 78));
-    padding: 50px;
+    padding: 20px;
+    position: relative;
 }
 
 .bold{
@@ -75,26 +103,51 @@
     
 }
 
-.img {
-    float: left;
-    width:  100px;
-    height: 100px;
-    object-fit: cover;
+.linkovi li a:hover {
+  color: #00b93b; /* Promenite boju prema vašim preferencijama */
 }
 
-/* Stil.css */
+.box-sa-strane {
+  width: 80%;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between; /* Podešavanje prostora između teksta i slike */
+  border-radius: 27px;
+  background: #f3ecec;
+  box-shadow: 8px 8px 15px #c2bdbd, -8px -8px 15px #ffffff;
+}
+
+.okrugla-slika {
+  width: 80px;
+  height: 80px;
+  object-fit: cover; /* Dodato da očuva razmeru */
+  border-radius: 50%; /* Dodato kako bi slika ostala okrugla */
+}
+
+.tekst {
+  flex: 1; /* Tekst će zauzimati preostali prostor */
+}
+
+.slika {
+  margin-left: 10px; /* Dodato kako bi postavili razmak između teksta i slike */
+}
+
 
 .glavnidiv {
     display: flex; /* Koristi flex kontejner */
+    margin: 0 0; /* Dodajte marginu sa obe strane */
   }
   
   .main-left {
-    flex: 1; /* Prvi div zauzima polovinu širine */
+    flex: 2; 
     padding: 20px; /* Dodajte potrebne margine ili razmak između divova */
   }
   
   .main-right {
-    flex: 1; /* Drugi div zauzima polovinu širine */
+    flex: 1; 
     padding: 20px; /* Dodajte potrebne margine ili razmak između divova */
   }
 
@@ -113,6 +166,11 @@
     .nav-items {
         margin-top: 10px;
         margin-right: 0;
+        text-align: center; /* DODATO Centrirajte tekst u dugmadima */
+    }
+  
+    .nav-items > li { /* DODATO */
+        margin: 10px 0; /* Dodajte razmak između dugmadi */
     }
 
     .main-left,
@@ -130,6 +188,7 @@
 
   .button {
     display: inline-block;
+    margin: 10px auto; /* DODATO */
     padding: 10px 20px; /* Prilagodite veličinu po potrebi */
     font-size: 16px; /* Prilagodite veličinu teksta po potrebi */
     background-color: #0d3115; /* Boja pozadine dugmeta */
@@ -137,7 +196,7 @@
     border: none; /* Uklonite ivicu */
     border-radius: 5px; /* Zaobljeni uglovi */
     cursor: pointer;
-    font-family:Verdana, Geneva, Tahoma, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
   }
 
   .button1 {
@@ -154,3 +213,194 @@
     
   }
   
+/* box za kurs*/
+  .lista-kurseva {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px;
+    padding: 20px;
+  }
+  
+  .kurs-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*border: 2px solid #ddd; */
+    padding: 10px;
+    width: 300px; /* Prilagodite širinu prema potrebi */
+    border-radius: 27px;
+    background: #f3ecec;
+    box-shadow:  8px 8px 15px #c2bdbd,
+                -8px -8px 15px #ffffff;
+  }
+  
+  .levo {
+    flex: 1;
+  }
+  
+  .desno {
+    display: flex;
+    gap: 10px;
+  }
+
+  .zastava {
+    width: 100%;  
+    height: 150px;
+    object-fit: cover;
+  }
+/*kraj box za kurs*/
+
+/*search*/
+.search-group {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 200px;
+}
+
+.input {
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  width: 100%;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #91bc8e;
+  color: #0d0c22;
+  /*box-shadow: 0 0 5px #C1D9BF, 0 0 0 10px #f5f5f5eb;
+  */transition: .3s ease;
+}
+
+.input::placeholder {
+  color: #777;
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  fill: #777;
+  width: 1rem;
+  height: 1rem;
+}
+
+
+/*kraj za search*/
+
+/*za tooltip*/
+.tooltip {
+  position: absolute;
+  bottom: 10px; /* Prilagodite vertikalni položaj tooltip-a prema potrebi */
+  right: 10px; /* Prilagodite horizontalni položaj tooltip-a prema potrebi */
+  display: inline-block;
+  cursor: pointer;
+  background-color: #282828;
+  color: #f1f1f1;
+  padding: 1em 3em;
+  border-radius: 1em;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #28282817;
+  color: #282828;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Postavite tooltip iznad elementa */
+  right: 18px;
+  transform: translateX(0);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* Postavite pseudo-element iznad .tooltiptext */
+  right: 50%; /* Postavite pseudo-element tačno u sredinu .tooltiptext */
+  transform: translateX(50%); /* Pomerite pseudo-element unazad za pola širine .tooltiptext */
+  border-width: 8px;
+  border-style: solid;
+  border-color: #28282817 transparent transparent transparent;
+}
+
+
+/*kraj za tooltip*/
+
+
+
+.naslov-kraj {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
+  color: #2c3e50; /* Boja teksta */
+  font-size: 2.5em; /* Veličina fonta */
+  margin-bottom: 20px; /* Margina sa donje strane */
+  margin-left: 100px;
+  letter-spacing: 2px; /* Razmak između slova */
+
+}
+
+.naslov-utisci {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
+  color: #2c3e50; /* Boja teksta */
+  font-size: 2.5em; /* Veličina fonta */
+  text-align: center;
+  letter-spacing: 2px; /* Razmak između slova */
+
+}
+
+
+
+/*deo za utiske*/
+.div-utisaka {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  width: 30%;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+    border-radius: 27px;
+    background: #f3ecec;
+    box-shadow:  8px 8px 15px #c2bdbd,
+                -8px -8px 15px #ffffff;
+}
+
+.slika-osobe {
+  width: 50px;
+  height: 100%;
+  background-size: cover;
+  background-position: left top;
+  margin-right: 10px;
+}
+
+.box img {
+  max-width: 100%;
+  height: auto;
+  display: block; 
+}
+
+.comment {
+  flex: 1;
+  text-align: left;
+}
+
+
+
+/*kraj dela za utiske*/

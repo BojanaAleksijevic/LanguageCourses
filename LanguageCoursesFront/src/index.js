@@ -161,9 +161,9 @@ import {
 
 import Uloguj from './Stranice/Uloguj.js';
 import Kursevi from './Stranice/Kursevi.js';
-import Cenovnik from './Stranice/Cenovnik.js';
-import Kontakt from './Stranice/Kontakt.js';
 import Lokacija from './Stranice/Lokacija.js';
+import Akcije from './Stranice/Akcije.js';
+
 import Registracija from './Stranice/Registracija.js';
 import Verifikacija from './Stranice/Verifikacija.js';
 
@@ -192,17 +192,14 @@ const router = createBrowserRouter([
         path: "kursevi",
         element: <Kursevi/>,
       },
-      {
-        path: "cenovnik",
-        element: <Cenovnik/>,
-      },
-      {
-        path: "kontakt",
-        element: <Kontakt/>,
-      },
+      
       {
         path: "lokacija",
         element: <Lokacija/>,
+      },
+      {
+        path: "akcije",
+        element: <Akcije/>,
       },
       {
         path: "registruj",

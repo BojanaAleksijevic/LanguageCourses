@@ -41,21 +41,17 @@ const Header = () =>{
                         </button>
                     </Link>
 
-                    <Link to="/cenovnik">
-                        <button className='button button1'>
-                            Cenovnik
-                        </button>
-                    </Link>
-
-                    <Link to="/kontakt">
-                        <button className='button button1'>
-                            Kontakt
-                        </button>
-                    </Link>
+                    
 
                     <Link to="/lokacija">
                         <button className='button button1'>
                             Lokacija
+                        </button>
+                    </Link>
+
+                    <Link to="/akcije">
+                        <button className='button button1'>
+                            Akcije
                         </button>
                     </Link>
                    

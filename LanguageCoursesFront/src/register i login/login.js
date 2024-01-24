@@ -79,6 +79,7 @@ function Login (){
 
 
       <button onClick={() => handleLogin()}>Register</button>
+      <hr></hr>
 
         <Link to="/registruj">
              <button className=''>
