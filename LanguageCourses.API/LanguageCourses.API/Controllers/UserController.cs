@@ -36,11 +36,9 @@ namespace UsedCars.API.Controllers
                     return Ok(new
                     {
                         Token = token,
-                        user.Id,
                         user.FirstName,
                         user.LastName,
-                        user.Role,
-                        user.Email
+                        user.Role
                     });
                 }
 

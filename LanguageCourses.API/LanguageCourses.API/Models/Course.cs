@@ -1,4 +1,6 @@
-﻿namespace LanguageCourses.API.Models;
+﻿using LanguageCourses.API.Enums;
+
+namespace LanguageCourses.API.Models;
 
 public class Course
 {
@@ -10,7 +12,17 @@ public class Course
 
     public string Description { get; set; }
 
+    public string Language { get; set; } = null;
+
     public string Level { get; set; }
+
+    public CourseType Type { get; set; }
+
+    public int Price { get; set; }
+
+    public int Duration { get; set; }
+
+    public bool Available { get; set; } = false;
 
     public List<User> Users { get; } = new();
 
@@ -18,5 +30,5 @@ public class Course
 
     public List<Lesson> Lessons { get; } = new();
 
-    public List<Forum> Forums { get; } = new();
+    public List<Review> Reviews { get; } = new();
 }

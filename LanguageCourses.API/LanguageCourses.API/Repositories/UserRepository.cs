@@ -116,9 +116,9 @@ namespace LanguageCourses.API.Repositories
             await _languageCoursesDbContext.SaveChangesAsync();
         }
 
-        public async Task ForgotPasswordAsync(string email)
+        public async Task ForgotPasswordAsync(string userEmail)
         {
-            var user = _languageCoursesDbContext.Users.FirstOrDefault(u => u.Email == email);
+            var user = _languageCoursesDbContext.Users.FirstOrDefault(u => u.Email == userEmail);
 
             if (user == null)
             {
@@ -128,6 +128,43 @@ namespace LanguageCourses.API.Repositories
             user.PasswordResetToken = UserConversions.CreateRandomToken();
             user.ResetTokenExpires = DateTime.Now.AddDays(1);
             await _languageCoursesDbContext.SaveChangesAsync();
+
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("languagecourses.fin@gmail.com"));
+            email.To.Add(MailboxAddress.Parse(user.Email));
+            email.Subject = "Kurs jezika - promena lozinke";
+            email.Body = new TextPart(TextFormat.Html)
+            {
+                Text = $@"
+                    <!DOCTYPE html>
+                    <head>
+                        <meta charset=""UTF-8"">
+                        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                    </head>
+                    <body style=""font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; text-align: center;"">
+
+                        <h1 style=""color: #333;"">Promena lozinke</h1>
+
+                        <p style=""color: #555;"">Poštovani {user.FirstName} {user.LastName},</p>
+
+                        <p style=""color: #555;"">Da bi promenili lozinku potrebno je da kliknete na sledeći link:</p>
+
+                        <a href=""http://localhost:3000/verifikacija?token={user.PasswordResetToken}"" 
+                            style=""display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;"">
+                            Potvrdi nalog
+                        </a>
+                        <p style=""color: #555; margin-top: 20px;"">Ukoliko niste Vi zatražili promenu lozinke, ignorišite ovu poruku.</p>
+
+                    </body>
+                    </html>
+                    "
+            };
+
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("languagecourses.fin@gmail.com", "qrzi kaan blff xifm");
+            smtp.Send(email);
+            smtp.Disconnect(true);
         }
 
         public async Task ResetPasswordAsync(UserResetPasswordDto request)

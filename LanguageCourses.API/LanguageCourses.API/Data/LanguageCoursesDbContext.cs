@@ -27,9 +27,7 @@ public class LanguageCoursesDbContext : DbContext
 
     public DbSet<Lesson> Lessons { get; set; }
 
-    public DbSet<Forum> Forums { get; set; }
-
-    public DbSet<Post> Posts { get; set; }
+    public DbSet<Review> Reviews { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,8 +38,8 @@ public class LanguageCoursesDbContext : DbContext
             builder.ToTable("Users");
 
             builder
-                .HasMany(e => e.Courses)
-                .WithMany(e => e.Users)
+                .HasMany(user => user.Courses)
+                .WithMany(course => course.Users)
                 .UsingEntity<CourseUser>();
 
 
@@ -74,6 +72,20 @@ public class LanguageCoursesDbContext : DbContext
                     VerificationToken = UserConversions.CreateRandomToken(),
                     VerifiedAt = DateTime.Now,
                     Role = Role.ADMIN
+                },
+                new User
+                {
+                    Id = Guid.Parse("73fb19cd-7b56-459e-8b84-be0d05dd67b6"),
+                    FirstName = "Bojana",
+                    LastName = "Aleksijević",
+                    Phone = "064 784 5668",
+                    Email = "boka0404002.ba@gmail.com",
+                    PasswordHash = _hmac
+                    .ComputeHash(System.Text.Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Passwords:BojanaPwd")!)),
+                    PasswordSalt = _hmac.Key,
+                    VerificationToken = UserConversions.CreateRandomToken(),
+                    VerifiedAt = DateTime.Now,
+                    Role = Role.ADMIN
                 }
             );
         });
@@ -89,13 +101,6 @@ public class LanguageCoursesDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
-            builder
-                .HasMany(course => course.Forums)
-                .WithOne(forum => forum.Course)
-                .HasForeignKey(forum => forum.CourseId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
-
             builder.HasData
             (
                 new Course
@@ -104,7 +109,9 @@ public class LanguageCoursesDbContext : DbContext
                     ProfessorId = Guid.Parse("9150584F-EB77-4A84-A13F-698A581985D8"),
                     Name = "Course 1",
                     Description = "Description for Course 1",
-                    Level = "B1"
+                    Language = "Engleski",
+                    Level = "B1",
+                    Available = true
                 },
                 new Course
                 {
@@ -112,7 +119,9 @@ public class LanguageCoursesDbContext : DbContext
                     ProfessorId = Guid.Parse("9150584F-EB77-4A84-A13F-698A581985D8"),
                     Name = "Course 2",
                     Description = "Description for Course 2",
-                    Level = "C1"
+                    Language = "Engleski",
+                    Level = "C1",
+                    Available = true
                 },
                 new Course
                 {
@@ -120,7 +129,9 @@ public class LanguageCoursesDbContext : DbContext
                     ProfessorId = Guid.Parse("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
                     Name = "Course 3",
                     Description = "Description for Course 3",
-                    Level = "B2"
+                    Language = "Engleski",
+                    Level = "B2",
+                    Available = true
                 },
                 new Course
                 {
@@ -128,7 +139,9 @@ public class LanguageCoursesDbContext : DbContext
                     ProfessorId = Guid.Parse("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
                     Name = "Course 4",
                     Description = "Description for Course 4",
-                    Level = "C2"
+                    Language = "Engleski",
+                    Level = "C2",
+                    Available = true
                 }
             );
         });
@@ -198,119 +211,93 @@ public class LanguageCoursesDbContext : DbContext
             );
         });
 
-        modelBuilder.Entity<Forum>(builder =>
-        {
-            builder.ToTable("Forums");
-
-            builder
-                .HasMany(forum => forum.Posts)
-                .WithOne(post => post.Forum)
-                .HasForeignKey(post => post.ForumId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
-
-            builder.HasData
-            (
-                new Forum
-                {
-                    Id = Guid.Parse("84907423-55c4-499f-80b5-bd64b6c777d2"),
-                    CourseId = Guid.Parse("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
-                    Title = "Title 1",
-                },
-                new Forum
-                {
-                    Id = Guid.Parse("1a4263d4-e8b7-48b6-8bf5-0759a92fe066"),
-                    CourseId = Guid.Parse("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
-                    Title = "Title 2",
-                },
-                new Forum
-                {
-                    Id = Guid.Parse("2960f582-1424-42a8-b9f0-66afe4e6af6d"),
-                    CourseId = Guid.Parse("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
-                    Title = "Title 3",
-                },
-                new Forum
-                {
-                    Id = Guid.Parse("1eca9e9f-35c2-4151-a9da-d8c46dba98c0"),
-                    CourseId = Guid.Parse("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
-                    Title = "Title 4",
-                }
-            );
-        });
-
-        modelBuilder.Entity<Post>(builder =>
+        modelBuilder.Entity<Review>(builder =>
         {
             builder.ToTable("Posts");
 
             builder
-                .HasOne(post => post.User)
+                .HasOne(review => review.User)
                 .WithMany()
-                .HasForeignKey(post => post.UserId)
+                .HasForeignKey(review => review.UserId)
+                .IsRequired();
+
+            builder
+                .HasOne(review => review.Course)
+                .WithMany()
+                .HasForeignKey(review => review.CourseId)
                 .IsRequired();
 
             builder.HasData
             (
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("a4b12efb-c878-4a43-9197-1efdf1d33e4a"),
-                    ForumId = Guid.Parse("84907423-55c4-499f-80b5-bd64b6c777d2"),
+                    CourseId = Guid.Parse("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
                     UserId = Guid.Parse("9150584F-EB77-4A84-A13F-698A581985D8"),
+                    Rating = 5,
                     Content = "Content 1",
                     PostDate = DateTime.Now
                 },
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("4abf8e23-8fbd-46a6-80dc-fedd31814e24"),
-                    ForumId = Guid.Parse("84907423-55c4-499f-80b5-bd64b6c777d2"),
+                    CourseId = Guid.Parse("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
                     UserId = Guid.Parse("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
+                    Rating = 5,
                     Content = "Content 2",
                     PostDate = DateTime.Now
                 },
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("5e6fdd45-3ba6-4019-af72-665d2e1a39aa"),
-                    ForumId = Guid.Parse("1a4263d4-e8b7-48b6-8bf5-0759a92fe066"),
+                    CourseId = Guid.Parse("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
                     UserId = Guid.Parse("9150584F-EB77-4A84-A13F-698A581985D8"),
+                    Rating = 5,
                     Content = "Content 3",
                     PostDate = DateTime.Now
                 },
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("87c1eb43-6bc9-4f0d-ab08-bf54a708c88c"),
-                    ForumId = Guid.Parse("1a4263d4-e8b7-48b6-8bf5-0759a92fe066"),
+                    CourseId = Guid.Parse("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
                     UserId = Guid.Parse("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
+                    Rating = 5,
                     Content = "Content 4",
                     PostDate = DateTime.Now
                 },
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("5f632e40-9f96-4c75-9afa-59dc6460d8e0"),
-                    ForumId = Guid.Parse("2960f582-1424-42a8-b9f0-66afe4e6af6d"),
+                    CourseId = Guid.Parse("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
                     UserId = Guid.Parse("9150584F-EB77-4A84-A13F-698A581985D8"),
+                    Rating = 5,
                     Content = "Content 5",
                     PostDate = DateTime.Now
                 },
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("d2d5b555-e8af-478b-a144-0ea40f7d4ed6"),
-                    ForumId = Guid.Parse("2960f582-1424-42a8-b9f0-66afe4e6af6d"),
+                    CourseId = Guid.Parse("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
                     UserId = Guid.Parse("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
+                    Rating = 5,
                     Content = "Content 6",
                     PostDate = DateTime.Now
                 },
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("4bc9fece-54dc-4cca-a31b-de8a0557f8da"),
-                    ForumId = Guid.Parse("1eca9e9f-35c2-4151-a9da-d8c46dba98c0"),
+                    CourseId = Guid.Parse("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
                     UserId = Guid.Parse("9150584F-EB77-4A84-A13F-698A581985D8"),
+                    Rating = 5,
                     Content = "Content 7",
                     PostDate = DateTime.Now
                 },
-                new Post
+                new Review
                 {
                     Id = Guid.Parse("e8a67c2e-3943-44ed-9d6c-7a56565302e9"),
-                    ForumId = Guid.Parse("1eca9e9f-35c2-4151-a9da-d8c46dba98c0"),
+                    CourseId = Guid.Parse("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
                     UserId = Guid.Parse("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
+                    Rating = 5,
                     Content = "Content 8",
                     PostDate = DateTime.Now
                 }

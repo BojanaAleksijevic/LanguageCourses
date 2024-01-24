@@ -24,5 +24,17 @@
             Returns user information
             </summary>
         </member>
+        <member name="T:LanguageCourses.API.Migrations.Firstmigration">
+            <inheritdoc />
+        </member>
+        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LanguageCourses.API.Migrations.Firstmigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

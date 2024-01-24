@@ -19,6 +19,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pictures\" />
+  </ItemGroup>
+
     <PropertyGroup>
 	    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	    <NoWarn>$(NoWarn);1591</NoWarn>
