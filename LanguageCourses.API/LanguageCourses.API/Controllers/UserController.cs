@@ -6,145 +6,150 @@ using LanguageCourses.API.Extensions;
 using LanguageCourses.API.Repositories.Interfaces;
 using UsedCars.API.DTOs;
 
-namespace UsedCars.API.Controllers
+namespace UsedCars.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class UserController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    private readonly IUserRepository _userRepository;
+
+    public UserController(IUserRepository userRepository)
     {
-        private readonly IUserRepository _userRepository;
+        _userRepository = userRepository;
+    }
 
-        public UserController(IUserRepository userRepository)
+    /// <summary>
+    /// Returns user token for verification
+    /// </summary>
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
+    {
+        try
         {
-            _userRepository = userRepository;
-        }
+            var user = await _userRepository.Authenticate(userLoginDto);
 
-        /// <summary>
-        /// Returns user token for verification
-        /// </summary>
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
-        {
-            try
+            if (user != null)
             {
-                var user = await _userRepository.Authenticate(userLoginDto);
+                var token = _userRepository.Generate(user);
 
-                if (user != null)
+                return Ok(new
                 {
-                    var token = _userRepository.Generate(user);
-
-                    return Ok(new
-                    {
-                        Token = token,
-                        user.FirstName,
-                        user.LastName,
-                        user.Role
-                    });
-                }
-
-                return NotFound("User not found!");
+                    Token = token,
+                    user.FirstName,
+                    user.LastName,
+                    user.Role
+                });
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
+            return NotFound("User not found!");
         }
-
-        /// <summary>
-        /// Adds a new user to the database
-        /// </summary>
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
+        catch (Exception ex)
         {
-            try
-            {
-                await _userRepository.RegisterAsync(userRegisterDto);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return BadRequest(ex.Message);
         }
+    }
 
-        /// <summary>
-        /// Verifies the users account
-        /// </summary>
-        [HttpPost("verify")]
-        public async Task<IActionResult> Verify(string token)
+    /// <summary>
+    /// Adds a new user to the database
+    /// </summary>
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
+    {
+        try
         {
-            try
-            {
-                await _userRepository.VerifyAsync(token);
+            await _userRepository.RegisterAsync(userRegisterDto);
 
-                return Ok("User verified!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok();
         }
-
-        [HttpPost("forgot-password")]
-        public async Task<IActionResult> ForgotPassword(string email)
+        catch (Exception ex)
         {
-            try
-            {
-                await _userRepository.ForgotPasswordAsync(email);
-
-                return Ok("You may now reset your password!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return BadRequest(ex.Message);
         }
+    }
 
-        [HttpPost("reset-password")]
-        public async Task<IActionResult> ResetPassword(UserResetPasswordDto userResetPasswordDto)
+    /// <summary>
+    /// Verifies the users account
+    /// </summary>
+    [HttpPost("verify")]
+    public async Task<IActionResult> Verify(string token)
+    {
+        try
         {
-            try
-            {
-                await _userRepository.ResetPasswordAsync(userResetPasswordDto);
+            await _userRepository.VerifyAsync(token);
 
-                return Ok("Password successfully reset!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok("User verified!");
         }
-
-        /// <summary>
-        /// Returns user information
-        /// </summary>
-        [HttpGet]
-        [Authorize(Roles = "ADMIN,PROFESSOR,STUDENT")]
-        [ProducesResponseType(200, Type = typeof(UserDto))]
-        public async Task<IActionResult> GetUser()
+        catch (Exception ex)
         {
-            try
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Sends mail to reset password
+    /// </summary>
+    [HttpPost("forgot-password")]
+    public async Task<IActionResult> ForgotPassword(string email)
+    {
+        try
+        {
+            await _userRepository.ForgotPasswordAsync(email);
+
+            return Ok("You may now reset your password!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Resets the users password
+    /// </summary>
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword(UserResetPasswordDto userResetPasswordDto)
+    {
+        try
+        {
+            await _userRepository.ResetPasswordAsync(userResetPasswordDto);
+
+            return Ok("Password successfully reset!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    /// <summary>
+    /// Returns user information
+    /// </summary>
+    [HttpGet]
+    [Authorize(Roles = "ADMIN,PROFESSOR,STUDENT")]
+    [ProducesResponseType(200, Type = typeof(UserDto))]
+    public async Task<IActionResult> GetUser()
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid id = Guid.Parse(userId);
+
+            var user = await _userRepository.GetUserAsync(id);
+
+            if (user == null)
             {
-                var userClaims = User as ClaimsPrincipal;
-                var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                Guid id = Guid.Parse(userId);
-
-                var user = await _userRepository.GetUserAsync(id);
-
-                if (user == null)
-                {
-                    return NotFound();
-                }
-
-                var userDto = user.ConvertToUserDto();
-
-                return Ok(userDto);
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
+            var userDto = user.ConvertToUserDto();
+
+            return Ok(userDto);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
         }
     }
 }

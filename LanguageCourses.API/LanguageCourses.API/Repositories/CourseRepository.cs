@@ -1,4 +1,5 @@
 ﻿using LanguageCourses.API.Data;
+using LanguageCourses.API.DTOs;
 using LanguageCourses.API.Models;
 using LanguageCourses.API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -37,5 +38,32 @@ public class CourseRepository : ICourseRepository
         var skipResults = (pageNumber - 1) * pageSize;
 
         return await courses.Skip(skipResults).Take(pageSize).ToListAsync();
+    }
+
+    public async Task<IEnumerable<CourseFirstDto>> GetFirstCoursesAsync()
+    {
+        var courses = await _languageCoursesDbContext.Courses
+                .Where(c => c.Available)
+                .Take(4)
+                .Join(_languageCoursesDbContext.Users,
+                course => course.ProfessorId,
+                user => user.Id,
+                (course, user) => new
+                {
+                    Course = course,
+                    Professor = user
+                })
+                .Select(result => new CourseFirstDto
+                {
+                    Id = result.Course.Id,
+                    Name = result.Course.Name,
+                    Description = result.Course.Description,
+                    Language = result.Course.Language,
+                    FirstName = result.Professor.FirstName,
+                    LastName = result.Professor.LastName,
+                    Picture = result.Professor.Picture
+                }).ToListAsync();
+
+        return courses;
     }
 }

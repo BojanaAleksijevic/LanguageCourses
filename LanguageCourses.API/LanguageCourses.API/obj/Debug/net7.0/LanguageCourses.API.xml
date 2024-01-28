@@ -4,6 +4,18 @@
         <name>LanguageCourses.API</name>
     </assembly>
     <members>
+        <member name="T:LanguageCourses.API.Migrations.Firstmigration">
+            <inheritdoc />
+        </member>
+        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:LanguageCourses.API.Migrations.Firstmigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="M:UsedCars.API.Controllers.UserController.Login(LanguageCourses.API.DTOs.UserLoginDto)">
             <summary>
             Returns user token for verification
@@ -19,22 +31,20 @@
             Verifies the users account
             </summary>
         </member>
+        <member name="M:UsedCars.API.Controllers.UserController.ForgotPassword(System.String)">
+            <summary>
+            Sends mail to reset password
+            </summary>
+        </member>
+        <member name="M:UsedCars.API.Controllers.UserController.ResetPassword(LanguageCourses.API.DTOs.UserResetPasswordDto)">
+            <summary>
+            Resets the users password
+            </summary>
+        </member>
         <member name="M:UsedCars.API.Controllers.UserController.GetUser">
             <summary>
             Returns user information
             </summary>
-        </member>
-        <member name="T:LanguageCourses.API.Migrations.Firstmigration">
-            <inheritdoc />
-        </member>
-        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:LanguageCourses.API.Migrations.Firstmigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
         </member>
     </members>
 </doc>

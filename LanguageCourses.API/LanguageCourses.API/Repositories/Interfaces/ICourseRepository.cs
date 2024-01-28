@@ -1,4 +1,5 @@
-﻿using LanguageCourses.API.Models;
+﻿using LanguageCourses.API.DTOs;
+using LanguageCourses.API.Models;
 
 namespace LanguageCourses.API.Repositories.Interfaces;
 
@@ -9,4 +10,5 @@ public interface ICourseRepository
         int pageSize,
         string? mark = null,
         string? type = null);
+    Task<IEnumerable<CourseFirstDto>> GetFirstCoursesAsync();
 }
