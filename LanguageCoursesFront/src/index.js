@@ -20,6 +20,9 @@ import Akcije from './Stranice/Akcije.js';
 import Registracija from './Stranice/Registracija.js';
 import Verifikacija from './Stranice/Verifikacija.js';
 import Zaboravljena from './Stranice/Zaboravljena.js';
+import Zaboravio from './Stranice/Zaboravio.js';
+
+import Kursevi2 from './Stranice/Kursevi2.js';
 
 const App = () => {
   return (
@@ -66,7 +69,15 @@ const router = createBrowserRouter([
       {
         path: "zaboravljena",
         element: <Zaboravljena/>,
-      }
+      },
+      {
+        path: "zaboravio",
+        element: <Zaboravio/>,
+      },
+      {
+        path: "kursevi2",
+        element: <Kursevi2/>,
+      },
   ]);
 
 

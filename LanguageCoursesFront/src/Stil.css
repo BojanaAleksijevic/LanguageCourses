@@ -251,6 +251,11 @@
   }
 /*kraj box za kurs*/
 
+.pretrage {
+  display: flex;
+  gap: 10px;
+}
+
 /*search*/
 .search-group {
   display: flex;
@@ -289,6 +294,105 @@
 
 
 /*kraj za search*/
+
+/*za dropdown*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 1rem;
+  background-color: #91bc8e;
+  color: #777;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #7f9a7b;
+  color: white;
+}
+/*kraj za dropdown*/
+
+/*za cenu od-do*/
+
+.input-cena {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Dodajte razmak između label i input polja */
+}
+
+.cena-input {
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  width: 100%;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #91bc8e;
+  color: #0d0c22;
+  transition: .3s ease;
+}
+
+.cena-input::placeholder {
+  color: #ffffff;
+}
+
+/*kraj za cenu od-do*/
+
+
+/*dugme za primenu filtera*/
+.primena-filtera {
+  display: flex;
+  gap: 30px; /* Dodajte razmak između polja i dugmeta */
+}
+
+.primena-btn {
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #b0e9ab; /* Postavite željenu boju pozadine */
+  color: #777; /* Postavite željenu boju teksta */
+  transition: .3s ease;
+}
+
+.primena-btn:hover {
+  background-color: rgb(72, 216, 149); /* Postavite boju za hover stanje */
+}
+
+/*kraj za dugme*/
 
 /*za tooltip*/
 .tooltip {
@@ -408,4 +512,14 @@
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+}
+
+.center {
+  
+  text-align: center;
+}
+
+.donjaMargina{
+  margin-top: 200px;
+  margin-bottom: 200px;
 }

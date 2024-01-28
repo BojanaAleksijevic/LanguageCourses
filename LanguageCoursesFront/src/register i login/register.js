@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import './Register.css'; // Adjust the path based on your file structure
 
@@ -15,6 +16,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleFirstNameChange = (value) => {
     setFirstName(value);
@@ -55,6 +57,7 @@ function Register() {
 
       axios.post(url, data).then((result) => {
         alert("Uspesno ste se registrovali");
+        navigate('/uloguj');
       }).catch((error) => {
         alert(error);
       })

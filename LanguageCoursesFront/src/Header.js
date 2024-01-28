@@ -32,13 +32,13 @@ const Header = () =>{
                     
                     <Link to="/uloguj">
                         <button className='button button1'>
-                            Prijavi se 
+                            Prijava
                         </button>
                     </Link>
 
                     <Link to="/registruj">
                         <button className='button button1'>
-                            Registruj se 
+                           Registracija
                         </button>
                     </Link>
                     
