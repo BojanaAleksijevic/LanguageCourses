@@ -1,5 +1,7 @@
 import React from 'react';
-import  { useState } from 'react';
+import  { useState, useEffect } from 'react';
+// dodato 
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Kursevi from './Stranice/Kursevi';
 
@@ -7,6 +9,35 @@ import Kursevi from './Stranice/Kursevi';
 const Main = () => {
     const navigate = useNavigate();
     const [pretraga, setPretraga] = useState('');
+    const [reviews, setReviews] = useState([]);
+
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                const response = await axios.get('https://localhost:5001/api/Review/first');
+                setReviews(response.data);
+            } catch (error) {
+                console.error('Error fetching reviews:', error);
+            }
+        };
+
+        fetchReviews();
+    }, []);
+
+    // Funkcija za formatiranje datuma
+    const formatirajDatum = (originalniDatum) => {
+        const datum = new Date(originalniDatum);
+        return datum.toLocaleDateString('en-US'); 
+    };
+
+
+    // Funkcija za mapiranje broja ocene na simbole
+    const zvezdica = (ocena) => {
+        const simbol = '⭐'; 
+        return simbol.repeat(ocena);
+    };
+
 
     const pretraziKurs = (jezik) => {
         setPretraga(jezik);
@@ -101,7 +132,32 @@ const Main = () => {
             
             </div>
             <br></br>
+            
             <h1 className='naslov-utisci'>Sta drugi misle o nasim kursevima?</h1>
+
+
+
+            <div className="div-utisaka">
+                {reviews.map(review => (
+                    <div key={review.id} className="box">
+                        <div class="slika-osobe">
+                            <img src={review.picture} alt={`Slika ${review.id}`} /> 
+                        </div>
+                        <div class="comment">
+                            <p><i>{review.content}</i></p>
+                            <p style={{ color: "#00b93b" }}>{review.firstName} {review.lastName}</p>
+                            <p>Postavljeno: {formatirajDatum(review.postDate)}</p>
+                            
+                            <p>Ocena: {zvezdica(review.rating)}</p>
+                        </div>
+                        
+                        
+                    </div>
+                ))}
+            </div>
+
+{/*
+
             <div class="div-utisaka">
                 <div class="box">
                     <div class="slika-osobe">
@@ -134,7 +190,7 @@ const Main = () => {
 
         
             </div>
-            
+    */}
             <h1 className='naslov-kraj'>Odaberite jezik i pridružite nam se!</h1>
         </div>
     )
