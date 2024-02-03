@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pictures\" />
+    <Folder Include="CoursePictures\" />
   </ItemGroup>
 
     <PropertyGroup>

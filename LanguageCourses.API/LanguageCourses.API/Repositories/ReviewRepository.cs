@@ -18,6 +18,7 @@ public class ReviewRepository : IReviewRepository
     public async Task<IEnumerable<ReviewDto>> GetFirstReviewsAsync()
     {
         var reviews = await _languageCoursesDbContext.Reviews
+                .OrderBy(r => Guid.NewGuid())
                 .Take(3)
                 .Join(_languageCoursesDbContext.Users,
                 review => review.UserId,

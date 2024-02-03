@@ -52,6 +52,7 @@ public class LanguageCoursesDbContext : DbContext
                     LastName = "Jovanović",
                     Phone = "061 755 8995",
                     Email = "fjovanovic284@gmail.com",
+                    Picture = "9150584F-EB77-4A84-A13F-698A581985D8.jpg",
                     PasswordHash = _hmac
                     .ComputeHash(System.Text.Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Passwords:FilipPwd")!)),
                     PasswordSalt = _hmac.Key,
@@ -87,7 +88,7 @@ public class LanguageCoursesDbContext : DbContext
                     VerifiedAt = DateTime.Now,
                     Role = Role.ADMIN
                 }
-            );
+            ); ;
         });
 
         modelBuilder.Entity<Course>(builder =>

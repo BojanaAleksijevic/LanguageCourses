@@ -44,6 +44,7 @@ public class CourseRepository : ICourseRepository
     {
         var courses = await _languageCoursesDbContext.Courses
                 .Where(c => c.Available)
+                .OrderBy(c => Guid.NewGuid())
                 .Take(4)
                 .Join(_languageCoursesDbContext.Users,
                 course => course.ProfessorId,

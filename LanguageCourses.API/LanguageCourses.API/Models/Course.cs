@@ -24,6 +24,8 @@ public class Course
 
     public bool Available { get; set; } = false;
 
+    public string? Picture { get; set; } = null;
+
     public List<User> Users { get; } = new();
 
     public List<CourseUser> CourseUsers { get; } = new();
