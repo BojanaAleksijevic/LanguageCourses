@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import Header from '../Header.js';
 import Footer from '../Footer.js';
 import '../Stil.css'; // Dodajte ovaj import za CSS
@@ -119,7 +119,8 @@ function Kursevi() {
             <div className="lista-kurseva">
                 {filtriraniKursevi.map(kurs => (
                     <div key={kurs.id} className="kurs-box">
-                        <div className="kurs">
+                        <Link to={`/detalji-kursa/${kurs.id}`} className="kurs">
+                        
                         <img src={kurs.slika} alt={`Zastava za ${kurs.naziv}`} className="zastava" />
                                 <div className="kurs-info">
                                 <h2>{kurs.naziv}</h2>
@@ -127,11 +128,7 @@ function Kursevi() {
                                 <p>Trajanje: {kurs.trajanje}</p>
                                 <p>Cena: {kurs.cena}</p>
                             </div>
-                            <button onClick={() => console.log(`Prijavi se na kurs ${kurs.naziv}`)}>
-                                Pogledaj detaljnije
-                            </button>
-                            
-                        </div>
+                        </Link>
                     </div>
                 ))}
             </div>

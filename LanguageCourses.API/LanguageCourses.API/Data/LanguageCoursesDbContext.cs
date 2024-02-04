@@ -67,6 +67,7 @@ public class LanguageCoursesDbContext : DbContext
                     LastName = "Petrović",
                     Phone = "064 765 9876",
                     Email = "lule19@gmail.com",
+                    Picture = "viber_image_2024-02-04_17-38-12-871.jpg",
                     PasswordHash = _hmac
                     .ComputeHash(System.Text.Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Passwords:LukaPwd")!)),
                     PasswordSalt = _hmac.Key,

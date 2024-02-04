@@ -140,14 +140,14 @@ const Main = () => {
             <div className="div-utisaka">
                 {reviews.map(review => (
                     <div key={review.id} className="box">
-                        <div class="slika-osobe">
-                            <img src={review.picture} alt={`Slika ${review.id}`} /> 
+                        <div className="slika-osobe">
+                            <img src={`data:image/jpeg;base64,${review.picture}`} alt={`Slika ${review.id}`} /> 
                         </div>
+
                         <div class="comment">
-                            <p><i>{review.content}</i></p>
                             <p style={{ color: "#00b93b" }}>{review.firstName} {review.lastName}</p>
                             <p>Postavljeno: {formatirajDatum(review.postDate)}</p>
-                            
+                            <p><i>{review.content}</i></p>
                             <p>Ocena: {zvezdica(review.rating)}</p>
                         </div>
                         

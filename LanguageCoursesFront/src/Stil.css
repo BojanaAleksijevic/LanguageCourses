@@ -249,6 +249,11 @@
     height: 150px;
     object-fit: cover;
   }
+
+  .kurs-box a {
+    text-decoration: none;
+    color: inherit; /* Ovo održava boju teksta nasleđenu od roditeljskog elementa */
+  }
 /*kraj box za kurs*/
 
 .pretrage {
