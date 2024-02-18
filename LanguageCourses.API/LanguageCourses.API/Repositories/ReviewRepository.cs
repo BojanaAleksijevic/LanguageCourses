@@ -40,4 +40,30 @@ public class ReviewRepository : IReviewRepository
 
         return reviews;
     }
+
+    public async Task<IEnumerable<ReviewDto>> GetCourseReviewsAsync(Guid courseId)
+    {
+        var reviews = await _languageCoursesDbContext.Reviews
+                .Where(r => r.CourseId == courseId)
+                .OrderBy(r => r.PostDate)
+                .Join(_languageCoursesDbContext.Users,
+                review => review.UserId,
+                user => user.Id,
+                (review, user) => new
+                {
+                    Review = review,
+                    User = user
+                })
+                .Select(result => new ReviewDto
+                {
+                    Rating = result.Review.Rating,
+                    Content = result.Review.Content,
+                    PostDate = result.Review.PostDate,
+                    FirstName = result.User.FirstName,
+                    LastName = result.User.LastName,
+                    Picture = result.User.Picture
+                }).ToListAsync();
+
+        return reviews;
+    }
 }

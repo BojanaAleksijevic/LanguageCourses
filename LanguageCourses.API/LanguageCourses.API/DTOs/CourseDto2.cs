@@ -1,6 +1,8 @@
-﻿namespace LanguageCourses.API.DTOs;
+﻿using LanguageCourses.API.Enums;
 
-public class CourseFirstDto
+namespace LanguageCourses.API.DTOs;
+
+public class CourseDto2
 {
     public Guid Id { get; set; }
 
@@ -13,6 +15,10 @@ public class CourseFirstDto
     public string FirstName { get; set; }
 
     public string LastName { get; set; }
+
+    public CourseType Type { get; set; }
+
+    public decimal Price { get; set; }
 
     public string? Picture { get; set; } = null;
 }

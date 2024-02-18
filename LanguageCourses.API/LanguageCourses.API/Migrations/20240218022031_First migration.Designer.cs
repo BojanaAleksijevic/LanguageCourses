@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LanguageCourses.API.Migrations
 {
     [DbContext(typeof(LanguageCoursesDbContext))]
-    [Migration("20240204164628_bojana")]
-    partial class bojana
+    [Migration("20240218022031_First migration")]
+    partial class Firstmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,8 +56,8 @@ namespace LanguageCourses.API.Migrations
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("ProfessorId")
                         .HasColumnType("uniqueidentifier");
@@ -75,24 +75,24 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
                             Available = true,
                             Description = "Description for Course 1",
-                            Duration = 0,
+                            Duration = 9,
                             Language = "Engleski",
                             Level = "B1",
                             Name = "Course 1",
-                            Price = 0,
+                            Price = 25.87m,
                             ProfessorId = new Guid("9150584f-eb77-4a84-a13f-698a581985d8"),
-                            Type = 0
+                            Type = 1
                         },
                         new
                         {
                             Id = new Guid("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
                             Available = true,
                             Description = "Description for Course 2",
-                            Duration = 0,
+                            Duration = 3,
                             Language = "Engleski",
                             Level = "C1",
                             Name = "Course 2",
-                            Price = 0,
+                            Price = 21m,
                             ProfessorId = new Guid("9150584f-eb77-4a84-a13f-698a581985d8"),
                             Type = 0
                         },
@@ -101,26 +101,26 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
                             Available = true,
                             Description = "Description for Course 3",
-                            Duration = 0,
+                            Duration = 20,
                             Language = "Engleski",
                             Level = "B2",
                             Name = "Course 3",
-                            Price = 0,
+                            Price = 14.5m,
                             ProfessorId = new Guid("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
-                            Type = 0
+                            Type = 1
                         },
                         new
                         {
                             Id = new Guid("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
                             Available = true,
                             Description = "Description for Course 4",
-                            Duration = 0,
+                            Duration = 40,
                             Language = "Engleski",
                             Level = "C2",
                             Name = "Course 4",
-                            Price = 0,
+                            Price = 10.87m,
                             ProfessorId = new Guid("4f96f59a-a880-4f17-955a-c7d94f36f6ed"),
-                            Type = 0
+                            Type = 1
                         });
                 });
 
@@ -143,88 +143,6 @@ namespace LanguageCourses.API.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Enrollments");
-                });
-
-            modelBuilder.Entity("LanguageCourses.API.Models.Lesson", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Lessons", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("961fa56e-71a8-4186-8a8d-488143d6a260"),
-                            Content = "Content 1",
-                            CourseId = new Guid("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
-                            Title = "Title 1"
-                        },
-                        new
-                        {
-                            Id = new Guid("e0c98ea1-2644-4ff0-8f2e-e7d30a3f2a6b"),
-                            Content = "Content 2",
-                            CourseId = new Guid("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
-                            Title = "Title 2"
-                        },
-                        new
-                        {
-                            Id = new Guid("b2d89a70-2ac5-4d26-94b9-ef99b746a388"),
-                            Content = "Content 3",
-                            CourseId = new Guid("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
-                            Title = "Title 3"
-                        },
-                        new
-                        {
-                            Id = new Guid("ed0632a3-1b00-421c-be7f-044253c2d820"),
-                            Content = "Content 4",
-                            CourseId = new Guid("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
-                            Title = "Title 4"
-                        },
-                        new
-                        {
-                            Id = new Guid("e19c5e3e-c5aa-411d-b540-0597307daf79"),
-                            Content = "Content 5",
-                            CourseId = new Guid("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
-                            Title = "Title 5"
-                        },
-                        new
-                        {
-                            Id = new Guid("1695a6e9-f4a8-45f2-8cc9-5ff0c01dad26"),
-                            Content = "Content 6",
-                            CourseId = new Guid("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
-                            Title = "Title 6"
-                        },
-                        new
-                        {
-                            Id = new Guid("75f0edab-103a-46ac-aff0-1f17aca2d279"),
-                            Content = "Content 7",
-                            CourseId = new Guid("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
-                            Title = "Title 7"
-                        },
-                        new
-                        {
-                            Id = new Guid("c1c2c043-1385-47d0-9ec8-c8a6085bf0bc"),
-                            Content = "Content 8",
-                            CourseId = new Guid("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
-                            Title = "Title 8"
-                        });
                 });
 
             modelBuilder.Entity("LanguageCourses.API.Models.Review", b =>
@@ -260,7 +178,7 @@ namespace LanguageCourses.API.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Reviews", (string)null);
 
                     b.HasData(
                         new
@@ -268,7 +186,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("a4b12efb-c878-4a43-9197-1efdf1d33e4a"),
                             Content = "Content 1",
                             CourseId = new Guid("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9676),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2243),
                             Rating = 5,
                             UserId = new Guid("9150584f-eb77-4a84-a13f-698a581985d8")
                         },
@@ -277,7 +195,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("4abf8e23-8fbd-46a6-80dc-fedd31814e24"),
                             Content = "Content 2",
                             CourseId = new Guid("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9695),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2500),
                             Rating = 5,
                             UserId = new Guid("4f96f59a-a880-4f17-955a-c7d94f36f6ed")
                         },
@@ -286,7 +204,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("5e6fdd45-3ba6-4019-af72-665d2e1a39aa"),
                             Content = "Content 3",
                             CourseId = new Guid("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9699),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2507),
                             Rating = 5,
                             UserId = new Guid("9150584f-eb77-4a84-a13f-698a581985d8")
                         },
@@ -295,7 +213,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("87c1eb43-6bc9-4f0d-ab08-bf54a708c88c"),
                             Content = "Content 4",
                             CourseId = new Guid("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9703),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2514),
                             Rating = 5,
                             UserId = new Guid("4f96f59a-a880-4f17-955a-c7d94f36f6ed")
                         },
@@ -304,7 +222,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("5f632e40-9f96-4c75-9afa-59dc6460d8e0"),
                             Content = "Content 5",
                             CourseId = new Guid("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9707),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2518),
                             Rating = 5,
                             UserId = new Guid("9150584f-eb77-4a84-a13f-698a581985d8")
                         },
@@ -313,7 +231,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("d2d5b555-e8af-478b-a144-0ea40f7d4ed6"),
                             Content = "Content 6",
                             CourseId = new Guid("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9711),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2522),
                             Rating = 5,
                             UserId = new Guid("4f96f59a-a880-4f17-955a-c7d94f36f6ed")
                         },
@@ -322,7 +240,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("4bc9fece-54dc-4cca-a31b-de8a0557f8da"),
                             Content = "Content 7",
                             CourseId = new Guid("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9714),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2526),
                             Rating = 5,
                             UserId = new Guid("9150584f-eb77-4a84-a13f-698a581985d8")
                         },
@@ -331,7 +249,7 @@ namespace LanguageCourses.API.Migrations
                             Id = new Guid("e8a67c2e-3943-44ed-9d6c-7a56565302e9"),
                             Content = "Content 8",
                             CourseId = new Guid("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
-                            PostDate = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(9718),
+                            PostDate = new DateTime(2024, 2, 18, 3, 20, 31, 69, DateTimeKind.Local).AddTicks(2530),
                             Rating = 5,
                             UserId = new Guid("4f96f59a-a880-4f17-955a-c7d94f36f6ed")
                         });
@@ -396,13 +314,13 @@ namespace LanguageCourses.API.Migrations
                             Email = "fjovanovic284@gmail.com",
                             FirstName = "Filip",
                             LastName = "Jovanović",
-                            PasswordHash = new byte[] { 123, 37, 116, 79, 217, 218, 160, 45, 65, 23, 80, 88, 245, 231, 225, 180, 86, 65, 19, 231, 36, 193, 187, 12, 89, 95, 55, 55, 26, 32, 252, 51, 168, 134, 254, 148, 226, 176, 133, 40, 0, 53, 167, 214, 7, 193, 148, 92, 46, 245, 84, 240, 230, 37, 71, 101, 136, 95, 34, 92, 202, 44, 66, 110 },
-                            PasswordSalt = new byte[] { 1, 72, 55, 192, 135, 191, 106, 115, 128, 134, 33, 60, 249, 183, 43, 203, 86, 141, 7, 213, 212, 7, 164, 122, 6, 208, 143, 15, 212, 82, 22, 33, 244, 50, 164, 172, 186, 106, 58, 235, 0, 166, 220, 70, 186, 193, 167, 234, 178, 154, 113, 123, 155, 137, 7, 147, 40, 94, 116, 106, 233, 245, 245, 149, 56, 146, 179, 156, 181, 170, 214, 95, 208, 227, 243, 186, 73, 192, 248, 160, 27, 82, 135, 179, 177, 149, 134, 239, 231, 48, 174, 21, 229, 83, 166, 54, 230, 142, 41, 109, 251, 128, 39, 193, 42, 56, 66, 248, 4, 107, 214, 148, 171, 216, 219, 3, 46, 58, 13, 246, 154, 59, 141, 10, 180, 187, 67, 142 },
+                            PasswordHash = new byte[] { 83, 178, 88, 103, 205, 186, 20, 234, 217, 199, 212, 91, 83, 65, 187, 201, 141, 95, 199, 177, 113, 215, 40, 78, 133, 25, 152, 139, 33, 230, 126, 238, 180, 49, 170, 214, 142, 166, 1, 4, 236, 245, 203, 39, 197, 127, 20, 244, 163, 196, 54, 243, 166, 206, 239, 231, 152, 193, 9, 128, 134, 211, 233, 120 },
+                            PasswordSalt = new byte[] { 194, 113, 68, 5, 23, 199, 132, 37, 26, 134, 244, 235, 12, 244, 74, 15, 187, 81, 229, 233, 45, 184, 188, 210, 228, 80, 204, 10, 240, 218, 255, 45, 2, 169, 23, 109, 216, 114, 169, 0, 137, 253, 239, 182, 59, 8, 103, 43, 17, 142, 179, 156, 156, 190, 34, 186, 127, 168, 108, 30, 70, 154, 174, 67, 200, 164, 111, 204, 68, 31, 218, 187, 230, 244, 199, 147, 196, 227, 21, 122, 238, 116, 98, 62, 187, 170, 152, 250, 63, 255, 91, 101, 185, 112, 186, 64, 152, 232, 160, 177, 140, 21, 154, 121, 147, 55, 111, 189, 111, 112, 127, 94, 64, 160, 63, 251, 98, 58, 132, 253, 6, 188, 0, 14, 188, 13, 120, 91 },
                             Phone = "061 755 8995",
                             Picture = "9150584F-EB77-4A84-A13F-698A581985D8.jpg",
                             Role = 2,
-                            VerificationToken = "4F2539D0C0724344DF5E84880717A16DEB8D2445846CF9FBFEDFF5B43D4CE3483AAD9BD7D41FECBF38DAB932436790F2689F1D98C76FF197CE7F13667E1F9C47",
-                            VerifiedAt = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(281)
+                            VerificationToken = "C4646E95A5E0E9611C797722B399316298B179042481A4D78728F9D2FED75CC17109EE0CE8DDEDD9A4EADB897D23416B8DD1A35A9B346CDEBD705D512566BEDA",
+                            VerifiedAt = new DateTime(2024, 2, 18, 3, 20, 31, 67, DateTimeKind.Local).AddTicks(8557)
                         },
                         new
                         {
@@ -410,13 +328,13 @@ namespace LanguageCourses.API.Migrations
                             Email = "lule19@gmail.com",
                             FirstName = "Luka",
                             LastName = "Petrović",
-                            PasswordHash = new byte[] { 123, 37, 116, 79, 217, 218, 160, 45, 65, 23, 80, 88, 245, 231, 225, 180, 86, 65, 19, 231, 36, 193, 187, 12, 89, 95, 55, 55, 26, 32, 252, 51, 168, 134, 254, 148, 226, 176, 133, 40, 0, 53, 167, 214, 7, 193, 148, 92, 46, 245, 84, 240, 230, 37, 71, 101, 136, 95, 34, 92, 202, 44, 66, 110 },
-                            PasswordSalt = new byte[] { 1, 72, 55, 192, 135, 191, 106, 115, 128, 134, 33, 60, 249, 183, 43, 203, 86, 141, 7, 213, 212, 7, 164, 122, 6, 208, 143, 15, 212, 82, 22, 33, 244, 50, 164, 172, 186, 106, 58, 235, 0, 166, 220, 70, 186, 193, 167, 234, 178, 154, 113, 123, 155, 137, 7, 147, 40, 94, 116, 106, 233, 245, 245, 149, 56, 146, 179, 156, 181, 170, 214, 95, 208, 227, 243, 186, 73, 192, 248, 160, 27, 82, 135, 179, 177, 149, 134, 239, 231, 48, 174, 21, 229, 83, 166, 54, 230, 142, 41, 109, 251, 128, 39, 193, 42, 56, 66, 248, 4, 107, 214, 148, 171, 216, 219, 3, 46, 58, 13, 246, 154, 59, 141, 10, 180, 187, 67, 142 },
+                            PasswordHash = new byte[] { 83, 178, 88, 103, 205, 186, 20, 234, 217, 199, 212, 91, 83, 65, 187, 201, 141, 95, 199, 177, 113, 215, 40, 78, 133, 25, 152, 139, 33, 230, 126, 238, 180, 49, 170, 214, 142, 166, 1, 4, 236, 245, 203, 39, 197, 127, 20, 244, 163, 196, 54, 243, 166, 206, 239, 231, 152, 193, 9, 128, 134, 211, 233, 120 },
+                            PasswordSalt = new byte[] { 194, 113, 68, 5, 23, 199, 132, 37, 26, 134, 244, 235, 12, 244, 74, 15, 187, 81, 229, 233, 45, 184, 188, 210, 228, 80, 204, 10, 240, 218, 255, 45, 2, 169, 23, 109, 216, 114, 169, 0, 137, 253, 239, 182, 59, 8, 103, 43, 17, 142, 179, 156, 156, 190, 34, 186, 127, 168, 108, 30, 70, 154, 174, 67, 200, 164, 111, 204, 68, 31, 218, 187, 230, 244, 199, 147, 196, 227, 21, 122, 238, 116, 98, 62, 187, 170, 152, 250, 63, 255, 91, 101, 185, 112, 186, 64, 152, 232, 160, 177, 140, 21, 154, 121, 147, 55, 111, 189, 111, 112, 127, 94, 64, 160, 63, 251, 98, 58, 132, 253, 6, 188, 0, 14, 188, 13, 120, 91 },
                             Phone = "064 765 9876",
                             Picture = "viber_image_2024-02-04_17-38-12-871.jpg",
                             Role = 2,
-                            VerificationToken = "B45C09C0C888DF1B6F86C81B208B9811C96C8FB98ED7D1B39247288ABE28C108EAF8CDBEA882BD05EDF2C7E7696BB7622421415F11076BD8EDD0C2B567F61255",
-                            VerifiedAt = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(379)
+                            VerificationToken = "5A520523656A7490328D52BFC97FDA0D0D872A40FB9A4CC5E24E935D80B6BD1E1D3A54054A4CB9EB5AB40C3E159A010A0C9BB0AB13E73BAB53E8FCE17CA3FB8D",
+                            VerifiedAt = new DateTime(2024, 2, 18, 3, 20, 31, 67, DateTimeKind.Local).AddTicks(8647)
                         },
                         new
                         {
@@ -424,12 +342,12 @@ namespace LanguageCourses.API.Migrations
                             Email = "boka0404002.ba@gmail.com",
                             FirstName = "Bojana",
                             LastName = "Aleksijević",
-                            PasswordHash = new byte[] { 123, 37, 116, 79, 217, 218, 160, 45, 65, 23, 80, 88, 245, 231, 225, 180, 86, 65, 19, 231, 36, 193, 187, 12, 89, 95, 55, 55, 26, 32, 252, 51, 168, 134, 254, 148, 226, 176, 133, 40, 0, 53, 167, 214, 7, 193, 148, 92, 46, 245, 84, 240, 230, 37, 71, 101, 136, 95, 34, 92, 202, 44, 66, 110 },
-                            PasswordSalt = new byte[] { 1, 72, 55, 192, 135, 191, 106, 115, 128, 134, 33, 60, 249, 183, 43, 203, 86, 141, 7, 213, 212, 7, 164, 122, 6, 208, 143, 15, 212, 82, 22, 33, 244, 50, 164, 172, 186, 106, 58, 235, 0, 166, 220, 70, 186, 193, 167, 234, 178, 154, 113, 123, 155, 137, 7, 147, 40, 94, 116, 106, 233, 245, 245, 149, 56, 146, 179, 156, 181, 170, 214, 95, 208, 227, 243, 186, 73, 192, 248, 160, 27, 82, 135, 179, 177, 149, 134, 239, 231, 48, 174, 21, 229, 83, 166, 54, 230, 142, 41, 109, 251, 128, 39, 193, 42, 56, 66, 248, 4, 107, 214, 148, 171, 216, 219, 3, 46, 58, 13, 246, 154, 59, 141, 10, 180, 187, 67, 142 },
+                            PasswordHash = new byte[] { 83, 178, 88, 103, 205, 186, 20, 234, 217, 199, 212, 91, 83, 65, 187, 201, 141, 95, 199, 177, 113, 215, 40, 78, 133, 25, 152, 139, 33, 230, 126, 238, 180, 49, 170, 214, 142, 166, 1, 4, 236, 245, 203, 39, 197, 127, 20, 244, 163, 196, 54, 243, 166, 206, 239, 231, 152, 193, 9, 128, 134, 211, 233, 120 },
+                            PasswordSalt = new byte[] { 194, 113, 68, 5, 23, 199, 132, 37, 26, 134, 244, 235, 12, 244, 74, 15, 187, 81, 229, 233, 45, 184, 188, 210, 228, 80, 204, 10, 240, 218, 255, 45, 2, 169, 23, 109, 216, 114, 169, 0, 137, 253, 239, 182, 59, 8, 103, 43, 17, 142, 179, 156, 156, 190, 34, 186, 127, 168, 108, 30, 70, 154, 174, 67, 200, 164, 111, 204, 68, 31, 218, 187, 230, 244, 199, 147, 196, 227, 21, 122, 238, 116, 98, 62, 187, 170, 152, 250, 63, 255, 91, 101, 185, 112, 186, 64, 152, 232, 160, 177, 140, 21, 154, 121, 147, 55, 111, 189, 111, 112, 127, 94, 64, 160, 63, 251, 98, 58, 132, 253, 6, 188, 0, 14, 188, 13, 120, 91 },
                             Phone = "064 784 5668",
                             Role = 2,
-                            VerificationToken = "40622B354A9D7D73572FE38425E0CE9195049F491975898B7489007E1BE1CDB68647D19BEEB6D8A10D7E3BDEF28F7E6288DE2E43596822EC8D8BBD65CEE0E057",
-                            VerifiedAt = new DateTime(2024, 2, 4, 17, 46, 28, 554, DateTimeKind.Local).AddTicks(412)
+                            VerificationToken = "F9A4646CB28DBDCBB089A86B9A7B94648A07CB65C931372D280D9580CA7C24B213061FF00FEE85CB7B0A18F1A0CCB91695F7A1B727BBC6A6B805F90F01F719B5",
+                            VerifiedAt = new DateTime(2024, 2, 18, 3, 20, 31, 67, DateTimeKind.Local).AddTicks(8737)
                         });
                 });
 
@@ -450,17 +368,6 @@ namespace LanguageCourses.API.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("LanguageCourses.API.Models.Lesson", b =>
-                {
-                    b.HasOne("LanguageCourses.API.Models.Course", "Course")
-                        .WithMany("Lessons")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("LanguageCourses.API.Models.Review", b =>
@@ -489,8 +396,6 @@ namespace LanguageCourses.API.Migrations
             modelBuilder.Entity("LanguageCourses.API.Models.Course", b =>
                 {
                     b.Navigation("CourseUsers");
-
-                    b.Navigation("Lessons");
 
                     b.Navigation("Reviews");
                 });

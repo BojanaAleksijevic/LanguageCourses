@@ -1,12 +1,21 @@
 ﻿using LanguageCourses.API.Enums;
+using LanguageCourses.API.Models;
 
-namespace LanguageCourses.API.Models;
+namespace LanguageCourses.API.DTOs;
 
-public class Course
+public class CourseDto
 {
     public Guid Id { get; set; }
 
-    public Guid ProfessorId { get; set; }
+    public string ProfessorFirstName { get; set; }
+
+    public string ProfessorLastName { get; set; }
+
+    public string ProfessorPhone { get; set; }
+
+    public string ProfessorEmail { get; set; }
+
+    public string ProfessorPicture { get; set; }
 
     public string Name { get; set; }
 
@@ -22,13 +31,5 @@ public class Course
 
     public int Duration { get; set; }
 
-    public bool Available { get; set; } = false;
-
     public string? Picture { get; set; } = null;
-
-    public List<User> Users { get; } = new();
-
-    public List<CourseUser> CourseUsers { get; } = new();
-
-    public List<Review> Reviews { get; } = new();
 }

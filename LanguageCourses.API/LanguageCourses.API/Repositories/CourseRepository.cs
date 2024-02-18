@@ -15,31 +15,6 @@ public class CourseRepository : ICourseRepository
         _languageCoursesDbContext = languageCoursesDbContext;
     }
 
-    public async Task<IEnumerable<Course>> GetAvailableCoursesAsync(
-        int pageNumber,
-        int pageSize,
-        string? mark = null,
-        string? type = null)
-    {
-        var courses = _languageCoursesDbContext.Courses
-                .Where(c => c.Available)
-                .AsQueryable();
-
-        /*if (string.IsNullOrWhiteSpace(mark) == false)
-        {
-            courses = courses.Where(x => x.Mark.Contains(mark));
-        }
-
-        if (string.IsNullOrWhiteSpace(type) == false)
-        {
-            courses = courses.Where(x => x.CarBody.Contains(type));
-        }*/
-
-        var skipResults = (pageNumber - 1) * pageSize;
-
-        return await courses.Skip(skipResults).Take(pageSize).ToListAsync();
-    }
-
     public async Task<IEnumerable<CourseFirstDto>> GetFirstCoursesAsync()
     {
         var courses = await _languageCoursesDbContext.Courses
@@ -58,13 +33,117 @@ public class CourseRepository : ICourseRepository
                 {
                     Id = result.Course.Id,
                     Name = result.Course.Name,
-                    Description = result.Course.Description,
                     Language = result.Course.Language,
+                    Level = result.Course.Level,
                     FirstName = result.Professor.FirstName,
                     LastName = result.Professor.LastName,
-                    Picture = result.Professor.Picture
+                    Picture = result.Course.Picture
                 }).ToListAsync();
 
         return courses;
+    }
+
+    public async Task<CourseDto> GetCourseByIdAsync(Guid id)
+    {
+        var courseDto = await _languageCoursesDbContext.Courses
+                .Where(course => course.Id == id)
+                .Join(
+                    _languageCoursesDbContext.Users,
+                    course => course.ProfessorId,
+                    user => user.Id,
+                    (course, professor) => new CourseDto
+                    {
+                        Id = course.Id,
+                        ProfessorFirstName = professor.FirstName,
+                        ProfessorLastName = professor.LastName,
+                        ProfessorPhone = professor.Phone,
+                        ProfessorEmail = professor.Email,
+                        ProfessorPicture = professor.Picture,
+                        Name = course.Name,
+                        Description = course.Description,
+                        Language = course.Language,
+                        Level = course.Level,
+                        Type = course.Type,
+                        Price = course.Price,
+                        Duration = course.Duration,
+                        Picture = course.Picture
+                    })
+                .FirstOrDefaultAsync();
+
+        return courseDto;
+    }
+
+    public async Task DeleteCourseAsync(Guid id)
+    {
+        var course = await _languageCoursesDbContext.Courses.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (course == null)
+        {
+            throw new Exception("The course with this id does not exist, so it can't be deleted!");
+        }
+
+        _languageCoursesDbContext.Courses.Remove(course);
+        await _languageCoursesDbContext.SaveChangesAsync();
+    }
+
+    public async Task<IEnumerable<CourseDto2>> GetAvailableCoursesAsync(
+        int pageNumber, 
+        int pageSize, 
+        string? language = null, 
+        string? level = null, 
+        decimal? priceFrom = null, 
+        decimal? priceTo = null)
+    {
+        var courses = _languageCoursesDbContext.Courses
+                .Where(c => c.Available)
+                .AsQueryable();
+
+        if (string.IsNullOrWhiteSpace(language) == false)
+        {
+            courses = courses.Where(x => x.Language.Contains(language));
+        }
+
+        if (string.IsNullOrWhiteSpace(level) == false)
+        {
+            courses = courses.Where(x => x.Level.Contains(level));
+        }
+
+        if (priceFrom > 0)
+        {
+            courses = courses.Where(x => x.Price >= priceFrom);
+        }
+
+        if (priceTo > 0)
+        {
+            courses = courses.Where(x => x.Price <= priceTo);
+        }
+
+        var skipResults = (pageNumber - 1) * pageSize;
+
+        var result = await courses.Skip(skipResults).Take(pageSize).ToListAsync();
+
+        var finalResult = result
+                .Join(_languageCoursesDbContext.Users,
+                course => course.ProfessorId,
+                user => user.Id,
+                (course, user) => new
+                {
+                    Course = course,
+                    Professor = user
+                })
+                .Select(result => new CourseDto2
+                {
+                    Id = result.Course.Id,
+                    Name = result.Course.Name,
+                    Language = result.Course.Language,
+                    Level = result.Course.Level,
+                    Price = result.Course.Price,
+                    Type = result.Course.Type,
+                    FirstName = result.Professor.FirstName,
+                    LastName = result.Professor.LastName,
+                    Picture = result.Course.Picture
+                });
+
+        return finalResult;
     }
 }

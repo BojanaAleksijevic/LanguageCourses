@@ -25,8 +25,6 @@ public class LanguageCoursesDbContext : DbContext
 
     public DbSet<CourseUser> Enrollments { get; set; }
 
-    public DbSet<Lesson> Lessons { get; set; }
-
     public DbSet<Review> Reviews { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,8 +39,6 @@ public class LanguageCoursesDbContext : DbContext
                 .HasMany(user => user.Courses)
                 .WithMany(course => course.Users)
                 .UsingEntity<CourseUser>();
-
-
 
             builder.HasData(
                 new User
@@ -96,13 +92,6 @@ public class LanguageCoursesDbContext : DbContext
         {
             builder.ToTable("Courses");
 
-            builder
-                .HasMany(course => course.Lessons)
-                .WithOne(lesson => lesson.Course)
-                .HasForeignKey(lesson => lesson.CourseId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired();
-
             builder.HasData
             (
                 new Course
@@ -113,6 +102,9 @@ public class LanguageCoursesDbContext : DbContext
                     Description = "Description for Course 1",
                     Language = "Engleski",
                     Level = "B1",
+                    Type = CourseType.GROUP,
+                    Price = 25.87M,
+                    Duration = 9,
                     Available = true
                 },
                 new Course
@@ -123,6 +115,9 @@ public class LanguageCoursesDbContext : DbContext
                     Description = "Description for Course 2",
                     Language = "Engleski",
                     Level = "C1",
+                    Type = CourseType.INDIVIDUAL,
+                    Price = 21M,
+                    Duration = 3,
                     Available = true
                 },
                 new Course
@@ -133,6 +128,9 @@ public class LanguageCoursesDbContext : DbContext
                     Description = "Description for Course 3",
                     Language = "Engleski",
                     Level = "B2",
+                    Type = CourseType.GROUP,
+                    Price = 14.5M,
+                    Duration = 20,
                     Available = true
                 },
                 new Course
@@ -143,79 +141,17 @@ public class LanguageCoursesDbContext : DbContext
                     Description = "Description for Course 4",
                     Language = "Engleski",
                     Level = "C2",
+                    Type = CourseType.GROUP,
+                    Price = 10.87M,
+                    Duration = 40,
                     Available = true
-                }
-            );
-        });
-
-        modelBuilder.Entity<Lesson>(builder =>
-        {
-            builder.ToTable("Lessons");
-
-            builder.HasData
-            (
-                new Lesson
-                {
-                    Id = Guid.Parse("961fa56e-71a8-4186-8a8d-488143d6a260"),
-                    CourseId = Guid.Parse("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
-                    Title = "Title 1",
-                    Content = "Content 1"
-                },
-                new Lesson
-                {
-                    Id = Guid.Parse("e0c98ea1-2644-4ff0-8f2e-e7d30a3f2a6b"),
-                    CourseId = Guid.Parse("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
-                    Title = "Title 2",
-                    Content = "Content 2"
-                },
-                new Lesson
-                {
-                    Id = Guid.Parse("b2d89a70-2ac5-4d26-94b9-ef99b746a388"),
-                    CourseId = Guid.Parse("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
-                    Title = "Title 3",
-                    Content = "Content 3"
-                },
-                new Lesson
-                {
-                    Id = Guid.Parse("ed0632a3-1b00-421c-be7f-044253c2d820"),
-                    CourseId = Guid.Parse("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
-                    Title = "Title 4",
-                    Content = "Content 4"
-                },
-                new Lesson
-                {
-                    Id = Guid.Parse("e19c5e3e-c5aa-411d-b540-0597307daf79"),
-                    CourseId = Guid.Parse("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
-                    Title = "Title 5",
-                    Content = "Content 5"
-                },
-                new Lesson
-                {
-                    Id = Guid.Parse("1695a6e9-f4a8-45f2-8cc9-5ff0c01dad26"),
-                    CourseId = Guid.Parse("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
-                    Title = "Title 6",
-                    Content = "Content 6"
-                },
-                new Lesson
-                {
-                    Id = Guid.Parse("75f0edab-103a-46ac-aff0-1f17aca2d279"),
-                    CourseId = Guid.Parse("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
-                    Title = "Title 7",
-                    Content = "Content 7"
-                },
-                new Lesson
-                {
-                    Id = Guid.Parse("c1c2c043-1385-47d0-9ec8-c8a6085bf0bc"),
-                    CourseId = Guid.Parse("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
-                    Title = "Title 8",
-                    Content = "Content 8"
                 }
             );
         });
 
         modelBuilder.Entity<Review>(builder =>
         {
-            builder.ToTable("Posts");
+            builder.ToTable("Reviews");
 
             builder
                 .HasOne(review => review.User)

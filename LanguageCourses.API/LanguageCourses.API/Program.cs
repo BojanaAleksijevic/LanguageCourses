@@ -53,7 +53,7 @@ builder.Services.AddSwaggerGen(s =>
 
 builder.Services.AddDbContext<LanguageCoursesDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Bojana"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Filip"));
 });
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
