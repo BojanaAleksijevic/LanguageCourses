@@ -1,16 +1,18 @@
 import React from 'react';
 import  { useState, useEffect } from 'react';
-// dodato 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Kursevi from './Stranice/Kursevi';
+import { Routes, Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import DetaljiKursa from './Stranice/detaljiKursa';
+
 
 
 const Main = () => {
     const navigate = useNavigate();
     const [pretraga, setPretraga] = useState('');
     const [reviews, setReviews] = useState([]);
-
+    const [kursevi, setKursevi] = useState([]);
 
     useEffect(() => {
         const fetchReviews = async () => {
@@ -22,8 +24,20 @@ const Main = () => {
             }
         };
 
+        const fetchKursevi = async () => {
+            try {
+                const response = await axios.get('https://localhost:5001/api/Course/availablefirst');
+                setKursevi(response.data);
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        };
+
         fetchReviews();
+        fetchKursevi();
     }, []);
+
+
 
     // Funkcija za formatiranje datuma
     const formatirajDatum = (originalniDatum) => {
@@ -38,12 +52,6 @@ const Main = () => {
         return simbol.repeat(ocena);
     };
 
-
-    const pretraziKurs = (jezik) => {
-        setPretraga(jezik);
-        // Navigacija do stranice kurseva sa pretragom za odabrani jezik
-        navigate(`/kursevi?pretraga=${encodeURIComponent(jezik)}`);
-    };
 
     return(
         <div className='naslov'>
@@ -88,45 +96,25 @@ const Main = () => {
                 </div>
 
                 <div className='main-right'>
-                    <h2>Nasi najtrazeniji kursevi: </h2>
-                    
-                    <ul className='linkovi'>
-                    <div class="box-sa-strane">
-                        <div className="tekst">
-                            <li><a onClick={() => pretraziKurs('engleski')}>Engleski jezik - prof. Ivana Djurdjevic i prof. Jelisaveta Miladinovic</a></li>
-                        </div>
-                        <div className="slika">
-                            <img src="./britanija3.png" className='okrugla-slika' />
-                        </div>
-                    </div>                        
-                    <div class="box-sa-strane">
-                        <div className="tekst">
-                            <li><a onClick={() => pretraziKurs('spanski')}>Spanski jezik - prof. Milica Cirovic</a></li>
-                        </div>
-                        <div className="slika">
-                            <img src="./spanija3.png" className='okrugla-slika'/>
-                        </div>
-                    </div>
-                    
-                    <div class="box-sa-strane">
-                        <div className="tekst">
-                            <li><a onClick={() => pretraziKurs('italijanski')}>Italijanski jezik - prof. Milena Radojkovic</a></li>
-                        </div>
-                        <div className="slika">
-                            <img src="./italija3.png" className='okrugla-slika'/>
-                        </div>
-                    </div>
-                    <div class="box-sa-strane">
-                        <div className="tekst">
-                            <li><a onClick={() => pretraziKurs('turski')}>Turski jezik - prof. Stefan Jovanovic</a></li>
-                        </div>
-                        <div className="slika">
-                            <img src="./turska3.png" className='okrugla-slika'/>
-                        </div>
-                    </div>
-                    </ul>
-                    
-                </div>
+                <h2>Nasi najtrazeniji kursevi: </h2>
+                <ul className='linkovi'>
+                    {kursevi.map((kurs) => (
+                        <Link to={`/detaljiKursa/${kurs.id}`} className="kurs" key={kurs.id}>
+                            <div className="box-sa-strane">
+                                <div className="tekst">
+                                    <p>{kurs.name}</p>
+                                    <p>Jezik: {kurs.language}</p>
+                                    <p>Nivo: {kurs.level}</p>
+                                    <p>Predavac: {kurs.firstName} {kurs.lastName}</p>
+                                </div>
+                                <div className="slika">
+                                    <img src={kurs.picture} className='okrugla-slika' alt={`Slika za ${kurs.name}`} />
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
+                </ul>
+            </div>
 
 
             
@@ -156,41 +144,6 @@ const Main = () => {
                 ))}
             </div>
 
-{/*
-
-            <div class="div-utisaka">
-                <div class="box">
-                    <div class="slika-osobe">
-                        <img src="./novak.jpg" alt="Slika 1"></img>
-                    </div>
-                    <div class="comment">
-                        <p>Ovaj kurs mi je pomogao da savladam kineski jezik! Zbog svog posla volim da ispostujem svaku zemlju, pa tako i novinarsko pitanje na bilo kom jeziku, pa sam  tako resio da naucim poneku rec na kineskom jeziku. Postepeno samm krenuo, ali uz pomoc divnih nastavnika na ovom kursu sam uspeo i moj kineski je cuo ceo svet!</p>
-                        <p style={{ color: "#00b93b" }}>Novak Djokovic, sportista</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="slika-osobe">
-                        <img src="./dete.jpg" alt="Slika 1"></img>
-                    </div>
-                    <div class="comment">
-                        <p>Ja vise nemam problem sa stranim jezicima u skoli. Pored toga sto dobijam petice na svakom test, znam i mnogo vise od toga, toliko da me i drugari stalno zovu da im pomognem. Zahvalna sam divnim uciteljima na ovom kursu koji su ucenje ucinili zabavnim. Kurs je prilagodjen svim uzrastima. Ja sam svoje neznanje savladala kroz igru, pesmu, interaktivne aktivnosti.</p>
-                        <p style={{ color: "#00b93b" }}>Jana Jovanovic, ucenik</p>
-                    </div>
-                </div>
-                
-                <div class="box">
-                    <div class="slika-osobe">
-                        <img src="./lea.jpg" alt="Slika 1"></img>
-                    </div>
-                    <div class="comment">
-                        <p>Ja ovu skolu stranih jezika posecujem godinama! S obzirom da sam isla u srednju skolu u kojoj je nastava bila na engleskom, morala sam perfektno da ga znam. Na ovom kursu sam to i uspela. Pored engleskog, posecivala sam i casove italijanskog i francuskog jezika, koji su mi takodje bili potrebni. Sada, s obzirom da dosta putujem i radim, neophodno mi je znanje jezika. Volim da ucim, a divni ljudi sa ovog kursa su to da mi to olaksaju.</p>
-                        <p style={{ color: "#00b93b" }}>Lea Stankovic, influeser</p>
-                    </div>
-                </div>
-
-        
-            </div>
-    */}
             <h1 className='naslov-kraj'>Odaberite jezik i pridružite nam se!</h1>
         </div>
     )

@@ -107,6 +107,10 @@
   color: #00b93b; /* Promenite boju prema vašim preferencijama */
 }
 
+a {
+  text-decoration: none;
+}
+
 .box-sa-strane {
   width: 80%;
   padding: 20px;
@@ -513,18 +517,74 @@
 
 /*kraj dela za utiske*/
 
-.lokacija {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
+
+/* Stilovi za stranicu DetaljiKursa */
+
+
+/* Dodato stilizovanje za novi div 'profesor-info' */
+
+.detaljan-prikaz-stranica {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.center {
-  
+.box-detaljan-prikaz {
+  display: flex;
+  flex-direction: row;
+}
+
+.box-detaljan-prikaz-levo {
+  flex: 2;
+}
+
+.box-detaljan-prikaz-desno {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.slika-kursa {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.ime-kursa, .jezik-kursa {
+  font-size: 24px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.donjaMargina{
-  margin-top: 200px;
-  margin-bottom: 200px;
+.box-profesor {
+  margin-top: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
 }
+
+.slika-profesora {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profesor-info {
+  margin-left: 20px;
+  text-align: left;
+}
+
+.button-prijava {
+  width: 150px; 
+  margin: 0 auto; 
+  display: block;
+}
+
+
+
+/* kraj za detaljan prikaz kursa*/

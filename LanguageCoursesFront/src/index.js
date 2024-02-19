@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -23,6 +22,7 @@ import Zaboravljena from './Stranice/Zaboravljena.js';
 import Zaboravio from './Stranice/Zaboravio.js';
 
 import Kursevi2 from './Stranice/Kursevi2.js';
+import DetaljiKursa from './Stranice/detaljiKursa.js';
 
 const App = () => {
   return (
@@ -77,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "kursevi2",
         element: <Kursevi2/>,
+      },
+      {
+        path: "detaljiKursa/:id",
+        element: <DetaljiKursa />,
       },
   ]);
 

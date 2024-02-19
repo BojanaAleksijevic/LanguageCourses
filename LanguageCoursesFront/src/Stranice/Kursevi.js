@@ -1,61 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from 'react-router-dom';
+import axios from 'axios';
+import { useLocation, Link, useParams } from 'react-router-dom';
 import Header from '../Header.js';
 import Footer from '../Footer.js';
-import '../Stil.css'; // Dodajte ovaj import za CSS
+import '../Stil.css'; 
 
 function Kursevi() {
     const location = useLocation();
-    const [pretraga, setPretraga] = useState(new URLSearchParams(location.search).get('pretraga') || "");
-    
-    const [kursevi, setKursevi] = useState([
-        { id: 1, 
-            slika: "./britanijaKvadrat.jpg",
-            naziv: "Engleski jezik - individualna nastava", 
-            predavac: "Ivana Djurdjevic i Jelisaveta Miladinovic", 
-            trajanje: "40 casova, po dogovoru" ,
-            cena: "40 000 din."
-        },
-        { id: 2, 
-            slika: "./britanijaKvadrat.jpg",
-            naziv: "Engleski jezik - grupna nastava", 
-            predavac: "Ivana Djurdjevic i Jelisaveta Miladinovic", 
-            trajanje: "50 casova, 3x2 casa nedeljno" ,
-            cena: "15 000 din."
-        },
-        { id: 3, 
-            slika: "./spanijaKvadrat.png",
-            naziv: "Spanski jezik - grupna nastava", 
-            predavac: "Milica Cirovic", 
-            trajanje: "40 casova, 2x2 casa nedeljno" ,
-            cena: "14 000 din."
-        },
-        { id: 4, 
-            slika: "./italijaKvadrat.png",
-            naziv: "Italijanski jezik - grupna nastava", 
-            predavac: "Milena Radojkovic", 
-            trajanje: "40 casova, 2x2 casa nedeljno" ,
-            cena: "14 000 din."
-        },
-        { id: 5, 
-            slika: "./turskaKvadrat.png",
-            naziv: "Turski jezik - grupna nastava", 
-            predavac: "Stefan Jovanovic", 
-            trajanje: "40 casova, 2x2 casa nedeljno" ,
-            cena: "14 000 din."
+    const queryParams = new URLSearchParams(location.search);
+
+    const [pretraga, setPretraga] = useState(queryParams.get('pretraga') || "");
+    const [kursevi, setKursevi] = useState([]);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`https://localhost:5001/api/Course/available`, {
+                params: {
+                    pretraga,
+                    language: queryParams.get('language'),
+                    level: queryParams.get('level'),
+                    priceFrom: queryParams.get('priceFrom'),
+                    priceTo: queryParams.get('priceTo'),
+                    pageNumber: queryParams.get('pageNumber'),
+                    pageSize: queryParams.get('pageSize')
+                }
+            });
+
+            setKursevi(response.data);
+        } catch (error) {
+            console.error("Greška prilikom dohvatanja podataka:", error);
         }
-        
-    ]);
+    };
 
-    //const [pretraga, setPretraga] = useState(""); // Dodao stanje za pretragu
     useEffect(() => {
-        // Ažuriranje rezultata pretrage kada se promeni pretraga u URL-u
-        setPretraga(new URLSearchParams(location.search).get('pretraga') || "");
-    }, [location.search]);
+        fetchData();
+    }, [location.search, pretraga]);
 
-    const filtriraniKursevi = kursevi.filter(
-        kurs => kurs.naziv.toLowerCase().includes(pretraga.toLowerCase())
-    );
+    const filtriraniKursevi = Array.isArray(kursevi) ? kursevi.filter(
+        kurs => kurs.name.toLowerCase().includes(pretraga.toLowerCase())
+    ) : [];
 
     return (
         <div className="glavnidivg">
@@ -78,21 +61,21 @@ function Kursevi() {
                     />
                 </div>
 
-                <div class="dropdown">
-                    <button class="dropbtn">Jezik</button>
-                    <div class="dropdown-content">
-                    <a href="#">Engleski</a>
-                    <a href="#">Italijanski</a>
-                    <a href="#">Francuski</a>
-                    <a href="#">Spanski</a>
-                    <a href="#">Turski</a>
-                    <a href="#">Ruski</a>
+                <div className="dropdown">
+                    <button className="dropbtn">Jezik</button>
+                    <div className="dropdown-content">
+                        <a href="#">Engleski</a>
+                        <a href="#">Italijanski</a>
+                        <a href="#">Francuski</a>
+                        <a href="#">Spanski</a>
+                        <a href="#">Turski</a>
+                        <a href="#">Ruski</a>
                     </div>
                 </div>
 
-                <div class="dropdown">
-                    <button class="dropbtn">Nivo</button>
-                    <div class="dropdown-content">
+                <div className="dropdown">
+                    <button className="dropbtn">Nivo</button>
+                    <div className="dropdown-content">
                         <a href="#">A1</a>
                         <a href="#">A2</a>
                         <a href="#">B1</a>
@@ -102,31 +85,33 @@ function Kursevi() {
                     </div>
                 </div>
 
-                <div class="input-cena">
-                    <input id="cenaOd" class="cena-input" placeholder="Unesite cenu od" />
-                    </div>
-
-                    <div class="input-cena">
-                    <input id="cenaDo" class="cena-input" placeholder="Unesite cenu do" />
+                <div className="input-cena">
+                    <input id="cenaOd" className="cena-input" placeholder="Unesite cenu od" />
                 </div>
 
-                <div class="primena-filtera">
-                    <button class="primena-btn">Primeni filtere</button>
+                <div className="input-cena">
+                    <input id="cenaDo" className="cena-input" placeholder="Unesite cenu do" />
                 </div>
 
+                <div className="primena-filtera">
+                    <button className="primena-btn" onClick={fetchData}>
+                        Primeni filtere
+                    </button>
+                </div>
             </div>
-            
+
             <div className="lista-kurseva">
                 {filtriraniKursevi.map(kurs => (
                     <div key={kurs.id} className="kurs-box">
-                        <Link to={`/detalji-kursa/${kurs.id}`} className="kurs">
-                        
-                        <img src={kurs.slika} alt={`Zastava za ${kurs.naziv}`} className="zastava" />
-                                <div className="kurs-info">
-                                <h2>{kurs.naziv}</h2>
-                                <p>Predavac: {kurs.predavac}</p>
-                                <p>Trajanje: {kurs.trajanje}</p>
-                                <p>Cena: {kurs.cena}</p>
+                        <Link to={`/detaljiKursa/${kurs.id}`} className="kurs">
+                            <img src={kurs.picture} alt={`Zastava za ${kurs.name}`} className="zastava" />
+                            <div className="kurs-info">
+                                <h2>{kurs.name}</h2>
+                                <p>Jezik: {kurs.language}</p>
+                                <p>Nivo: {kurs.level}</p>
+                                <p>Predavac: {kurs.firstName} {kurs.lastName}</p>
+                                <p>Tip nastave: {kurs.type}</p>
+                                <p>Cena: {kurs.price} din.</p>
                             </div>
                         </Link>
                     </div>
