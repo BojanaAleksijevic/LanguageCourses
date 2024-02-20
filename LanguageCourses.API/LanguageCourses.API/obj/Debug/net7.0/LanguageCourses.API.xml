@@ -4,16 +4,16 @@
         <name>LanguageCourses.API</name>
     </assembly>
     <members>
-        <member name="T:LanguageCourses.API.Migrations.Firstmigration">
+        <member name="T:LanguageCourses.API.Migrations.Finalmigration">
             <inheritdoc />
         </member>
-        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:LanguageCourses.API.Migrations.Finalmigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:LanguageCourses.API.Migrations.Firstmigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:LanguageCourses.API.Migrations.Finalmigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:LanguageCourses.API.Migrations.Firstmigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:LanguageCourses.API.Migrations.Finalmigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="M:UsedCars.API.Controllers.UserController.Login(LanguageCourses.API.DTOs.UserLoginDto)">

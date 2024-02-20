@@ -14,5 +14,7 @@ public interface ICourseRepository
         decimal? priceTo = null);
     Task<IEnumerable<CourseFirstDto>> GetFirstCoursesAsync();
     Task<CourseDto> GetCourseByIdAsync(Guid id);
-    Task DeleteCourseAsync(Guid id);
+    Task DeleteCourseAsync(Guid userId, Guid courseId);
+    Task EnrollToCourseAsync(Guid userId, Guid courseId);
+    Task AddCourseAsync(Course course);
 }

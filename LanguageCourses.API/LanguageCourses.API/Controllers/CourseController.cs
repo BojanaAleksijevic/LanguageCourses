@@ -1,9 +1,12 @@
 ﻿using LanguageCourses.API.DTOs;
+using LanguageCourses.API.Extensions;
 using LanguageCourses.API.Models;
 using LanguageCourses.API.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using System.Security.Claims;
 
 namespace LanguageCourses.API.Controllers;
 
@@ -137,6 +140,111 @@ public class CourseController : ControllerBase
             }
 
             return Ok(courses);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "STUDENT,PROFESSOR,ADMIN")]
+    [Route("enrolment/{courseId:Guid}")]
+    public async Task<IActionResult> EnrolToCourse([FromRoute] Guid courseId)
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
+
+            await _courseRepository.EnrollToCourseAsync(userId, courseId);
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpDelete]
+    [Authorize(Roles = "ADMIN,PROFESSOR")]
+    [Route("deleteCourse/{courseId:Guid}")]
+    public async Task<IActionResult> DeleteCourse([FromRoute] Guid courseId)
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
+
+            await _courseRepository.DeleteCourseAsync(userId, courseId);
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "ADMIN,PROFESSOR")]
+    [Route("addCourse")]
+    public async Task<IActionResult> AddCourse([FromBody] AddCourseDto addCourseDto)
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var userId = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid uid = Guid.Parse(userId);
+
+            Guid cid = Guid.NewGuid();
+
+            var course = addCourseDto.ConvertToCourse(uid, cid);
+            await _courseRepository.AddCourseAsync(course);
+
+            /*int x = 0;
+
+            List<string> pictures = new List<string> {
+                addCarDto.Pictures.Picture1,
+                addCarDto.Pictures.Picture2,
+                addCarDto.Pictures.Picture3,
+                addCarDto.Pictures.Picture4,
+                addCarDto.Pictures.Picture5,
+                addCarDto.Pictures.Picture6,
+            };
+
+            foreach (string picture in pictures)
+            {
+                if (picture != null)
+                {
+                    x++;
+
+                    string fileName = $"{car.Mark}{car.Model}_{x}.jpg";
+
+                    byte[] imageBytes = Convert.FromBase64String(picture);
+
+                    string projectPath = _hostEnvironment.ContentRootPath;
+                    string fullPath = Path.Combine(projectPath, "Pictures");
+
+                    string imagePath = Path.Combine(fullPath, fileName);
+
+                    System.IO.File.WriteAllBytes(imagePath, imageBytes);
+
+                    var pic = new Picture
+                    {
+                        Id = Guid.NewGuid(),
+                        Path = fileName,
+                        CarId = cid
+                    };
+
+                    await _pictureRepository.AddPictureAsync(pic);
+                }
+            }*/
+
+            return Ok();
         }
         catch (Exception ex)
         {

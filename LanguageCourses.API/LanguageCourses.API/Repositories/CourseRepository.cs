@@ -1,5 +1,6 @@
 ﻿using LanguageCourses.API.Data;
 using LanguageCourses.API.DTOs;
+using LanguageCourses.API.Enums;
 using LanguageCourses.API.Models;
 using LanguageCourses.API.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -73,13 +74,23 @@ public class CourseRepository : ICourseRepository
         return courseDto;
     }
 
-    public async Task DeleteCourseAsync(Guid id)
+    public async Task DeleteCourseAsync(Guid userId, Guid courseId)
     {
-        var course = await _languageCoursesDbContext.Courses.FirstOrDefaultAsync(x => x.Id == id);
+        var course = await _languageCoursesDbContext.Courses.FirstOrDefaultAsync(x => x.Id == courseId);
 
         if (course == null)
         {
             throw new Exception("The course with this id does not exist, so it can't be deleted!");
+        }
+
+        var user = await _languageCoursesDbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+        if (user.Role != Role.ADMIN)
+        {
+            if (course.ProfessorId != userId)
+            {
+                throw new Exception("You don't have a permission to delete this course!");
+            }
         }
 
         _languageCoursesDbContext.Courses.Remove(course);
@@ -145,5 +156,23 @@ public class CourseRepository : ICourseRepository
                 });
 
         return finalResult;
+    }
+
+    public async Task EnrollToCourseAsync(Guid userId, Guid courseId)
+    {
+        CourseUser enrolment = new();
+        
+        enrolment.CourseId = courseId;
+        enrolment.UserId = userId;
+        enrolment.EnrollmentDate = DateTime.Now;
+
+        await _languageCoursesDbContext.Enrollments.AddAsync(enrolment);
+        await _languageCoursesDbContext.SaveChangesAsync();
+    }
+
+    public async Task AddCourseAsync(Course course)
+    {
+        await _languageCoursesDbContext.Courses.AddAsync(course);
+        await _languageCoursesDbContext.SaveChangesAsync();
     }
 }
