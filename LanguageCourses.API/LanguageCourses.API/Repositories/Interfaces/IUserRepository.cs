@@ -13,4 +13,6 @@ public interface IUserRepository
     Task VerifyAsync(string token);
     Task ForgotPasswordAsync(string email);
     Task ResetPasswordAsync(UserResetPasswordDto userResetPasswordDto);
+    Task AddProfessorAsync(User professor);
+    void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
 }

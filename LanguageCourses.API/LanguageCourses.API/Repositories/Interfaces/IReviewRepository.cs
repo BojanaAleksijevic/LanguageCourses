@@ -7,4 +7,5 @@ public interface IReviewRepository
 {
     Task<IEnumerable<ReviewDto>> GetFirstReviewsAsync();
     Task<IEnumerable<ReviewDto>> GetCourseReviewsAsync(Guid courseId);
+    Task AddReviewAsync(Review review);
 }

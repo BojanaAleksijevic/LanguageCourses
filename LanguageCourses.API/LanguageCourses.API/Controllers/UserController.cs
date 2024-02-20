@@ -5,6 +5,8 @@ using LanguageCourses.API.DTOs;
 using LanguageCourses.API.Extensions;
 using LanguageCourses.API.Repositories.Interfaces;
 using UsedCars.API.DTOs;
+using LanguageCourses.API.Repositories;
+using System.Security.Cryptography;
 
 namespace UsedCars.API.Controllers;
 
@@ -146,6 +148,25 @@ public class UserController : ControllerBase
             var userDto = user.ConvertToUserDto();
 
             return Ok(userDto);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPost("addProfessor")]
+    [Authorize(Roles = "ADMIN")]
+    public async Task<IActionResult> AddProfessor(AddProfessorDto addProfessorDto)
+    {
+        try
+        {
+            _userRepository.CreatePasswordHash(addProfessorDto.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            var professor = addProfessorDto.ConvertToUser2(passwordHash, passwordSalt);
+            await _userRepository.AddProfessorAsync(professor);
+
+            return Ok();
         }
         catch (Exception ex)
         {

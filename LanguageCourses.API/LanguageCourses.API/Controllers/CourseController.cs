@@ -128,6 +128,8 @@ public class CourseController : ControllerBase
             string projectPath = _hostEnvironment.ContentRootPath;
             string fullPath = Path.Combine(projectPath, "CoursePictures");
 
+            List<CourseDto2> result = new();
+
             foreach (var course in courses)
             {
                 if (course.Picture != null)
@@ -137,9 +139,11 @@ public class CourseController : ControllerBase
 
                     course.Picture = base64Image;
                 }
+
+                result.Add(course);
             }
 
-            return Ok(courses);
+            return Ok(result);
         }
         catch (Exception ex)
         {
@@ -205,44 +209,68 @@ public class CourseController : ControllerBase
             var course = addCourseDto.ConvertToCourse(uid, cid);
             await _courseRepository.AddCourseAsync(course);
 
-            /*int x = 0;
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
-            List<string> pictures = new List<string> {
-                addCarDto.Pictures.Picture1,
-                addCarDto.Pictures.Picture2,
-                addCarDto.Pictures.Picture3,
-                addCarDto.Pictures.Picture4,
-                addCarDto.Pictures.Picture5,
-                addCarDto.Pictures.Picture6,
-            };
+    [HttpPost]
+    [Authorize(Roles = "ADMIN,PROFESSOR")]
+    [Route("setAvailable/{courseId:Guid}")]
+    public async Task<IActionResult> SetCourseAvailable([FromRoute] Guid courseId)
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
 
-            foreach (string picture in pictures)
-            {
-                if (picture != null)
-                {
-                    x++;
+            await _courseRepository.SetCourseAvailableAsync(userId, courseId);
 
-                    string fileName = $"{car.Mark}{car.Model}_{x}.jpg";
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
-                    byte[] imageBytes = Convert.FromBase64String(picture);
+    [HttpPost]
+    [Authorize(Roles = "ADMIN,PROFESSOR")]
+    [Route("setDisabled/{courseId:Guid}")]
+    public async Task<IActionResult> SetCourseDisabled([FromRoute] Guid courseId)
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
 
-                    string projectPath = _hostEnvironment.ContentRootPath;
-                    string fullPath = Path.Combine(projectPath, "Pictures");
+            await _courseRepository.SetCourseDisabledAsync(userId, courseId);
 
-                    string imagePath = Path.Combine(fullPath, fileName);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
-                    System.IO.File.WriteAllBytes(imagePath, imageBytes);
+    [HttpPut]
+    [Authorize(Roles = "ADMIN,PROFESSOR")]
+    [Route("updateCourse")]
+    public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseDto updateCourseDto)
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
 
-                    var pic = new Picture
-                    {
-                        Id = Guid.NewGuid(),
-                        Path = fileName,
-                        CarId = cid
-                    };
-
-                    await _pictureRepository.AddPictureAsync(pic);
-                }
-            }*/
+            await _courseRepository.UpdateCourseAsync(updateCourseDto, userId);
 
             return Ok();
         }

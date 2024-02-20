@@ -222,6 +222,12 @@ public class UserRepository : IUserRepository
         return user;
     }
 
+    public async Task AddProfessorAsync(User professor)
+    {
+        await _languageCoursesDbContext.Users.AddAsync(professor);
+        await _languageCoursesDbContext.SaveChangesAsync();
+    }
+
     public void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
     {
         using (var hmac = new HMACSHA512())

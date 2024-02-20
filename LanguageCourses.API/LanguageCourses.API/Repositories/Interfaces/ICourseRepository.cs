@@ -17,4 +17,7 @@ public interface ICourseRepository
     Task DeleteCourseAsync(Guid userId, Guid courseId);
     Task EnrollToCourseAsync(Guid userId, Guid courseId);
     Task AddCourseAsync(Course course);
+    Task SetCourseAvailableAsync(Guid userId, Guid courseId);
+    Task SetCourseDisabledAsync(Guid userId, Guid courseId);
+    Task UpdateCourseAsync(UpdateCourseDto updateCourseDto, Guid userId);
 }

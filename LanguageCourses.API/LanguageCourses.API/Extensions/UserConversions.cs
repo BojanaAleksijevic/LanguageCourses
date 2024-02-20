@@ -2,6 +2,7 @@
 using LanguageCourses.API.Models;
 using UsedCars.API.DTOs;
 using System.Security.Cryptography;
+using LanguageCourses.API.DTOs;
 
 namespace LanguageCourses.API.Extensions;
 
@@ -20,6 +21,24 @@ public static class UserConversions
             PasswordSalt = passwordSalt,
             VerificationToken = CreateRandomToken(),
             Role = Role.STUDENT
+        };
+    }
+
+    public static User ConvertToUser2(this AddProfessorDto addProfessorDto, byte[] passwordHash, byte[] passwordSalt)
+    {
+        return new User
+        {
+            Id = Guid.NewGuid(),
+            FirstName = addProfessorDto.FirstName,
+            LastName = addProfessorDto.LastName,
+            Phone = addProfessorDto.Phone,
+            Email = addProfessorDto.Email,
+            Picture = addProfessorDto.Picture,
+            PasswordHash = passwordHash,
+            PasswordSalt = passwordSalt,
+            VerificationToken = CreateRandomToken(),
+            Role = Role.PROFESSOR,
+            VerifiedAt = DateTime.Now
         };
     }
 

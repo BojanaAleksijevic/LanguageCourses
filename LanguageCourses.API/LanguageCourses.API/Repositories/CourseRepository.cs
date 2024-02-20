@@ -175,4 +175,75 @@ public class CourseRepository : ICourseRepository
         await _languageCoursesDbContext.Courses.AddAsync(course);
         await _languageCoursesDbContext.SaveChangesAsync();
     }
+
+    public async Task SetCourseAvailableAsync(Guid userId, Guid courseId)
+    {
+        var course = await _languageCoursesDbContext.Courses.FirstOrDefaultAsync(x => x.Id == courseId);
+
+        if (course.Available == true)
+        {
+            throw new Exception("The course is already available!");
+        }
+
+        var user = await _languageCoursesDbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+        if (user.Role != Role.ADMIN)
+        {
+            if (course.ProfessorId != userId)
+            {
+                throw new Exception("You don't have a permission to set this course to be available!");
+            }
+        }
+
+        course.Available = true;
+
+        await _languageCoursesDbContext.SaveChangesAsync();
+    }
+
+    public async Task SetCourseDisabledAsync(Guid userId, Guid courseId)
+    {
+        var course = await _languageCoursesDbContext.Courses.FirstOrDefaultAsync(x => x.Id == courseId);
+
+        if (course.Available == false)
+        {
+            throw new Exception("The course is already disabled!");
+        }
+
+        var user = await _languageCoursesDbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+        if (user.Role != Role.ADMIN)
+        {
+            if (course.ProfessorId != userId)
+            {
+                throw new Exception("You don't have a permission to disable this course!");
+            }
+        }
+
+        course.Available = false;
+
+        await _languageCoursesDbContext.SaveChangesAsync();
+    }
+
+    public async Task UpdateCourseAsync(UpdateCourseDto updateCourseDto, Guid userId)
+    {
+        var user = await _languageCoursesDbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+        var course = await _languageCoursesDbContext.Courses.FirstOrDefaultAsync(
+            x => x.Id == updateCourseDto.Id);
+
+        if (user.Role != Role.ADMIN)
+        {
+            if (course.ProfessorId != userId)
+            {
+                throw new Exception("You don't have a permission to edit the data for this course!");
+            }
+        }
+
+        course.Description = updateCourseDto.Description;
+        course.Type = updateCourseDto.Type;
+        course.Price = updateCourseDto.Price;
+        course.Duration = updateCourseDto.Duration;
+
+        await _languageCoursesDbContext.SaveChangesAsync();
+    }
 }

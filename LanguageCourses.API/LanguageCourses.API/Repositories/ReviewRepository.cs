@@ -66,4 +66,18 @@ public class ReviewRepository : IReviewRepository
 
         return reviews;
     }
+
+    public async Task AddReviewAsync(Review review)
+    {
+        var courseUser = await _languageCoursesDbContext.Enrollments.FirstOrDefaultAsync(
+            x => x.UserId == review.UserId && x.CourseId == review.CourseId);
+
+        if (courseUser == null)
+        {
+            throw new Exception("You are not enroled on this course, so you can't write reviews!");
+        }
+
+        await _languageCoursesDbContext.Reviews.AddAsync(review);
+        await _languageCoursesDbContext.SaveChangesAsync();
+    }
 }
