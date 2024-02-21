@@ -60,17 +60,31 @@ public class CourseController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{id:Guid}")]
+    [Route("{courseId:Guid}")]
     [ProducesResponseType(200, Type = typeof(CourseDto))]
-    public async Task<IActionResult> GetCarById(Guid id)
+    public async Task<IActionResult> GetCarById(Guid courseId)
     {
         try
         {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            Guid userId;
+
+            if (id != null)
+            {
+                userId = Guid.Parse(id);
+            }
+            else
+            {
+                userId = Guid.Empty;
+            }
+
             string projectPath = _hostEnvironment.ContentRootPath;
             string userPath = Path.Combine(projectPath, "UserPictures");
             string coursePath = Path.Combine(projectPath, "CoursePictures");
 
-            var courseDto = await _courseRepository.GetCourseByIdAsync(id);
+            var courseDto = await _courseRepository.GetCourseByIdAsync(courseId, userId);
 
             if (courseDto == null)
             {

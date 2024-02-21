@@ -32,4 +32,8 @@ public class CourseDto
     public int Duration { get; set; }
 
     public string? Picture { get; set; } = null;
+
+    public bool IsEnrolled { get; set; }
+
+    public bool IsProfessor { get; set; }
 }

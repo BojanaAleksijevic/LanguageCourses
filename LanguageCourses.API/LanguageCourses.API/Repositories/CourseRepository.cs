@@ -44,10 +44,45 @@ public class CourseRepository : ICourseRepository
         return courses;
     }
 
-    public async Task<CourseDto> GetCourseByIdAsync(Guid id)
+    public async Task<CourseDto> GetCourseByIdAsync(Guid courseId, Guid userId)
     {
+        bool isEnrolled;
+        bool isProfessor;
+
+        if (userId == Guid.Empty)
+        {
+            isEnrolled = false;
+            isProfessor = false;
+        }
+        else
+        {
+            var courseUser = await _languageCoursesDbContext.Enrollments.FirstOrDefaultAsync(
+            x => x.CourseId == courseId && x.UserId == userId);
+
+            if (courseUser == null)
+            {
+                isEnrolled = false;
+            }
+            else
+            {
+                isEnrolled = true;
+            }
+
+            var course = await _languageCoursesDbContext.Courses.FirstOrDefaultAsync(
+                x => x.Id == courseId && x.ProfessorId == userId);
+
+            if (course == null)
+            {
+                isProfessor = false;
+            }
+            else
+            {
+                isProfessor = true;
+            }
+        }
+
         var courseDto = await _languageCoursesDbContext.Courses
-                .Where(course => course.Id == id)
+                .Where(course => course.Id == courseId)
                 .Join(
                     _languageCoursesDbContext.Users,
                     course => course.ProfessorId,
@@ -67,7 +102,9 @@ public class CourseRepository : ICourseRepository
                         Type = course.Type,
                         Price = course.Price,
                         Duration = course.Duration,
-                        Picture = course.Picture
+                        Picture = course.Picture,
+                        IsEnrolled = isEnrolled,
+                        IsProfessor = isProfessor
                     })
                 .FirstOrDefaultAsync();
 
