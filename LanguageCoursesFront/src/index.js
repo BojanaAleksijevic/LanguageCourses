@@ -1,91 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
-import './Stil.css';  // Uključi CSS stilove
-import Header from './Header.js';
-import Footer from './Footer.js';
-import Main from './Main.js';
-
-import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom";
-
-import Uloguj from './Stranice/Uloguj.js';
-import Kursevi from './Stranice/Kursevi.js';
-import Lokacija from './Stranice/Lokacija.js';
-import Akcije from './Stranice/Akcije.js';
-
-import Registracija from './Stranice/Registracija.js';
-import Verifikacija from './Stranice/Verifikacija.js';
-import Zaboravljena from './Stranice/Zaboravljena.js';
-import Zaboravio from './Stranice/Zaboravio.js';
-
-import Kursevi2 from './Stranice/Kursevi2.js';
-import DetaljiKursa from './Stranice/detaljiKursa.js';
-
-const App = () => {
-  return (
-    
-      <div className='glavnidivg'>
-        <Header />
-        <Main/>
-        <Footer />
-      </div>
-  
-  );
-};
-
-const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <App/>,
-    },
-    {
-        path: "uloguj",
-        element: <Uloguj/>,
-      },
-      {
-        path: "kursevi",
-        element: <Kursevi/>,
-      },
-      
-      {
-        path: "lokacija",
-        element: <Lokacija/>,
-      },
-      {
-        path: "akcije",
-        element: <Akcije/>,
-      },
-      {
-        path: "registruj",
-        element: <Registracija/>,
-      },
-      {
-        path: "verifikacija",
-        element: <Verifikacija/>,
-      },
-      {
-        path: "zaboravljena",
-        element: <Zaboravljena/>,
-      },
-      {
-        path: "zaboravio",
-        element: <Zaboravio/>,
-      },
-      {
-        path: "kursevi2",
-        element: <Kursevi2/>,
-      },
-      {
-        path: "detaljiKursa/:id",
-        element: <DetaljiKursa />,
-      },
-  ]);
+import App from './App';
 
 
-ReactDOM.render(<RouterProvider router={router} />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 

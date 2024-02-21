@@ -1,8 +1,10 @@
 
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"; /* Koristi se link da se ne bi refresovala stranica*/
+import axios from 'axios';
 
-const Header = () =>{
+
+const LoggedHeader = () =>{
 
     const [isLogoRotated, setLogoRotation] = useState(false);
 
@@ -15,10 +17,22 @@ const Header = () =>{
   };
 
 
+  const logoutUser=() =>{
+    delete axios.defaults.headers.common["Authorization"];
+    localStorage.setItem('token', "");
+    localStorage.setItem('email', "");
+    localStorage.setItem('id', "");
+    localStorage.setItem('firstName', "");
+    localStorage.setItem('lastName', "");
+    localStorage.setItem('role', "");
+    localStorage.setItem('isloged', 'no');
+}
+
+
     return (
         <header>
             <nav className="nav">
-                <img src="../../sova.png" width="120px" className={`logo ${isLogoRotated ? 'rotate' : ''}`}
+                <img src="./sova.png" width="120px" className={`logo ${isLogoRotated ? 'rotate' : ''}`}
           onMouseEnter={handleLogoHover}
           onMouseLeave={handleLogoLeave}/>
                 
@@ -31,16 +45,14 @@ const Header = () =>{
                     
                     
                     <Link to="/uloguj">
-                        <button className='button button1'>
-                            Prijava
-                        </button>
+                    <button className="button button1"  onClick={logoutUser}>
+                    Odjavi se
+                    </button>
+                    
                     </Link>
 
-                    <Link to="/registruj">
-                        <button className='button button1'>
-                           Registracija
-                        </button>
-                    </Link>
+
+
                     
                     <Link to="/kursevi">
                         <button className='button button1'>
@@ -56,9 +68,11 @@ const Header = () =>{
                         </button>
                     </Link>
 
-                 
-
-                  
+                    <Link to="/profil">
+                        <button className='button button1'>
+                            Profil
+                        </button>
+                    </Link>
                    
                 </ul>
             </nav>
@@ -66,4 +80,4 @@ const Header = () =>{
     )
 }
 
-export default Header;  
+export default LoggedHeader;  

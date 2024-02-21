@@ -24,29 +24,38 @@ const DetaljiKursa = () => {
         fetchKursDetalji(); 
     }, [id]);
 
+    // Stil za pozadinu
+    const backgroundImageStyle = {
+        backgroundImage: `url(data:image/jpeg;base64,${kursDetalji.picture})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: '10px',
+        height: '400px', // Prilagodite visinu prema potrebi
+        width: '100%', // Prilagodite širinu prema potrebi
+        marginBottom: '20px',
+    };
+
     return (
         <div>
-        <Header></Header>
+            <Header />
+            <div className="detaljan-prikaz-stranica">
+                <p className='ime-kursa'>{kursDetalji.name}</p>
+                <p className='jezik-kursa'>- {kursDetalji.language} -</p>
 
-        <div className="detaljan-prikaz-stranica">
-        <p className='ime-kursa'>{kursDetalji.name}</p>
-        <p className='jezik-kursa'>- {kursDetalji.language} -</p>
-
-        <div className='box-detaljan-prikaz'>
-            <div className='box-detaljan-prikaz-levo'>
-            
-                <p>O kursu:</p>
-                <p>{kursDetalji.description}</p>
+                <div className='box-detaljan-prikaz'>
+                    <div className='box-detaljan-prikaz-levo' style={backgroundImageStyle}>
+                       
+                <p className='o-kursu'>O kursu:</p>
+                <p className='description'>{kursDetalji.description}</p>
                 <br></br>
                 <button className='button-prijava'>Prijavi se na kurs</button>
             </div>
 
             <div className='box-detaljan-prikaz-desno'>
-                <img src={kursDetalji.picture} className='slika-kursa' alt={`Slika za ${kursDetalji.name}`} />
 
                 <p>Nivo: {kursDetalji.level}</p>
-                <p>Tip nastave: {kursDetalji.type}</p>
-                <p>Cena: {kursDetalji.price} din.</p>
+                <p>Tip nastave: {kursDetalji.type === 0 ? 'individualna' : 'grupna'}</p>
+                <p>Cena: {kursDetalji.price} $.</p>
                 <p>Trajanje: {kursDetalji.duration} casova</p>
 
                 <div className='box-profesor'>

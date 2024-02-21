@@ -101,14 +101,14 @@ const Main = () => {
                     {kursevi.map((kurs) => (
                         <Link to={`/detaljiKursa/${kurs.id}`} className="kurs" key={kurs.id}>
                             <div className="box-sa-strane">
-                                <div className="tekst">
+                                <div className="slova">
                                     <p>{kurs.name}</p>
                                     <p>Jezik: {kurs.language}</p>
                                     <p>Nivo: {kurs.level}</p>
                                     <p>Predavac: {kurs.firstName} {kurs.lastName}</p>
                                 </div>
-                                <div className="slika">
-                                    <img src={kurs.picture} className='okrugla-slika' alt={`Slika za ${kurs.name}`} />
+                                <div >
+                                    <img src={`data:image/jpeg;base64,${kurs.picture}`} className='picture' alt={`Slika za ${kurs.name}`} />
                                 </div>
                             </div>
                         </Link>
@@ -129,7 +129,7 @@ const Main = () => {
                 {reviews.map(review => (
                     <div key={review.id} className="box">
                         <div className="slika-osobe">
-                            <img src={`data:image/jpeg;base64,${review.picture}`} alt={`Slika ${review.id}`} /> 
+                            <img src={`data:image/jpg;base64,${review.picture}`} alt={`Slika ${review.id}`} /> 
                         </div>
 
                         <div class="comment">
