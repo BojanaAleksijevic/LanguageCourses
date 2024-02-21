@@ -602,6 +602,15 @@ a {
   width: 150px; 
   margin: 0 auto; 
   display: block;
+  margin-bottom: 35px;
+}
+
+.button-recenzije {
+  width: 150px; 
+  margin: 0 auto; 
+  display: block;
+  margin-bottom: 35px;
+  margin-top: 25px;
 }
 
 
@@ -622,4 +631,5 @@ a {
   justify-content: center;
   align-items: center;
   display: flex;
+  margin-bottom: 40px;
 }

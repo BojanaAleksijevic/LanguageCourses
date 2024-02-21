@@ -1,18 +1,42 @@
 // DetaljiKursa.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import '../Stil.css'; 
 import Header from '../Header.js';
 import Footer from '../Footer.js';
+import { useNavigate } from 'react-router-dom';
+import LoggedHeader from '../LoggedHeader.js';
 
 
 const DetaljiKursa = () => {
     const { id } = useParams();
     const [kursDetalji, setKursDetalji] = useState({});
 
+    const [isLoggedIn, setIsLoggedIn] = useState('');
+
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+   
+    const isloged = localStorage.getItem('isloged');
+
+
     useEffect(() => {
+    
         const fetchKursDetalji = async () => {
+            if (token) {
+                setIsLoggedIn(true);
+              }
+
+            if (isloged !== 'yes') {
+                // If not logged in, navigate to the login page
+                navigate('/uloguj');
+            }
+            if (isloged !== 'yes') {
+                // If not logged in, the component won't be rendered
+                return null;
+            }
+
             try {
                 const response = await axios.get(`https://localhost:5001/api/Course/${id}`);
                 setKursDetalji(response.data);
@@ -22,7 +46,7 @@ const DetaljiKursa = () => {
         };
 
         fetchKursDetalji(); 
-    }, [id]);
+    }, [id,isloged, navigate]);
 
     // Stil za pozadinu
     const backgroundImageStyle = {
@@ -37,7 +61,7 @@ const DetaljiKursa = () => {
 
     return (
         <div>
-            <Header />
+              {isLoggedIn ? <LoggedHeader /> : <Header />}
             <div className="detaljan-prikaz-stranica">
                 <p className='ime-kursa'>{kursDetalji.name}</p>
                 <p className='jezik-kursa'>- {kursDetalji.language} -</p>
@@ -47,15 +71,13 @@ const DetaljiKursa = () => {
                        
                 <p className='o-kursu'>O kursu:</p>
                 <p className='description'>{kursDetalji.description}</p>
-                <br></br>
-                <button className='button-prijava'>Prijavi se na kurs</button>
             </div>
 
             <div className='box-detaljan-prikaz-desno'>
 
                 <p>Nivo: {kursDetalji.level}</p>
                 <p>Tip nastave: {kursDetalji.type === 0 ? 'individualna' : 'grupna'}</p>
-                <p>Cena: {kursDetalji.price} $.</p>
+                <p>Cena: {kursDetalji.price} €</p>
                 <p>Trajanje: {kursDetalji.duration} casova</p>
 
                 <div className='box-profesor'>
@@ -71,6 +93,14 @@ const DetaljiKursa = () => {
             </div>
         </div>
         </div>
+        
+        <button className='button-prijava'>Prijavi se na kurs</button>
+        <p className='ime-kursa'>Pogledaj iskustva drugih</p>
+            <Link to={`/recenzije/${id}`}>
+                <button className='button-recenzije'>
+                Pogledaj recenzije
+                </button>
+            </Link>
         <Footer></Footer>
         </div>
     );

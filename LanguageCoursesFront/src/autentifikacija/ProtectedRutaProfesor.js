@@ -3,7 +3,10 @@ import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 
 const ProtectedRoutesUser = () => {
     const isAuth = localStorage.getItem('token') && localStorage.getItem('role')==="1";
-    return isAuth ? <Outlet /> : <Navigate to="/login" />;
+    if (isAuth){
+      <Navigate to="/uloguj" />;
   };
+ }
+  
 
 export default ProtectedRoutesUser;

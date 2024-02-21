@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom';
 import Header from '../Header.js';
 import Footer from '../Footer.js';
-import '../Stil.css'; 
+import '../Stil.css';
 import LoggedHeader from "../LoggedHeader.js";
 
 
@@ -17,13 +17,13 @@ function Kursevi() {
     const [isLoggedIn, setIsLoggedIn] = useState('');
 
     const token = localStorage.getItem('token');
-  
+
     useEffect(() => {
-      if (token) {
-        setIsLoggedIn(true);
-      }
+        if (token) {
+            setIsLoggedIn(true);
+        }
     }, []);
-      
+
 
 
     const fetchData = async () => {
@@ -36,7 +36,7 @@ function Kursevi() {
                     priceFrom: queryParams.get('priceFrom'),
                     priceTo: queryParams.get('priceTo'),
                     pageNumber: queryParams.get('pageNumber') || 1,  // Postavljanje default vrednosti na 1
-                    pageSize: queryParams.get('pageSize') || 16,  // Postavljanje default vrednosti na 16
+                    pageSize: queryParams.get('pageSize') || 10,  // Postavljanje default vrednosti na 16
                 }
             });
 
@@ -54,15 +54,20 @@ function Kursevi() {
         kurs => kurs.name.toLowerCase().includes(pretraga.toLowerCase())
     ) : [];
 
+
+
     return (
         <div className="glavnidivg">
             {isLoggedIn ? <LoggedHeader /> : <Header />}
-            
-            <h1><i>Sacuvaj</i> za kasnije ili se<i> prijavi</i> odmah, a mi ti saljemo mejl sa vise informacija! </h1>
+
+            <h1>Pogledaj kurseve </h1>
             <div className="pretrage">
                 {/* Ostatak koda ostaje nepromenjen /}
                 {/ ... */}
             </div>
+
+
+
 
             <div className="lista-kurseva">
                 {filtriraniKursevi.map(kurs => (
@@ -75,7 +80,14 @@ function Kursevi() {
                                 <p>Nivo: {kurs.level}</p>
                                 <p>Predavac: {kurs.firstName} {kurs.lastName}</p>
                                 <p>Tip nastave: {kurs.type === 0 ? 'individualna' : 'grupna'}</p>
-                                <p>Cena: {kurs.price} din.</p>
+                                <p>Cena: {kurs.price}  €</p>
+                                
+                                
+                                {localStorage.getItem('role') === "2" /*|| localStorage.getItem('id') === kurs.professorId*/ && (
+                                    <button>Obriši</button>
+                                )}
+
+
                             </div>
                         </Link>
                     </div>

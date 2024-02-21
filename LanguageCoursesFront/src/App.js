@@ -14,30 +14,34 @@ import Zaboravio from './Stranice/Zaboravio.js';
 import Kursevi2 from './Stranice/Kursevi2.js';
 import DetaljiKursa from './Stranice/detaljiKursa.js';
 import LoggedHeader from './LoggedHeader.js';
+import Recenzije from './Stranice/recenzije.js';
+import axios from 'axios';
 
 import ProtectedRutaAdmin from './autentifikacija/ProtectedRutaAdmin.js';
 import ProtectedRutaUser from './autentifikacija/ProtectedRutaUser.js';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState('');
-
+ 
+  const isloged = localStorage.getItem('isloged');
+  console.log(isloged);
   const token = localStorage.getItem('token');
 
-  useEffect(() => {
+  useEffect(()=>{
     if (token) {
-      setIsLoggedIn(true);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
-  }, []); // This empty dependency array ensures that the effect runs only once after the initial render
+  },[]) // This empty dependency array ensures that the effect runs only once after the initial render
 
   function Alllayout() {
     return (
       <>
-        {isLoggedIn ? <LoggedHeader /> : <Header />}
+        {isloged=='yes' ? <LoggedHeader /> : <Header />}
         <Main />
         <Footer />
       </>
     );
   }
+  
 
   return (
     <Router>
@@ -53,6 +57,8 @@ function App() {
         <Route path="zaboravljena" element={<Zaboravljena />} />
         <Route path="zaboravio" element={<Zaboravio />} />
         <Route path="detaljiKursa/:id" element={<DetaljiKursa />} />
+        <Route path="recenzije/:id" element={<Recenzije />} />
+
       </Routes>
     </Router>
   );

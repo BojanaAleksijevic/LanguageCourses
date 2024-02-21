@@ -25,14 +25,15 @@ const LoggedHeader = () =>{
     localStorage.setItem('firstName', "");
     localStorage.setItem('lastName', "");
     localStorage.setItem('role', "");
-    localStorage.setItem('isloged', 'no');
+    localStorage.setItem('isloged', "no");
+    window.location.reload(); // Reload the page
 }
 
 
     return (
         <header>
             <nav className="nav">
-                <img src="./sova.png" width="120px" className={`logo ${isLogoRotated ? 'rotate' : ''}`}
+                <img src="../../sova.png" width="120px" className={`logo ${isLogoRotated ? 'rotate' : ''}`}
           onMouseEnter={handleLogoHover}
           onMouseLeave={handleLogoLeave}/>
                 
@@ -44,12 +45,10 @@ const LoggedHeader = () =>{
                     </Link>
                     
                     
-                    <Link to="/uloguj">
                     <button className="button button1"  onClick={logoutUser}>
                     Odjavi se
                     </button>
                     
-                    </Link>
 
 
 
