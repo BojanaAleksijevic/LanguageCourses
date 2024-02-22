@@ -27,12 +27,32 @@ function Login({ setIsLoggedIn }) {
         setPassword(value);
     }
 
+    const validateForm = () => {
+        let formIsValid = true;
+        const newErrors = {};
+    
+        if (email.trim() === '') {
+            formIsValid = false;
+            newErrors.email = 'Morate uneti email';
+        }
+    
+        if (password.trim() === '') {
+            formIsValid = false;
+            newErrors.password = 'Morate uneti lozinku';
+        }
+    
+        setErrors(newErrors);
+        return formIsValid;
+    };
+    
     const handleLogin = async () => {
-        try {
+        if (validateForm({ email, password })) {
+          try {
             const response = await axios.post('https://localhost:5001/api/User/login', {
-                email,
-                password,
+              email,
+              password,
             });
+    
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('email', response.data.email);
             localStorage.setItem('id', response.data.id);
@@ -43,29 +63,12 @@ function Login({ setIsLoggedIn }) {
             setToken(response.data.token);
             navigate('/');
             window.location.reload(); // Reload the page
-
-        } catch (error) {
-            alert("Imamo problema sa konektovenjem sa bazom. Molimo pokusajte kasnije.Hvala!")
+          } catch (error) {
+            alert('Imamo problema sa konektovanjem sa bazom. Molimo pokusajte kasnije. Hvala!');
+          }
         }
-    };
-
-    const validateForm = () => {
-        let formIsValid = true;
-        const newErrors = {};
-
-        if (!email) {
-            formIsValid = false;
-            newErrors.email = 'Morate uneti email';
-        }
-
-        if (!password) {
-            formIsValid = false;
-            newErrors.password = 'Morate uneti lozinku';
-        }
-
-        setErrors(newErrors);
-        return formIsValid;
-    };
+      };
+   
 
     return (
         <div className='body'>

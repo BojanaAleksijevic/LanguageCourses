@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"; /* Koristi se link da se ne bi refresovala stranica*/
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 const LoggedHeader = () =>{
@@ -16,6 +19,8 @@ const LoggedHeader = () =>{
     setLogoRotation(false);
   };
 
+  const navigate = useNavigate();
+
 
   const logoutUser=() =>{
     delete axios.defaults.headers.common["Authorization"];
@@ -26,6 +31,8 @@ const LoggedHeader = () =>{
     localStorage.setItem('lastName', "");
     localStorage.setItem('role', "");
     localStorage.setItem('isloged', "no");
+    
+    navigate('/');
     window.location.reload(); // Reload the page
 }
 
@@ -67,12 +74,17 @@ const LoggedHeader = () =>{
                         </button>
                     </Link>
 
+                    {localStorage.getItem('role') === "0" /*|| localStorage.getItem('id') === kurs.professorId*/ && (
+    
+  
                     <Link to="/profil">
                         <button className='button button1'>
                             Profil
                         </button>
                     </Link>
-                   
+                    )}
+
+
                 </ul>
             </nav>
         </header>

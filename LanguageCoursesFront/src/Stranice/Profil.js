@@ -12,6 +12,13 @@ function Profil() {
             // If not logged in, navigate to the login page
             navigate('/uloguj');
         }
+
+        console.log(localStorage.getItem('firstname'));
+        console.log(localStorage.getItem('lastname'));
+        console.log(localStorage.getItem('email'));
+        console.log(localStorage.getItem('token'));
+        console.log(localStorage.getItem('role'));
+
     }, [isloged, navigate]);
 
     if (isloged !== 'yes') {
@@ -20,9 +27,28 @@ function Profil() {
     }
 
     return (
-        <div className="glavnidivg">
+        <div className="glavnidivg" >
             <LoggedHeader></LoggedHeader>
-            <h1>kursevi na koje je prijavljen korisnik</h1>
+            
+            
+
+
+    <div className="lista-kurseva2">
+    <div className="kurs-box">
+        <div className="kurs-info">
+            <h2>Moji podaci</h2>
+            <p>Ime: {localStorage.getItem('firstName')}</p>
+            <p>Prezime: {localStorage.getItem('lastName')}</p>
+            
+        </div>
+    </div>
+    </div>
+
+            
+            
+            <div className="glavnidivg-dm">          
+                  
+            </div>
             <Footer></Footer>
         </div>
     );

@@ -11,6 +11,8 @@ import LoggedHeader from '../LoggedHeader.js';
 
 const DetaljiKursa = () => {
     const { id } = useParams();
+    const [recenzije, setRecenzije] = useState([]);
+
     const [kursDetalji, setKursDetalji] = useState({});
 
     const [isLoggedIn, setIsLoggedIn] = useState('');
@@ -45,32 +47,84 @@ const DetaljiKursa = () => {
             }
         };
 
-        fetchKursDetalji(); 
-    }, [id,isloged, navigate]);
 
-    // Stil za pozadinu
-    const backgroundImageStyle = {
-        backgroundImage: `url(data:image/jpeg;base64,${kursDetalji.picture})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderRadius: '10px',
-        height: '400px', // Prilagodite visinu prema potrebi
-        width: '100%', // Prilagodite širinu prema potrebi
-        marginBottom: '20px',
+        const fetchRecenzije = async () => {
+        
+            if (token) {
+                setIsLoggedIn(true);
+              }
+            
+              if (isloged !== 'yes') {
+                // If not logged in, navigate to the login page
+                navigate('/uloguj');
+            }
+
+
+            try {
+                // Ažuriranje URL-a da uključuje oba parametra
+                const response = await axios.get(`https://localhost:5001/api/Review/courseReviews/id:Guid?id=${id}`);
+                setRecenzije(response.data);
+            } catch (error) {
+                console.error('Error fetching reviews:', error);
+            }
+        };
+
+        fetchKursDetalji(); 
+        fetchRecenzije();
+
+    }, [id, isloged, navigate]);
+/*
+    const handleSubmit = () => {
+        if (validateForm()) {
+          const url = `https://localhost:5001/api/Course/enrolment/${courseId}`;
+    
+          axios.post(url)
+            .then((response) => {
+              alert(response.data); 
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        }
+      };*/
+
+    // Funkcija za formatiranje datuma
+    const formatirajDatum = (originalniDatum) => {
+        const datum = new Date(originalniDatum);
+        return datum.toLocaleDateString('en-US'); 
     };
 
+
+    // Funkcija za mapiranje broja ocene na simbole
+    const zvezdica = (ocena) => {
+        const simbol = '⭐'; 
+        return simbol.repeat(ocena);
+    };
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`https://localhost:5001/api/Course/deleteCourse/${id}`);
+            // Redirect or handle the UI update after successful deletion
+            navigate('/'); // Redirect to the home page, for example
+        } catch (error) {
+            console.error('Error deleting course:', error);
+            // Handle the error, show a message, etc.
+        }
+    };
+  
     return (
         <div>
               {isLoggedIn ? <LoggedHeader /> : <Header />}
             <div className="detaljan-prikaz-stranica">
                 <p className='ime-kursa'>{kursDetalji.name}</p>
                 <p className='jezik-kursa'>- {kursDetalji.language} -</p>
-
                 <div className='box-detaljan-prikaz'>
-                    <div className='box-detaljan-prikaz-levo' style={backgroundImageStyle}>
-                       
+                    <div className='box-detaljan-prikaz-levo'>
+                      
                 <p className='o-kursu'>O kursu:</p>
                 <p className='description'>{kursDetalji.description}</p>
+                <img src={`data:image/jpeg;base64,${kursDetalji.picture}`} className='slika-kursa'></img>
+
             </div>
 
             <div className='box-detaljan-prikaz-desno'>
@@ -90,19 +144,51 @@ const DetaljiKursa = () => {
                         <p>📧{kursDetalji.professorEmail}</p>
                     </div>
                 </div>
+                {localStorage.getItem('role') === "0" /*|| localStorage.getItem('id') === kurs.professorId*/ && (
+                <button /*onClick={handleSubmit}*/ className='button-prijava'>Prijavi se na kurs</button>
+                )}
+
+
+                {localStorage.getItem('role') === "2" /*|| localStorage.getItem('id') === kurs.professorId*/ && (
+             <button className='button-prijava' onClick={handleDelete}>Obriši</button>
+            )}            
+
+            
             </div>
         </div>
         </div>
-        
-        <button className='button-prijava'>Prijavi se na kurs</button>
-        <p className='ime-kursa'>Pogledaj iskustva drugih</p>
-            <Link to={`/recenzije/${id}`}>
-                <button className='button-recenzije'>
-                Pogledaj recenzije
-                </button>
-            </Link>
+
+
+            <center>
+            <h2>Pogledaj sta su drugi rekli o ovom kursu</h2>
+            </center>
+            <div className="recenzije">
+
+                {recenzije.map((recenzija, index) => (
+                    <div key={index} className="recenzija-box">
+                        <div className="slika-osobe">
+                            <img src={`data:image/jpg;base64,${recenzija.picture}`} alt={`Slika ${recenzija.id}`} /> 
+                        </div>
+
+                        <div class="comment">
+                            <p style={{ color: "#00b93b" }}>{recenzija.firstName} {recenzija.lastName}</p>
+                            <p>Postavljeno: {formatirajDatum(recenzija.postDate)}</p>
+                            <p><i>{recenzija.content}</i></p>
+                            <p>Ocena: {zvezdica(recenzija.rating)}</p>
+                        </div>
+                    </div>
+                ))}
+
+
+            </div>
+
+
+            <button /*onClick={handleSubmit}*/ className='button-dodaj-recenziju'>Dodaj recenziju</button>
+           
+            
         <Footer></Footer>
         </div>
+    
     );
 };
 

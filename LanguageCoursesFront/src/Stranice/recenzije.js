@@ -27,10 +27,7 @@ const Recenzije = () => {
                 setIsLoggedIn(true);
               }
             
-              if (isloged !== 'yes') {
-                // If not logged in, navigate to the login page
-                navigate('/uloguj');
-            }
+             
 
 
             try {

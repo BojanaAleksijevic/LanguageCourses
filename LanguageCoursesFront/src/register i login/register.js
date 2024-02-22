@@ -160,7 +160,7 @@ function Register() {
         </div>
       </div>
 
-      <button onClick={() => handleRegister()}>Register</button>
+      <button onClick={() => handleRegister()}>Registruj se</button>
       <hr></hr>
 
       <Link to="/uloguj">
