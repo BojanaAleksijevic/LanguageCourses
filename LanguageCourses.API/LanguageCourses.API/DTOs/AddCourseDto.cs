@@ -17,4 +17,6 @@ public class AddCourseDto
     public decimal Price { get; set; }
 
     public int Duration { get; set; }
+
+    public string? Picture { get; set; }
 }

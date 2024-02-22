@@ -5,11 +5,11 @@ namespace LanguageCourses.API.Extensions;
 
 public static class CourseConversions
 {
-    public static Course ConvertToCourse(this AddCourseDto addCourseDto, Guid userId, Guid id)
+    public static Course ConvertToCourse(this AddCourseDto addCourseDto, Guid userId, Guid courseId, IWebHostEnvironment hostEnvironment)
     {
         return new Course
         {
-            Id = id,
+            Id = courseId,
             ProfessorId = userId,
             Name = addCourseDto.Name,
             Description = addCourseDto.Description,
@@ -17,7 +17,29 @@ public static class CourseConversions
             Level = addCourseDto.Level,
             Type = addCourseDto.Type,
             Price = addCourseDto.Price,
-            Duration = addCourseDto.Duration
+            Duration = addCourseDto.Duration,
+            Picture = SaveCoursePicture(addCourseDto.Picture, courseId, hostEnvironment)
         };
+    }
+
+    private static string SaveCoursePicture(string picture, Guid courseId, IWebHostEnvironment hostEnvironment)
+    {
+        if(picture == null)
+        {
+            return null;
+        }
+
+        string fileName = $"{courseId}.jpg";
+
+        byte[] imageBytes = Convert.FromBase64String(picture);
+
+        string projectPath = hostEnvironment.ContentRootPath;
+        string fullPath = Path.Combine(projectPath, "CoursePictures");
+
+        string imagePath = Path.Combine(fullPath, fileName);
+
+        File.WriteAllBytes(imagePath, imageBytes);
+
+        return fileName;
     }
 }

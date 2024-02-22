@@ -283,4 +283,40 @@ public class CourseRepository : ICourseRepository
 
         await _languageCoursesDbContext.SaveChangesAsync();
     }
+
+    public async Task<IEnumerable<CourseDto2>> GetUserEnrolledCoursesAsync(Guid userId)
+    {
+        var courses = _languageCoursesDbContext.Courses
+                .Join(_languageCoursesDbContext.Enrollments,
+                    course => course.Id,
+                    enrolment => enrolment.CourseId,
+                    (course, enrollment) => new { Course = course, Enrollment = enrollment })
+                .Where(joinResult => joinResult.Enrollment.UserId == userId)
+                .Select(joinResult => joinResult.Course)
+                .ToList();
+
+        var finalResult = courses
+                .Join(_languageCoursesDbContext.Users,
+                course => course.ProfessorId,
+                user => user.Id,
+                (course, user) => new
+                {
+                    Course = course,
+                    Professor = user
+                })
+                .Select(result => new CourseDto2
+                {
+                    Id = result.Course.Id,
+                    Name = result.Course.Name,
+                    Language = result.Course.Language,
+                    Level = result.Course.Level,
+                    Price = result.Course.Price,
+                    Type = result.Course.Type,
+                    FirstName = result.Professor.FirstName,
+                    LastName = result.Professor.LastName,
+                    Picture = result.Course.Picture
+                });
+
+        return finalResult;
+    }
 }

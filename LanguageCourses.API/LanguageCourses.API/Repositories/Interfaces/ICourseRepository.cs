@@ -20,4 +20,5 @@ public interface ICourseRepository
     Task SetCourseAvailableAsync(Guid userId, Guid courseId);
     Task SetCourseDisabledAsync(Guid userId, Guid courseId);
     Task UpdateCourseAsync(UpdateCourseDto updateCourseDto, Guid userId);
+    Task<IEnumerable<CourseDto2>> GetUserEnrolledCoursesAsync(Guid userId);
 }

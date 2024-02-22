@@ -220,7 +220,7 @@ public class CourseController : ControllerBase
 
             Guid cid = Guid.NewGuid();
 
-            var course = addCourseDto.ConvertToCourse(uid, cid);
+            var course = addCourseDto.ConvertToCourse(uid, cid, _hostEnvironment);
             await _courseRepository.AddCourseAsync(course);
 
             return Ok();
@@ -287,6 +287,51 @@ public class CourseController : ControllerBase
             await _courseRepository.UpdateCourseAsync(updateCourseDto, userId);
 
             return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "ADMIN,PROFESSOR,STUDENT")]
+    [Route("userEnrolled")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<CourseDto2>))]
+    public async Task<IActionResult> GetUserEnrolled()
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
+
+            var courses = await _courseRepository.GetUserEnrolledCoursesAsync(userId);
+
+            if (courses == null)
+            {
+                return NotFound();
+            }
+
+            string projectPath = _hostEnvironment.ContentRootPath;
+            string fullPath = Path.Combine(projectPath, "CoursePictures");
+
+            List<CourseDto2> result = new();
+
+            foreach (var course in courses)
+            {
+                if (course.Picture != null)
+                {
+                    var imageBytes = System.IO.File.ReadAllBytes(Path.Combine(fullPath, course.Picture));
+                    var base64Image = Convert.ToBase64String(imageBytes);
+
+                    course.Picture = base64Image;
+                }
+
+                result.Add(course);
+            }
+
+            return Ok(result);
         }
         catch (Exception ex)
         {

@@ -48,7 +48,7 @@ public class LanguageCoursesDbContext : DbContext
                     LastName = "Jovanović",
                     Phone = "061 755 8995",
                     Email = "fjovanovic284@gmail.com",
-                    Picture = "9150584F-EB77-4A84-A13F-698A581985D8.jpg",
+                    Picture = "file.jpg",
                     PasswordHash = _hmac
                         .ComputeHash(System.Text.Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Passwords:FilipPwd")!)),
                     PasswordSalt = _hmac.Key,
@@ -63,7 +63,7 @@ public class LanguageCoursesDbContext : DbContext
                     LastName = "Petrović",
                     Phone = "064 765 9876",
                     Email = "lule19@gmail.com",
-                    Picture = "viber_image_2024-02-04_17-38-12-871.jpg",
+                    Picture = "lule.jpg",
                     PasswordHash = _hmac
                         .ComputeHash(System.Text.Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Passwords:LukaPwd")!)),
                     PasswordSalt = _hmac.Key,
@@ -78,7 +78,7 @@ public class LanguageCoursesDbContext : DbContext
                     LastName = "Aleksijević",
                     Phone = "064 784 5668",
                     Email = "boka0404002.ba@gmail.com",
-                    Picture = "unknown.png",
+                    Picture = "boka.jpg",
                     PasswordHash = _hmac
                         .ComputeHash(System.Text.Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Passwords:BojanaPwd")!)),
                     PasswordSalt = _hmac.Key,
@@ -93,7 +93,7 @@ public class LanguageCoursesDbContext : DbContext
                     LastName = "Mihailović",
                     Phone = "061 356 8872",
                     Email = "andrijanaa.mihailovic@gmail.com",
-                    Picture = "unknown.png",
+                    Picture = "coka.jpg",
                     PasswordHash = _hmac
                         .ComputeHash(System.Text.Encoding.UTF8.GetBytes(_configuration.GetValue<string>("Passwords:AndrijanaPwd")!)),
                     PasswordSalt = _hmac.Key,
