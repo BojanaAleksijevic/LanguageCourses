@@ -620,6 +620,17 @@ a {
   margin-top: 45px;
 }
 
+.obrisi{
+  width: 150px; 
+  margin: 0 auto; 
+  display: block;
+  margin-top: 45px;
+  background-color: rgb(197, 40, 40);
+}
+.obrisi:hover{
+  background-color: rgb(212, 8, 8);
+}
+
 .button-dodaj-recenziju {
   width: 150px; 
   margin: 0 auto; 
