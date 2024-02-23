@@ -115,7 +115,7 @@ const DetaljiKursa = () => {
         navigate(`/dodajReview?id=${id}`);
     };
     return (
-        <div>
+        <div className='glavnidivg'>
             {isLoggedIn ? <LoggedHeader /> : <Header />}
             <div className="detaljan-prikaz-stranica">
                 <p className='ime-kursa'>{kursDetalji.name}</p>

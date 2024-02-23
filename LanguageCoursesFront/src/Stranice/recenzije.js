@@ -6,6 +6,7 @@ import Header from '../Header.js';
 import Footer from '../Footer.js';
 import LoggedHeader from '../LoggedHeader.js';
 import { useNavigate } from 'react-router-dom';
+
 const Recenzije = () => {
     const { id, reviewId } = useParams(); // Dohvati oba parametra
     const [recenzije, setRecenzije] = useState([]);

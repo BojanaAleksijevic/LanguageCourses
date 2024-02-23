@@ -17,6 +17,8 @@ import LoggedHeader from './LoggedHeader.js';
 import Recenzije from './Stranice/recenzije.js';
 import axios from 'axios';
 import DodajReview from './Stranice/DodajReview.js';
+import DodajKurs from './Stranice/DodajKurs.js';
+
 
 import ProtectedRutaAdmin from './autentifikacija/ProtectedRutaAdmin.js';
 import ProtectedRutaUser from './autentifikacija/ProtectedRutaUser.js';
@@ -60,7 +62,7 @@ function App() {
         <Route path="detaljiKursa/:id" element={<DetaljiKursa />} />
         <Route path="recenzije/:id" element={<Recenzije />} />
         <Route path="dodajreview" element={<DodajReview />} />
-
+        <Route path="dodajkurs" element={<DodajKurs />} />
       </Routes>
     </Router>
   );
