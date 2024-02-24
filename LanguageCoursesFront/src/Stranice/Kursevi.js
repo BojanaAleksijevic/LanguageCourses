@@ -26,6 +26,8 @@ function Kursevi() {
         if (token) {
             setIsLoggedIn(true);
           }
+
+          
     }, []);
 
 
@@ -40,7 +42,7 @@ function Kursevi() {
                     priceFrom: queryParams.get('priceFrom'),
                     priceTo: queryParams.get('priceTo'),
                     pageNumber: queryParams.get('pageNumber') || 1,  // Postavljanje default vrednosti na 1
-                    pageSize: queryParams.get('pageSize') || 10,  // Postavljanje default vrednosti na 16
+                    pageSize: queryParams.get('pageSize') || 20,  // Postavljanje default vrednosti na 16
                 }
             });
 

@@ -29,18 +29,7 @@ const Header = () =>{
                         </button>
                     </Link>
                     
-                    
-                    <Link to="/uloguj">
-                        <button className='button button1'>
-                            Prijava
-                        </button>
-                    </Link>
 
-                    <Link to="/registruj">
-                        <button className='button button1'>
-                           Registracija
-                        </button>
-                    </Link>
                     
                     <Link to="/kursevi">
                         <button className='button button1'>
@@ -58,6 +47,18 @@ const Header = () =>{
 
                  
 
+
+                    <Link to="/uloguj">
+                        <button className='button button1prijava'>
+                            Prijava
+                        </button>
+                    </Link>
+
+                    <Link to="/registruj">
+                        <button className='button button1registracija'>
+                           Registracija
+                        </button>
+                    </Link>
                   
                    
                 </ul>
