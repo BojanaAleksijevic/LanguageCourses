@@ -14,6 +14,8 @@ using MimeKit;
 using MimeKit.Text;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 
 namespace LanguageCourses.API.Repositories;
 
@@ -21,11 +23,13 @@ public class UserRepository : IUserRepository
 {
     private readonly LanguageCoursesDbContext _languageCoursesDbContext;
     private readonly IConfiguration _configuration;
+    private readonly IWebHostEnvironment _hostEnvironment;
 
-    public UserRepository(LanguageCoursesDbContext languageCoursesDbContext, IConfiguration configuration)
+    public UserRepository(LanguageCoursesDbContext languageCoursesDbContext, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
     {
         _languageCoursesDbContext = languageCoursesDbContext;
         _configuration = configuration;
+        _hostEnvironment = webHostEnvironment;
     }
 
     public async Task RegisterAsync(UserRegisterDto userRegisterDto)
@@ -247,5 +251,40 @@ public class UserRepository : IUserRepository
 
             return computedHash.SequenceEqual(passwordHash);
         }
+    }
+
+    public async Task ChangePictureAsync(ChangeUserPictureDto changeUserPicture, Guid userId)
+    {
+        if (changeUserPicture.UserId != userId)
+        {
+            throw new Exception("You are not the owner of this profile!");
+        }
+
+        var user = await _languageCoursesDbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+        if (user == null)
+        {
+            throw new Exception("User not found!");
+        }
+
+        string projectPath = _hostEnvironment.ContentRootPath;
+        string fullPath = Path.Combine(projectPath, "UserPictures");
+
+        string newFile = $"{user.Id}.jpg";
+        byte[] imageBytes = Convert.FromBase64String(changeUserPicture.Picture);
+        string newImagePath = Path.Combine(fullPath, newFile);
+        File.WriteAllBytes(newImagePath, imageBytes);
+
+        string oldFile = $"{user.Picture}";
+        string oldImagePath = Path.Combine(fullPath, oldFile);
+
+        if (File.Exists(oldImagePath))
+        {
+            File.Delete(oldImagePath);
+        }
+
+        user.Picture = newFile;
+
+        await _languageCoursesDbContext.SaveChangesAsync();
     }
 }

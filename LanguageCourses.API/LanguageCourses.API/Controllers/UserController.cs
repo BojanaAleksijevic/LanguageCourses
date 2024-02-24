@@ -188,4 +188,24 @@ public class UserController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpPut("changePicture")]
+    [Authorize(Roles = "ADMIN,PROFESSOR,STUDENT")]
+    public async Task<IActionResult> ChangeUserPicture(ChangeUserPictureDto changeUserPicture)
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
+
+            await _userRepository.ChangePictureAsync(changeUserPicture, userId);
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

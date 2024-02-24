@@ -15,4 +15,5 @@ public interface IUserRepository
     Task ResetPasswordAsync(UserResetPasswordDto userResetPasswordDto);
     Task AddProfessorAsync(User professor);
     void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
+    Task ChangePictureAsync(ChangeUserPictureDto changeUserPicture, Guid userId);
 }

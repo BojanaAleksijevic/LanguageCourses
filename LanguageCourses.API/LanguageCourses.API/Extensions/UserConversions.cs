@@ -20,7 +20,8 @@ public static class UserConversions
             PasswordHash = passwordHash,
             PasswordSalt = passwordSalt,
             VerificationToken = CreateRandomToken(),
-            Role = Role.STUDENT
+            Role = Role.STUDENT,
+            Picture = "unknown.png"
         };
     }
 
@@ -33,7 +34,7 @@ public static class UserConversions
             LastName = addProfessorDto.LastName,
             Phone = addProfessorDto.Phone,
             Email = addProfessorDto.Email,
-            Picture = addProfessorDto.Picture,
+            Picture = "unknown.png",
             PasswordHash = passwordHash,
             PasswordSalt = passwordSalt,
             VerificationToken = CreateRandomToken(),

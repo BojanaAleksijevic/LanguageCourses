@@ -26,7 +26,7 @@ public static class CourseConversions
     {
         if(picture == null)
         {
-            return null;
+            return "default.png";
         }
 
         string fileName = $"{courseId}.jpg";
