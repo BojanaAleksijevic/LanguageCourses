@@ -286,14 +286,14 @@ public class CourseRepository : ICourseRepository
 
     public async Task<IEnumerable<CourseDto2>> GetUserEnrolledCoursesAsync(Guid userId)
     {
-        var courses = _languageCoursesDbContext.Courses
+        var courses = await _languageCoursesDbContext.Courses
                 .Join(_languageCoursesDbContext.Enrollments,
                     course => course.Id,
                     enrolment => enrolment.CourseId,
                     (course, enrollment) => new { Course = course, Enrollment = enrollment })
                 .Where(joinResult => joinResult.Enrollment.UserId == userId)
                 .Select(joinResult => joinResult.Course)
-                .ToList();
+                .ToListAsync();
 
         var finalResult = courses
                 .Join(_languageCoursesDbContext.Users,
@@ -318,5 +318,125 @@ public class CourseRepository : ICourseRepository
                 });
 
         return finalResult;
+    }
+
+    public async Task<IEnumerable<CourseDto2>> GetAvailableCoursesAsync(Guid userId)
+    {
+        var user = await _languageCoursesDbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+        List<CourseDto2> courses;
+
+        if (user.Role == Role.ADMIN)
+        {
+            courses = await _languageCoursesDbContext.Courses
+                .Where(x => x.Available)
+                .Join(_languageCoursesDbContext.Users,
+                course => course.ProfessorId,
+                user => user.Id,
+                (course, user) => new
+                {
+                    Course = course,
+                    Professor = user
+                })
+                .Select(result => new CourseDto2
+                {
+                    Id = result.Course.Id,
+                    Name = result.Course.Name,
+                    Language = result.Course.Language,
+                    Level = result.Course.Level,
+                    Price = result.Course.Price,
+                    Type = result.Course.Type,
+                    FirstName = result.Professor.FirstName,
+                    LastName = result.Professor.LastName,
+                    Picture = result.Course.Picture
+                }).ToListAsync();
+        }
+        else
+        {
+            courses = await _languageCoursesDbContext.Courses
+                .Where(x => x.ProfessorId == userId && x.Available)
+                .Join(_languageCoursesDbContext.Users,
+                course => course.ProfessorId,
+                user => user.Id,
+                (course, user) => new
+                {
+                    Course = course,
+                    Professor = user
+                })
+                .Select(result => new CourseDto2
+                {
+                    Id = result.Course.Id,
+                    Name = result.Course.Name,
+                    Language = result.Course.Language,
+                    Level = result.Course.Level,
+                    Price = result.Course.Price,
+                    Type = result.Course.Type,
+                    FirstName = result.Professor.FirstName,
+                    LastName = result.Professor.LastName,
+                    Picture = result.Course.Picture
+                }).ToListAsync();
+        }
+
+        return courses;
+    }
+
+    public async Task<IEnumerable<CourseDto2>> GetDisabledCoursesAsync(Guid userId)
+    {
+        var user = await _languageCoursesDbContext.Users.FirstOrDefaultAsync(x => x.Id == userId);
+
+        List<CourseDto2> courses;
+
+        if (user.Role == Role.ADMIN)
+        {
+            courses = await _languageCoursesDbContext.Courses
+                .Where(x => !x.Available)
+                .Join(_languageCoursesDbContext.Users,
+                course => course.ProfessorId,
+                user => user.Id,
+                (course, user) => new
+                {
+                    Course = course,
+                    Professor = user
+                })
+                .Select(result => new CourseDto2
+                {
+                    Id = result.Course.Id,
+                    Name = result.Course.Name,
+                    Language = result.Course.Language,
+                    Level = result.Course.Level,
+                    Price = result.Course.Price,
+                    Type = result.Course.Type,
+                    FirstName = result.Professor.FirstName,
+                    LastName = result.Professor.LastName,
+                    Picture = result.Course.Picture
+                }).ToListAsync();
+        }
+        else
+        {
+            courses = await _languageCoursesDbContext.Courses
+                .Where(x => x.ProfessorId == userId && !x.Available)
+                .Join(_languageCoursesDbContext.Users,
+                course => course.ProfessorId,
+                user => user.Id,
+                (course, user) => new
+                {
+                    Course = course,
+                    Professor = user
+                })
+                .Select(result => new CourseDto2
+                {
+                    Id = result.Course.Id,
+                    Name = result.Course.Name,
+                    Language = result.Course.Language,
+                    Level = result.Course.Level,
+                    Price = result.Course.Price,
+                    Type = result.Course.Type,
+                    FirstName = result.Professor.FirstName,
+                    LastName = result.Professor.LastName,
+                    Picture = result.Course.Picture
+                }).ToListAsync();
+        }
+
+        return courses;
     }
 }

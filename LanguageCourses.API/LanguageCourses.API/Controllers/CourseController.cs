@@ -338,4 +338,94 @@ public class CourseController : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpGet]
+    [Authorize(Roles = "ADMIN,PROFESSOR")]
+    [Route("userAvailable")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<CourseDto2>))]
+    public async Task<IActionResult> GetUserAvailableCourses()
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
+
+            var courses = await _courseRepository.GetAvailableCoursesAsync(userId);
+
+            if (courses == null)
+            {
+                return NotFound();
+            }
+
+            string projectPath = _hostEnvironment.ContentRootPath;
+            string fullPath = Path.Combine(projectPath, "CoursePictures");
+
+            List<CourseDto2> result = new();
+
+            foreach (var course in courses)
+            {
+                if (course.Picture != null)
+                {
+                    var imageBytes = System.IO.File.ReadAllBytes(Path.Combine(fullPath, course.Picture));
+                    var base64Image = Convert.ToBase64String(imageBytes);
+
+                    course.Picture = base64Image;
+                }
+
+                result.Add(course);
+            }
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "ADMIN,PROFESSOR")]
+    [Route("userDisabled")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<CourseDto2>))]
+    public async Task<IActionResult> GetUserDisabledCourses()
+    {
+        try
+        {
+            var userClaims = User as ClaimsPrincipal;
+            var id = userClaims.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Guid userId = Guid.Parse(id);
+
+            var courses = await _courseRepository.GetDisabledCoursesAsync(userId);
+
+            if (courses == null)
+            {
+                return NotFound();
+            }
+
+            string projectPath = _hostEnvironment.ContentRootPath;
+            string fullPath = Path.Combine(projectPath, "CoursePictures");
+
+            List<CourseDto2> result = new();
+
+            foreach (var course in courses)
+            {
+                if (course.Picture != null)
+                {
+                    var imageBytes = System.IO.File.ReadAllBytes(Path.Combine(fullPath, course.Picture));
+                    var base64Image = Convert.ToBase64String(imageBytes);
+
+                    course.Picture = base64Image;
+                }
+
+                result.Add(course);
+            }
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

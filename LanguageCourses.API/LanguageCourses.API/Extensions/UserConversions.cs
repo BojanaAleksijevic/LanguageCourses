@@ -51,7 +51,8 @@ public static class UserConversions
             LastName = user.LastName,
             Phone = user.Phone,
             Email = user.Email,
-            Role = user.Role
+            Role = user.Role,
+            Picture = user.Picture
         };
     }
 

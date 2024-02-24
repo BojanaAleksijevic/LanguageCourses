@@ -7,6 +7,8 @@ using LanguageCourses.API.Repositories.Interfaces;
 using UsedCars.API.DTOs;
 using LanguageCourses.API.Repositories;
 using System.Security.Cryptography;
+using LanguageCourses.API.Models;
+using Microsoft.Extensions.Hosting;
 
 namespace UsedCars.API.Controllers;
 
@@ -15,10 +17,12 @@ namespace UsedCars.API.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly IWebHostEnvironment _hostEnvironment;
 
-    public UserController(IUserRepository userRepository)
+    public UserController(IUserRepository userRepository, IWebHostEnvironment webHostEnvironment)
     {
         _userRepository = userRepository;
+        _hostEnvironment = webHostEnvironment;
     }
 
     /// <summary>
@@ -146,6 +150,17 @@ public class UserController : ControllerBase
             }
 
             var userDto = user.ConvertToUserDto();
+
+            string projectPath = _hostEnvironment.ContentRootPath;
+            string fullPath = Path.Combine(projectPath, "UserPictures");
+
+            if (userDto.Picture != null)
+            {
+                var imageBytes = System.IO.File.ReadAllBytes(Path.Combine(fullPath, userDto.Picture));
+                var base64Image = Convert.ToBase64String(imageBytes);
+
+                userDto.Picture = base64Image;
+            }
 
             return Ok(userDto);
         }
