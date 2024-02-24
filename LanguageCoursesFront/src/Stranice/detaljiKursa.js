@@ -198,8 +198,8 @@ const DetaljiKursa = () => {
          
 
             {localStorage.getItem('role') === "0" && kursDetalji.isEnrolled/*|| localStorage.getItem('id') === kurs.professorId*/ && (
-                            <button onClick={handleAddReview } className='button-dodaj-recenziju'>Dodaj recenziju</button>
-                        )}
+                <button onClick={handleAddReview } className='button-dodaj-recenziju'>Dodaj recenziju</button>
+            )}
 
 
             <Footer></Footer>

@@ -45,7 +45,6 @@ function DodajReview() {
     })
       .then((response) => {
         console.log("Odgovor od servera:", response.data);
-        // Dodajte željeno ponašanje nakon uspešnog podnošenja
 
         // Navigacija nazad na prethodnu stranicu
         navigate(-1);

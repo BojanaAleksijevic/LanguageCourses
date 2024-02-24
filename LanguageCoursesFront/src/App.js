@@ -62,7 +62,7 @@ function App() {
         <Route path="detaljiKursa/:id" element={<DetaljiKursa />} />
         <Route path="recenzije/:id" element={<Recenzije />} />
         <Route path="dodajreview" element={<DodajReview />} />
-        <Route path="dodajkurs" element={<DodajKurs />} />
+        <Route path="dodajKurs" element={<DodajKurs />} />
       </Routes>
     </Router>
   );

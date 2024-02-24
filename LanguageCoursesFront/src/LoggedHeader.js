@@ -52,14 +52,6 @@ const LoggedHeader = () =>{
                     </Link>
                     
                     
-                    <button className="button button1"  onClick={logoutUser}>
-                    Odjavi se
-                    </button>
-                    
-
-
-
-                    
                     <Link to="/kursevi">
                         <button className='button button1'>
                             Kursevi
@@ -75,8 +67,6 @@ const LoggedHeader = () =>{
                     </Link>
 
                     {localStorage.getItem('role') === "0" /*|| localStorage.getItem('id') === kurs.professorId*/ && (
-    
-  
                     <Link to="/profil">
                         <button className='button button1'>
                             Profil
@@ -84,6 +74,26 @@ const LoggedHeader = () =>{
                     </Link>
                     )}
 
+
+                    {localStorage.getItem('role') === "1" && (
+                    <Link to="/dodajKurs">
+                        <button className='button button1' style={{width: '130px'}}>
+                            Dodaj Kurs
+                        </button>
+                    </Link>
+                    )}
+
+                    {localStorage.getItem('role') === "2" && (
+                    <Link to="/dodajKurs">
+                        <button className='button button1' style={{width: '130px'}}>
+                            Dodaj Kurs
+                        </button>
+                    </Link>
+                    )}
+
+                    <button className="button button1odjava"  onClick={logoutUser}>
+                        Odjavi se
+                    </button>
 
                 </ul>
             </nav>

@@ -222,20 +222,29 @@ a {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Izbor fonta */
   }
 
-  .button1 {
-    background-color: floralwhite;
+  .button1, .button1prijava, .button1registracija, .button1odjava{
     color: black; 
     border: 2px solid rgb(41, 53, 21);
     box-shadow: 10px 10px 3px rgba(0, 0, 0, 0.2);
-    
   }
 
-  .button1:hover {
-    background-color:  #0d3115;
+  .button1prijava, .button1registracija, .button1odjava {
+    background-color: #0d3115;
+    color: white;
+  }
+
+  .button1 {
+    background-color: floralwhite;
+  }
+
+
+  .button1:hover,.button1prijava:hover, .button1registracija:hover,
+  .button1odjava:hover {
+    background-color:  #40814e;
     color: white;
     
   }
-  
+
 /* box za kurs*/
   .lista-kurseva {
     display: flex;
@@ -728,3 +737,84 @@ button:disabled {
   margin-top: 10px;
 }
 
+/*profil*/
+
+.profil-info {
+  margin: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  width: 25%;
+
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: flex;
+  /*justify-content: space-between; /* Podešavanje prostora između teksta i slike */
+  border-radius: 27px;
+  background: #f3ecec;
+  box-shadow: 8px 8px 15px #c2bdbd, -8px -8px 15px #ffffff;
+}
+
+.profil-slika {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profil-podaci {
+  margin-left: 20px;
+  text-align: left;
+}
+
+/*kraj za profil*/
+
+
+/*dodaj kurs*/
+.dodaj-kurs-container {
+  width: 40%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dodaj-kurs-forma {
+  display: grid;
+  gap: 10px;
+}
+
+.form-label {
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #009742;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 25%;
+  margin: auto; /* Center horizontally */
+}
+
+.submit-button:hover {
+  background-color: #005510;
+}
+
+/*kraj za dodaj kurs*/
