@@ -74,6 +74,15 @@ const LoggedHeader = () =>{
                     </Link>
                     )}
 
+                    {localStorage.getItem('role') === "2" /*|| localStorage.getItem('role') === "1" */&& (
+                    <Link to="/profilAdmin">
+                        <button className='button button1'>
+                            Profil
+                        </button>
+                    </Link>
+                    )}
+
+
 
                     {localStorage.getItem('role') === "1" && (
                     <Link to="/dodajKurs">

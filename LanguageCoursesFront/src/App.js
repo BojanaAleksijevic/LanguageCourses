@@ -18,6 +18,11 @@ import Recenzije from './Stranice/recenzije.js';
 import axios from 'axios';
 import DodajReview from './Stranice/DodajReview.js';
 import DodajKurs from './Stranice/DodajKurs.js';
+import IzmeniKurs from './Stranice/IzmeniKurs.js';
+import ProfilAdmin from './Stranice/ProfilAdmin.js';
+import KurseviNedostupni from './Stranice/KurseviNedostupni.js';
+import KurseviDostupni from './Stranice/KurseviDostupni.js';
+
 
 
 import ProtectedRutaAdmin from './autentifikacija/ProtectedRutaAdmin.js';
@@ -63,6 +68,10 @@ function App() {
         <Route path="recenzije/:id" element={<Recenzije />} />
         <Route path="dodajreview" element={<DodajReview />} />
         <Route path="dodajKurs" element={<DodajKurs />} />
+        <Route path="izmeniKurs" element={<IzmeniKurs />} />
+        <Route path="profilAdmin" element={<ProfilAdmin />} />
+        <Route path="kurseviNedostupni" element={<KurseviNedostupni />} />
+        <Route path="kurseviDostupni" element={<KurseviDostupni />} />
       </Routes>
     </Router>
   );

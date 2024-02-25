@@ -34,7 +34,7 @@ function Kursevi() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('https://localhost:5001/api/Course/available', {
+            const response = await axios.get('https://localhost:5001/api/Course/userDisabled', {
                 params: {
                     pretraga,
                     language: queryParams.get('language'),
@@ -62,36 +62,15 @@ function Kursevi() {
         kurs.firstName.toLowerCase().includes(pretraga.toLowerCase())
     ) : [];
 
-    const handleDisabled = () => {
-        navigate(`/kurseviNedostupni`);
-    };
-    
-    const handleAvailable = () => {
-        navigate(`/kurseviDostupni`);
-    };
 
+   
 
 
     return (
         <div className="glavnidivg">
             {isLoggedIn ? <LoggedHeader /> : <Header />}
 
-            
-            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2"  && (
-                <h1 >Upravljaj kursevima</h1>
-            )}
-
-            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2"  && (
-                <button onClick={handleDisabled} className='button-prijava'>Nedostupni</button>
-            )}
-
-            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2"  && (
-                <button onClick={handleAvailable} className='button-prijava'>Dostupni</button>
-            )}
-
-
-
-            <h1>Pogledaj dostupne kurseve </h1>
+            <h1>Pogledaj kurseve </h1>
           
 
         <div className="group">

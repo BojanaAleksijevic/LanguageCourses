@@ -9,13 +9,11 @@ function Profil() {
     const navigate = useNavigate();
     const isLogged = localStorage.getItem('isloged') === 'yes';
     const [kursDostupni, setKursDostupni] = useState([]);
+    const [userProfile, setUserProfile] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState('');
-
-    const token = localStorage.getItem('token');
-
+    const [newProfileImage, setNewProfileImage] = useState(null);
 
     useEffect(() => {
-
         const fetchMojiKursevi = async () => {
             try {
                 const response = await axios.get('https://localhost:5001/api/Course/userEnrolled');
@@ -25,38 +23,104 @@ function Profil() {
             }
         };
 
+        const fetchUserProfile = async () => {
+            try {
+                const response = await axios.get('https://localhost:5001/api/User');
+                setUserProfile(response.data);
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+            }
+        };
+
         fetchMojiKursevi();
+        fetchUserProfile();
     }, []);
 
+    useEffect(() => {
+        // Dodajte console.log da pratite promene u isLoggedIn
+        console.log('isLoggedIn changed:', isLoggedIn);
+    }, [isLoggedIn]);
+
+    
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setNewProfileImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleUploadImage = async () => {
+        try {
+            if (newProfileImage) {
+                const file = await fetch(newProfileImage);
+                const blob = await file.blob();
+                const reader = new FileReader();
+                
+                reader.onloadend = async () => {
+                    const base64Image = reader.result.split(",")[1]; // Dobijanje samo dela koji predstavlja base64
+                    await axios.put(`https://localhost:5001/api/User/changePicture`, {
+                        userId: userProfile.id,
+                        picture: base64Image
+                    });
+                    // Osvežite korisnički profil kako biste ažurirali novu sliku
+                    //fetchUserProfile();
+                    // Opciono: Resetujte newProfileImage na null ako želite omogućiti izbor nove slike
+                    setNewProfileImage(null);
+                };
+    
+                reader.readAsDataURL(blob);
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
+    
+    
 
     if (!isLogged) {
-        // If not logged in, the component won't be rendered
         return null;
     }
 
     return (
-        <div className="glavnidivg">
-
-        <div>
-            {isLoggedIn ? <LoggedHeader /> : <Header />}
+        <div className="main-container">
+            <div>
+                {isLoggedIn ? <LoggedHeader /> : <Header />}
                 <div className="profil-box" style={{ margin:'20px', padding: '10px' }}>
-                <h2>Licni podaci</h2>
+                    <h2>Licni podaci</h2>
                     <div className="profil-info">
                         <div className="profil-slika">
-                        <img src='' className='profil-slika' alt={`Slika za ${localStorage.getItem('firstName')}`} />
+                            <img
+                                src={`data:image/jpeg;base64,${userProfile.picture}`}
+                                className='profil-slika'
+                                alt={`Image for ${userProfile.firstName}`}
+                            />
+                            <input type="file" accept="image/*" onChange={handleImageChange} />
+                            {newProfileImage && (
+                                <button onClick={handleUploadImage}>Promeni sliku</button>
+                            )}
                         </div>
-
                         <div className="profil-podaci">
-                            <p>Ime: {localStorage.getItem('firstName')}</p>
-                            <p>Prezime: {localStorage.getItem('lastName')}</p>
-                            <p>Broj telefona: {localStorage.getItem('Phone')}</p>
+                            <p><b>{userProfile.firstName} {userProfile.lastName}</b></p>
+                            <p>Phone: {userProfile.phone}</p>
+                            <p>Email: {userProfile.email}</p>
+                            <p>
+                            {userProfile.role === 0
+                                ? "Student"
+                                : userProfile.role === 1
+                                ? "Professor"
+                                : userProfile.role === 2
+                                ? "Admin"
+                                : ""}
+                            </p>
                         </div>
                     </div>
-
-                    
                 </div>
 
-                <div style={{ margin:'20px', padding: '10px' }}>
+                <div style={{ margin: '20px', padding: '10px' }}>
                 <h2>Kursevi na koje si prijavljen</h2>
 
                 {kursDostupni.map((kurs) => (
@@ -75,12 +139,9 @@ function Profil() {
                         </Link>
                     ))}
                 </div>
-            
-
-
-            <div className="glavnidivg-dm"></div>
+            </div>
+            <div className="main-container-dm"></div>
             <Footer />
-        </div>
         </div>
     );
 }

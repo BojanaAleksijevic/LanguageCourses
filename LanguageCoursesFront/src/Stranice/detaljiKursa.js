@@ -13,7 +13,7 @@ const DetaljiKursa = () => {
     const { id } = useParams();
     const [recenzije, setRecenzije] = useState([]);
 
-    const [kursDetalji, setKursDetalji] = useState({});
+    const [kursDetalji, setKursDetalji] = useState({}); // Dodao available polje
 
     const [isLoggedIn, setIsLoggedIn] = useState('');
 
@@ -22,9 +22,12 @@ const DetaljiKursa = () => {
 
     const isloged = localStorage.getItem('isloged');
 
+    const kursDostupan = kursDetalji.available;
 
 
+    console.log('Trenutno stanje kursa:', kursDetalji);
 
+    
     useEffect(() => {
 
         if (token) {
@@ -90,16 +93,29 @@ const DetaljiKursa = () => {
         return simbol.repeat(ocena);
     };
 
-    const handleDelete = async () => {
+    const handleSetAvailable = async () => {
         try {
-            await axios.delete(`https://localhost:5001/api/Course/deleteCourse/${id}`);
-            // Redirect or handle the UI update after successful deletion
-            navigate('/'); // Redirect to the home page, for example
+          await axios.post(`https://localhost:5001/api/Course/setAvailable/${id}`);
+          // Ažuriranje lokalnog stanja da odražava promenu dostupnosti
+          setKursDetalji(prevDetalji => ({ ...prevDetalji, available: true }));
+          // Ovde možeš dodati i redirekciju ili ažuriranje UI-a ako je potrebno
         } catch (error) {
-            console.error('Error deleting course:', error);
-            // Handle the error, show a message, etc.
+          console.error('Error updating course availability:', error);
         }
-    };
+      };
+    
+      const handleSetDisabled = async () => {
+        try {
+          await axios.post(`https://localhost:5001/api/Course/setDisabled/${id}`);
+          // Ažuriranje lokalnog stanja da odražava promenu dostupnosti
+          setKursDetalji(prevDetalji => ({ ...prevDetalji, available: false }));
+          // Ovde možeš dodati i redirekciju ili ažuriranje UI-a ako je potrebno
+        } catch (error) {
+          console.error('Error updating course availability:', error);
+        }
+      };
+
+
     const handleEnrolment = async () => {
         try {
             await axios.post(`https://localhost:5001/api/Course/enrolment/${id}`);
@@ -111,10 +127,28 @@ const DetaljiKursa = () => {
         }
     };
 
+    
+
     const handleAddReview = () => {
         navigate(`/dodajReview?id=${id}`);
     };
+
+    const handleIzmeni = () => {
+        navigate(`/izmeniKurs`);
+    };
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`https://localhost:5001/api/Course/deleteCourse/${id}`);
+            // Redirect or handle the UI update after successful deletion
+            navigate('/'); // Redirect to the home page, for example
+        } catch (error) {
+            console.error('Error deleting course:', error);
+            // Handle the error, show a message, etc.
+        }
+    };
     return (
+        
         <div className='glavnidivg'>
             {isLoggedIn ? <LoggedHeader /> : <Header />}
             <div className="detaljan-prikaz-stranica">
@@ -165,11 +199,54 @@ const DetaljiKursa = () => {
                             <button className='obrisi' onClick={handleDelete}>Obriši</button>
                         )}
 
+                        {localStorage.getItem('role') === "2"  && (
+                            <button className='izmeni' onClick={handleIzmeni}>Izmeni</button>
+                        )}
+                        {localStorage.getItem('role') === "1" && kursDetalji.isProfessor &&  (
+                            <button className='izmeni' onClick={handleIzmeni}>Izmeni</button>
+                        )}
 
                     </div>
                 </div>
             </div>
 
+            {(localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2")  && (
+            <center>
+                <h2>Promena statusa kursa</h2>
+            </center>
+            )}
+
+            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2" && (
+            <div>
+                {kursDostupan ? (
+                <button onClick={handleSetDisabled} className='button-dodaj-recenziju'>
+                    Učini ga nedostupnim
+                </button>
+                ) : (
+                <button onClick={handleSetAvailable} className='button-dodaj-recenziju'>
+                    Učini ga dostupnim
+                </button>
+                )}
+            </div>
+            )}
+
+
+{/*
+            {(localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2") && 
+            kursDetalji.available == 1 &&(
+                <button onClick={handleSetDisabled} className='button-dodaj-recenziju'>
+                    Učini ga nedostupnim
+                </button>
+            )}
+            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2" &&
+            kursDetalji.available == 0 &&(
+                <button onClick={handleSetAvailable} className='button-dodaj-recenziju'>
+                    Učini ga dostupnim
+                </button>
+
+            )}
+
+            */}
 
             <center>
                 <h2>Pogledaj sta su drugi rekli o ovom kursu</h2>
