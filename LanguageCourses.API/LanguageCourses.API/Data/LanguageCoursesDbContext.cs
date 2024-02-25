@@ -660,5 +660,44 @@ public class LanguageCoursesDbContext : DbContext
                 }
             );
         });
+
+        modelBuilder.Entity<CourseUser>(builder =>
+        {
+            builder.ToTable("Enrollments");
+
+            builder.HasData
+            (
+                new CourseUser
+                {
+                    UserId = Guid.Parse("1c1a51fa-67c3-4d44-a906-f6b00ddd4fcc"),
+                    CourseId = Guid.Parse("1836d3ee-f532-448e-bb5e-cce7d7f541e1"),
+                    EnrollmentDate = DateTime.Now
+                },
+                new CourseUser
+                {
+                    UserId = Guid.Parse("1c1a51fa-67c3-4d44-a906-f6b00ddd4fcc"),
+                    CourseId = Guid.Parse("c8b98b9e-a370-4c71-b899-ad558f4124b8"),
+                    EnrollmentDate = DateTime.Now
+                },
+                new CourseUser
+                {
+                    UserId = Guid.Parse("1c1a51fa-67c3-4d44-a906-f6b00ddd4fcc"),
+                    CourseId = Guid.Parse("d1b4704a-5a5a-4b51-ab72-68b5db496d96"),
+                    EnrollmentDate = DateTime.Now
+                },
+                new CourseUser
+                {
+                    UserId = Guid.Parse("1c1a51fa-67c3-4d44-a906-f6b00ddd4fcc"),
+                    CourseId = Guid.Parse("053504c1-bfad-4ec1-9932-1e7b5e536ce8"),
+                    EnrollmentDate = DateTime.Now
+                },
+                new CourseUser
+                {
+                    UserId = Guid.Parse("1c1a51fa-67c3-4d44-a906-f6b00ddd4fcc"),
+                    CourseId = Guid.Parse("7fca3cd1-6d04-4ac1-bff6-57cb3a23e34a"),
+                    EnrollmentDate = DateTime.Now
+                }
+            );
+        });
     }
 }

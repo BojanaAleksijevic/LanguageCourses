@@ -278,7 +278,7 @@ public class UserRepository : IUserRepository
         string oldFile = $"{user.Picture}";
         string oldImagePath = Path.Combine(fullPath, oldFile);
 
-        if (File.Exists(oldImagePath))
+        if (File.Exists(oldImagePath) && user.Picture != "unknown.png")
         {
             File.Delete(oldImagePath);
         }

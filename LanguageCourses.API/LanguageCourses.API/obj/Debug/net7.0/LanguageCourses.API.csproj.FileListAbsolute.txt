@@ -484,7 +484,6 @@ C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\Lang
 C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.LanguageCourses.API.props
 C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\staticwebassets.pack.json
 C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\scopedcss\bundle\LanguageCourses.API.styles.css
-C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\LanguageCourses.API.csproj.CopyComplete
 C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\LanguageCourses.API.dll
 C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\refint\LanguageCourses.API.dll
 C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\LanguageCourses.API.pdb
@@ -577,3 +576,4 @@ C:\Users\W10\Desktop\e-poslovanje\LanguageCourses\LanguageCourses.API\LanguageCo
 C:\Users\W10\Desktop\e-poslovanje\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\LanguageCourses.API.pdb
 C:\Users\W10\Desktop\e-poslovanje\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\LanguageCourses.API.genruntimeconfig.cache
 C:\Users\W10\Desktop\e-poslovanje\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\ref\LanguageCourses.API.dll
+C:\Users\fjova\OneDrive\Radna površina\LanguageCourses\LanguageCourses.API\LanguageCourses.API\obj\Debug\net7.0\Language.4D35E74C.Up2Date
