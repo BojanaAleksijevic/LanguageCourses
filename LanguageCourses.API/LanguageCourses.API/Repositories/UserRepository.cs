@@ -278,11 +278,6 @@ public class UserRepository : IUserRepository
         string oldFile = $"{user.Picture}";
         string oldImagePath = Path.Combine(fullPath, oldFile);
 
-        if (File.Exists(oldImagePath) && user.Picture != "unknown.png")
-        {
-            File.Delete(oldImagePath);
-        }
-
         user.Picture = newFile;
 
         await _languageCoursesDbContext.SaveChangesAsync();

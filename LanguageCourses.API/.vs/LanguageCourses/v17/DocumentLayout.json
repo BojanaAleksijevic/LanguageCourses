@@ -3,48 +3,56 @@
   "WorkspaceRootPath": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240225135355_Final migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LanguageCourses.API\\Migrations\\20240225135355_Final migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\data\\languagecoursesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\data\\languagecoursesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\models\\courseuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\models\\courseuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240226041555_Final migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LanguageCourses.API\\Migrations\\20240226041555_Final migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\extensions\\courseconversions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\extensions\\courseconversions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\dtos\\addprofessordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\dtos\\addprofessordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\extensions\\userconversions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\extensions\\userconversions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\repositories\\courserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\repositories\\courserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\data\\languagecoursesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\data\\languagecoursesdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\repositories\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\repositories\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240225230515_Final migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LanguageCourses.API\\Migrations\\20240225230515_Final migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\extensions\\courseconversions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\extensions\\courseconversions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\dtos\\addcoursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\dtos\\addcoursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\dtos\\coursedto2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\dtos\\coursedto2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\dtos\\updatecoursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\dtos\\updatecoursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|c:\\users\\fjova\\onedrive\\radna povr\u0161ina\\languagecourses\\languagecourses.api\\languagecourses.api\\dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35D5E972-E1BF-4B77-B2BF-5FF97433CBA5}|LanguageCourses.API\\LanguageCourses.API.csproj|solutionrelative:languagecourses.api\\dtos\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,140 +71,160 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20240225135355_Final migration.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240225135355_Final migration.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Migrations\\20240225135355_Final migration.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240225135355_Final migration.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Migrations\\20240225135355_Final migration.cs",
+              "Title": "20240226041555_Final migration.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240226041555_Final migration.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\Migrations\\20240226041555_Final migration.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240226041555_Final migration.cs",
+              "RelativeToolTip": "LanguageCourses.API\\Migrations\\20240226041555_Final migration.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-25T13:53:55.547Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CourseUser.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Models\\CourseUser.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Models\\CourseUser.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Models\\CourseUser.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Models\\CourseUser.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-25T13:50:37.625Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CourseConversions.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Extensions\\CourseConversions.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Extensions\\CourseConversions.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Extensions\\CourseConversions.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Extensions\\CourseConversions.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAzwCEAAAA+AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T19:25:36.693Z",
+              "WhenOpened": "2024-02-26T04:15:55.838Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LanguageCoursesDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
-              "ViewState": "AQIAAKgCAAAAAAAAAAAqwLgCAABSAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T19:22:56.016Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CourseRepository.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\CourseRepository.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Repositories\\CourseRepository.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\CourseRepository.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Repositories\\CourseRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T19:21:22.395Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CourseController.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Controllers\\CourseController.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Controllers\\CourseController.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Controllers\\CourseController.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Controllers\\CourseController.cs",
-              "ViewState": "AQIAANAAAAAAAAAAAAAEwN4AAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T18:54:08.966Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Controllers\\UserController.cs",
-              "ViewState": "AQIAALsAAAAAAAAAAADwv7QAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-22T21:50:35.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\UserRepository.cs",
               "RelativeDocumentMoniker": "LanguageCourses.API\\Repositories\\UserRepository.cs",
               "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\UserRepository.cs",
               "RelativeToolTip": "LanguageCourses.API\\Repositories\\UserRepository.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAYwBgBAABHAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoBAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T18:41:49.307Z",
+              "WhenOpened": "2024-02-26T02:49:44.733Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AddProfessorDto.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\AddProfessorDto.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\DTOs\\AddProfessorDto.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\AddProfessorDto.cs",
-              "RelativeToolTip": "LanguageCourses.API\\DTOs\\AddProfessorDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T19:23:55.38Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserConversions.cs",
-              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Extensions\\UserConversions.cs",
-              "RelativeDocumentMoniker": "LanguageCourses.API\\Extensions\\UserConversions.cs",
-              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Extensions\\UserConversions.cs",
-              "RelativeToolTip": "LanguageCourses.API\\Extensions\\UserConversions.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAAEwBsAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-22T21:52:34.215Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 5,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\Interfaces\\IUserRepository.cs",
               "RelativeDocumentMoniker": "LanguageCourses.API\\Repositories\\Interfaces\\IUserRepository.cs",
               "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\Interfaces\\IUserRepository.cs",
               "RelativeToolTip": "LanguageCourses.API\\Repositories\\Interfaces\\IUserRepository.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAABRAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-24T18:52:49.014Z"
+              "WhenOpened": "2024-02-26T02:49:42.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CourseRepository.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\CourseRepository.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\Repositories\\CourseRepository.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Repositories\\CourseRepository.cs",
+              "RelativeToolTip": "LanguageCourses.API\\Repositories\\CourseRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAQwBAAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T22:58:14.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LanguageCoursesDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
+              "RelativeToolTip": "LanguageCourses.API\\Data\\LanguageCoursesDbContext.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAwBMAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T23:02:02.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\Controllers\\CourseController.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "LanguageCourses.API\\Controllers\\CourseController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAQwBQAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T22:57:42.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20240225230515_Final migration.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240225230515_Final migration.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\Migrations\\20240225230515_Final migration.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Migrations\\20240225230515_Final migration.cs",
+              "RelativeToolTip": "LanguageCourses.API\\Migrations\\20240225230515_Final migration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T23:05:16.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CourseDto2.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\CourseDto2.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\DTOs\\CourseDto2.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\CourseDto2.cs",
+              "RelativeToolTip": "LanguageCourses.API\\DTOs\\CourseDto2.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAywBAAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T23:00:43.999Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AddCourseDto.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\AddCourseDto.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\DTOs\\AddCourseDto.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\AddCourseDto.cs",
+              "RelativeToolTip": "LanguageCourses.API\\DTOs\\AddCourseDto.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAywAwAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T23:00:51.717Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CourseConversions.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Extensions\\CourseConversions.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\Extensions\\CourseConversions.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Extensions\\CourseConversions.cs",
+              "RelativeToolTip": "LanguageCourses.API\\Extensions\\CourseConversions.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAIwBQAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T23:03:37.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UpdateCourseDto.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\UpdateCourseDto.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\DTOs\\UpdateCourseDto.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\UpdateCourseDto.cs",
+              "RelativeToolTip": "LanguageCourses.API\\DTOs\\UpdateCourseDto.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAA2wAgAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T23:00:34.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Models\\Course.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\Models\\Course.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\Models\\Course.cs",
+              "RelativeToolTip": "LanguageCourses.API\\Models\\Course.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAmwBAAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T22:59:38.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CourseDto.cs",
+              "DocumentMoniker": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\CourseDto.cs",
+              "RelativeDocumentMoniker": "LanguageCourses.API\\DTOs\\CourseDto.cs",
+              "ToolTip": "C:\\Users\\fjova\\OneDrive\\Radna povr\u0161ina\\LanguageCourses\\LanguageCourses.API\\LanguageCourses.API\\DTOs\\CourseDto.cs",
+              "RelativeToolTip": "LanguageCourses.API\\DTOs\\CourseDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-25T22:58:28.45Z"
             }
           ]
         }

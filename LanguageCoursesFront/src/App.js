@@ -22,6 +22,8 @@ import IzmeniKurs from './Stranice/IzmeniKurs.js';
 import ProfilAdmin from './Stranice/ProfilAdmin.js';
 import KurseviNedostupni from './Stranice/KurseviNedostupni.js';
 import KurseviDostupni from './Stranice/KurseviDostupni.js';
+import DodajProf from './Stranice/DodajProf.js';
+
 
 
 
@@ -68,10 +70,13 @@ function App() {
         <Route path="recenzije/:id" element={<Recenzije />} />
         <Route path="dodajreview" element={<DodajReview />} />
         <Route path="dodajKurs" element={<DodajKurs />} />
-        <Route path="izmeniKurs" element={<IzmeniKurs />} />
+        <Route path="izmeniKurs/:id" element={<IzmeniKurs />} />
         <Route path="profilAdmin" element={<ProfilAdmin />} />
         <Route path="kurseviNedostupni" element={<KurseviNedostupni />} />
         <Route path="kurseviDostupni" element={<KurseviDostupni />} />
+        <Route path="dodajProf" element={<DodajProf />} />
+       
+       
       </Routes>
     </Router>
   );

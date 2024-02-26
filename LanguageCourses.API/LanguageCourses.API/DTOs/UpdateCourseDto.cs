@@ -8,8 +8,6 @@ public class UpdateCourseDto
 
     public string Description { get; set; }
 
-    public CourseType Type { get; set; }
-
     public decimal Price { get; set; }
 
     public int Duration { get; set; }

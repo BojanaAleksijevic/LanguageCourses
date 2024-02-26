@@ -12,7 +12,6 @@ const IzmeniKurs = () => {
   const [formData, setFormData] = useState({
     id: id,
     description: "",
-    type: 0,
     price: 0,
     duration: 0
   });
@@ -27,7 +26,6 @@ const IzmeniKurs = () => {
         setFormData({
           id: id,
           description: response.data.description,
-          type: parseInt(response.data.type, 10),
           price: response.data.price,
           duration: response.data.duration
         });
@@ -47,15 +45,15 @@ const IzmeniKurs = () => {
       console.log("Slanje zahteva za izmenu kursa...");
   
       // Validacija pre slanja zahteva
-      if (!formData.description || !formData.type || !formData.price || !formData.duration) {
+      if (!formData.description || !formData.price || !formData.duration) {
         // Ako neki od obaveznih podataka nisu popunjeni, prikaži poruku i prekini proces izmene
         setSubmissionError("Svi podaci su obavezni.");
         return;
       }
   
-      const response = await axios.put(`https://localhost:5001/api/Course/updateCourse/${formData.id}`, {
+      const response = await axios.put(`https://localhost:5001/api/Course/updateCourse`, {
+  id: id,
   description: formData.description,
-  type: parseInt(formData.type, 10),
   price: parseInt(formData.price, 10),
   duration: parseInt(formData.duration, 10)
 });
@@ -83,7 +81,7 @@ const IzmeniKurs = () => {
   return (
     <div className='glavnidivg'>
       <LoggedHeader />
-      <div className="izmeni-kurs-container">
+      <div className="dodaj-kurs-container">
         <h2>Izmeni kurs</h2>
         <form className="izmeni-kurs-forma" onSubmit={handleSubmit}>
           <label className="form-label">
@@ -96,19 +94,7 @@ const IzmeniKurs = () => {
               required
             />
           </label>
-          <label className="form-label">
-            Tip:
-            <br></br>
-            <select
-              name="type"
-              value={formData.type}
-              onChange={(e) => setFormData((prevData) => ({ ...prevData, type: parseInt(e.target.value, 10) }))}
-              required
-            >
-              <option value="0">Individualna</option>
-              <option value="1">Grupna</option>
-            </select>
-          </label>
+      
           <label className="form-label">
             Cena (u €):
             <input
@@ -133,10 +119,11 @@ const IzmeniKurs = () => {
               required
             />
           </label>
-
-          <button type="submit" className="submit-button" disabled={isSubmitting}>
+          <center>
+          <button  type="submit" className="submit-button" disabled={isSubmitting}>
             {isSubmitting ? "Izmena..." : "Sačuvaj izmene"}
-          </button>
+            </button>
+            </center>
           {submissionError && <p className="error-message">{submissionError}</p>}
         </form>
       </div>

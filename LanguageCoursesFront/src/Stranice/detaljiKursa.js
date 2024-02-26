@@ -134,8 +134,9 @@ const DetaljiKursa = () => {
     };
 
     const handleIzmeni = () => {
-        navigate(`/izmeniKurs`);
+        navigate(`/izmeniKurs/${id}`);
     };
+    
 
     const handleDelete = async () => {
         try {
@@ -157,9 +158,10 @@ const DetaljiKursa = () => {
                 <div className='box-detaljan-prikaz'>
                     <div className='box-detaljan-prikaz-levo'>
 
+                        
+                        <img src={`data:image/jpeg;base64,${kursDetalji.picture}`} className='slika-kursa'></img>
                         <p className='o-kursu'>O kursu:</p>
                         <p className='description'>{kursDetalji.description}</p>
-                        <img src={`data:image/jpeg;base64,${kursDetalji.picture}`} className='slika-kursa'></img>
 
                     </div>
 
@@ -189,6 +191,9 @@ const DetaljiKursa = () => {
                         {localStorage.getItem('role') === "1" && !kursDetalji.isEnrolled && !kursDetalji.isProfessor && (
                             <button onClick={handleEnrolment} className='button-prijava'>Prijavi se na kurs</button>
                         )}
+                        {localStorage.getItem('role') === "2" && !kursDetalji.isEnrolled && !kursDetalji.isProfessor && (
+                            <button onClick={handleEnrolment} className='button-prijava'>Prijavi se na kurs</button>
+                        )}
 
 
 
@@ -210,13 +215,19 @@ const DetaljiKursa = () => {
                 </div>
             </div>
 
-            {(localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2")  && (
+            {(localStorage.getItem('role') === "2")  && kursDetalji.isProfessor && (
             <center>
                 <h2>Promena statusa kursa</h2>
             </center>
             )}
 
-            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2" && (
+            {(localStorage.getItem('role') === "1" ) && kursDetalji.isProfessor && (
+            <center>
+                <h2>Promena statusa kursa</h2>
+            </center>
+            )}  
+
+            { localStorage.getItem('role') === "2" && kursDetalji.isProfessor && (
             <div>
                 {kursDostupan ? (
                 <button onClick={handleSetDisabled} className='button-dodaj-recenziju'>
@@ -227,8 +238,25 @@ const DetaljiKursa = () => {
                     Učini ga dostupnim
                 </button>
                 )}
-            </div>
+                </div>
+
             )}
+
+{localStorage.getItem('role') === "1"  && kursDetalji.isProfessor && (
+            <div>
+                {kursDostupan ? (
+                <button onClick={handleSetDisabled} className='button-dodaj-recenziju'>
+                    Učini ga nedostupnim
+                </button>
+                ) : (
+                <button onClick={handleSetAvailable} className='button-dodaj-recenziju'>
+                    Učini ga dostupnim
+                </button>
+                )}
+                </div>
+
+            )}
+
 
 
 {/*
@@ -275,6 +303,14 @@ const DetaljiKursa = () => {
          
 
             {localStorage.getItem('role') === "0" && kursDetalji.isEnrolled/*|| localStorage.getItem('id') === kurs.professorId*/ && (
+                <button onClick={handleAddReview } className='button-dodaj-recenziju'>Dodaj recenziju</button>
+            )}
+
+            {localStorage.getItem('role') === "1" && kursDetalji.isEnrolled/*|| localStorage.getItem('id') === kurs.professorId*/ && (
+                <button onClick={handleAddReview } className='button-dodaj-recenziju'>Dodaj recenziju</button>
+            )}
+
+            {localStorage.getItem('role') === "2" && kursDetalji.isEnrolled/*|| localStorage.getItem('id') === kurs.professorId*/ && (
                 <button onClick={handleAddReview } className='button-dodaj-recenziju'>Dodaj recenziju</button>
             )}
 

@@ -130,7 +130,7 @@ a {
 }
 
 .box-sa-strane {
-  width: 80%;
+  height: 300px;
   padding: 20px;
   margin: 10px;
   border: 1px solid #ccc;
@@ -141,6 +141,9 @@ a {
   background: #f3ecec;
   box-shadow: 8px 8px 15px #c2bdbd, -8px -8px 15px #ffffff;
 }
+
+
+
 
 .okrugla-slika {
   width: 80px;
@@ -300,6 +303,7 @@ a {
 .pretrage {
   display: flex;
   gap: 10px;
+  align-items: baseline;
 }
 
 /*search*/
@@ -631,6 +635,13 @@ a {
   margin-top: 45px;
 }
 
+.button-prijava2 {
+  width: 150px; 
+  margin: 0 auto; 
+  display: block;
+  margin-top: 10px;
+}
+
 .obrisi{
   width: 150px; 
   margin: 0 auto; 
@@ -750,14 +761,21 @@ button:disabled {
 
 /*profil*/
 
+.profil-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
 .profil-info {
-  margin: 20px;
+  margin: 1px;
   text-align: center;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 10px;
   display: flex;
-  width: 25%;
+  width: 400px;
   height: 250px;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -779,6 +797,21 @@ button:disabled {
 .profil-podaci {
   margin-left: 20px;
   text-align: left;
+}
+
+.container2 {
+  display: flex;
+  flex-wrap: wrap; /* Dozvoljava elementima da se prelome na više redova */
+  /* Podešavanje prostora između kartica */
+  gap: 30px;
+}
+
+.available {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  
 }
 
 /*kraj za profil*/
@@ -829,3 +862,60 @@ button:disabled {
 }
 
 /*kraj za dodaj kurs*/
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #029c42;
+  color: white;
+  padding: 20px; 
+  border: none;
+  border-radius: 5px;
+  margin: 0 3px; 
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 7%;
+}
+
+.pagination button:disabled {
+  background-color: #00581a;
+  cursor: not-allowed;
+}
+
+
+
+
+
+.dropdown-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.dropdown-select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Dodajte ovaj stil ako želite dodatni vizuelni efekat kada je dropdown otvoren */
+.dropdown-select:focus {
+  outline: none;
+  border-color: #08a126;
+  box-shadow: 0 0 5px rgba(0, 255, 21, 0.225);
+}
+
+/* Stilizacija dropdown opcija */
+.dropdown-select option {
+  font-size: 14px;
+}
+
+

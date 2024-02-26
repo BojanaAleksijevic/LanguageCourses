@@ -16,8 +16,6 @@ public class CourseDto2
 
     public string LastName { get; set; }
 
-    public CourseType Type { get; set; }
-
     public decimal Price { get; set; }
 
     public string? Picture { get; set; } = null;

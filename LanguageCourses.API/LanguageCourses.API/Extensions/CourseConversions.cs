@@ -15,7 +15,6 @@ public static class CourseConversions
             Description = addCourseDto.Description,
             Language = addCourseDto.Language,
             Level = addCourseDto.Level,
-            Type = addCourseDto.Type,
             Price = addCourseDto.Price,
             Duration = addCourseDto.Duration,
             Picture = SaveCoursePicture(addCourseDto.Picture, courseId, hostEnvironment)

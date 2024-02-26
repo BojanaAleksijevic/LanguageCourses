@@ -66,7 +66,15 @@ const LoggedHeader = () =>{
                         </button>
                     </Link>
 
-                    {localStorage.getItem('role') === "0" /*|| localStorage.getItem('id') === kurs.professorId*/ && (
+                    {localStorage.getItem('role') === "0"   /*|| localStorage.getItem('id') === kurs.professorId*/ && (
+                    <Link to="/profil">
+                        <button className='button button1'>
+                            Profil
+                        </button>
+                    </Link>
+                    )}
+
+                    {localStorage.getItem('role') === "1"   /*|| localStorage.getItem('id') === kurs.professorId*/ && (
                     <Link to="/profil">
                         <button className='button button1'>
                             Profil
@@ -75,7 +83,7 @@ const LoggedHeader = () =>{
                     )}
 
                     {localStorage.getItem('role') === "2" /*|| localStorage.getItem('role') === "1" */&& (
-                    <Link to="/profilAdmin">
+                    <Link to="/profil">
                         <button className='button button1'>
                             Profil
                         </button>

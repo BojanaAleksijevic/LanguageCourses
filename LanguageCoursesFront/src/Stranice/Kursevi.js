@@ -22,6 +22,13 @@ function Kursevi() {
 
     const token = localStorage.getItem('token');
 
+    const [selectedLanguage, setSelectedLanguage] = useState("");
+    const [selectedLevel, setSelectedLevel] = useState("");
+
+    //pagin
+    const [currentPage, setCurrentPage] = useState(Number(queryParams.get('pageNumber')) || 1);
+    const [totalPages, setTotalPages] = useState(0);
+
     useEffect(() => {
         if (token) {
             setIsLoggedIn(true);
@@ -34,23 +41,35 @@ function Kursevi() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('https://localhost:5001/api/Course/available', {
-                params: {
-                    pretraga,
-                    language: queryParams.get('language'),
-                    level: queryParams.get('level'),
-                    priceFrom: queryParams.get('priceFrom'),
-                    priceTo: queryParams.get('priceTo'),
-                    pageNumber: queryParams.get('pageNumber') || 1,  // Postavljanje default vrednosti na 1
-                    pageSize: queryParams.get('pageSize') || 20,  // Postavljanje default vrednosti na 16
-                }
-            });
-
-            setKursevi(response.data);
+          const response = await axios.get('https://localhost:5001/api/Course/available', {
+            params: {
+              pretraga,
+              language: selectedLanguage,  // Promenjeno sa queryParams.get('language') na selectedLanguage
+              level: selectedLevel,        // Promenjeno sa queryParams.get('level') na selectedLevel
+              priceFrom: document.getElementById('cenaOd').value,  // Dobavljanje vrednosti od input polja
+              priceTo: document.getElementById('cenaDo').value,    // Dobavljanje vrednosti od input polja
+              pageNumber: currentPage || 1,
+              pageSize: queryParams.get('pageSize') || 8,
+            }
+          });
+      
+          setKursevi(response.data);
         } catch (error) {
-            console.error("Greška prilikom dohvatanja podataka:", error);
+          console.error("Greška prilikom dohvatanja podataka:", error);
         }
-    };
+      };
+      
+      const handleApplyFilters = () => {
+        fetchData();
+      /*
+        // Opciono: Očisti polja pretrage
+        setPretraga("");
+        setSelectedLanguage("");
+        setSelectedLevel("");
+        document.getElementById('cenaOd').value = "";
+        document.getElementById('cenaDo').value = "";*/
+      };
+      
 
     useEffect(() => {
         fetchData();
@@ -62,52 +81,91 @@ function Kursevi() {
         kurs.firstName.toLowerCase().includes(pretraga.toLowerCase())
     ) : [];
 
-    const handleDisabled = () => {
-        navigate(`/kurseviNedostupni`);
+
+
+    const handleChangePage = (direction) => {
+        const newPage = direction === 'next' ? currentPage + 1 : currentPage - 1;
+
+        const queryParams = new URLSearchParams(location.search);
+        queryParams.set('pageNumber', newPage);
+        navigate(`?${queryParams.toString()}`);
+
+        setCurrentPage(newPage);
     };
+  
+
+
+    const handleLanguageChange = (language) => {
+        setSelectedLanguage(language);
+      };
     
-    const handleAvailable = () => {
-        navigate(`/kurseviDostupni`);
-    };
-
-
+      const handleLevelChange = (level) => {
+        setSelectedLevel(level);
+      };
 
     return (
         <div className="glavnidivg">
             {isLoggedIn ? <LoggedHeader /> : <Header />}
 
-            
-            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2"  && (
-                <h1 >Upravljaj kursevima</h1>
-            )}
-
-            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2"  && (
-                <button onClick={handleDisabled} className='button-prijava'>Nedostupni</button>
-            )}
-
-            {localStorage.getItem('role') === "1" || localStorage.getItem('role') === "2"  && (
-                <button onClick={handleAvailable} className='button-prijava'>Dostupni</button>
-            )}
-
-
-
             <h1>Pogledaj dostupne kurseve </h1>
           
+            <div className="pretrage">
+                
 
-        <div className="group">
-        <svg className="icon" aria-hidden="true" viewBox="0 0 24 24">
-          <g>
-            <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-          </g>
-        </svg>
-        <input
-          placeholder="Pretraži kurseve"
-          type="search"
-          className="input"
-          value={pretraga}
-          onChange={(e) => setPretraga(e.target.value)}
-        />
-      </div>
+
+        <div className="custom-dropdown">
+        <label htmlFor="language" className="dropdown-label"></label>
+        <select
+            id="language"
+            className="dropdown-select"
+            value={selectedLanguage}
+            onChange={(e) => handleLanguageChange(e.target.value)}
+        >
+            <option value="">Izaberi jezik</option>
+            <option value="Engleski">Engleski</option>
+            <option value="Italijanski">Italijanski</option>
+            <option value="Francuski">Francuski</option>
+            <option value="Spanski">Spanski</option>
+            <option value="Turski">Turski</option>
+            <option value="Ruski">Ruski</option>
+        </select>
+        </div>
+
+        <div className="custom-dropdown">
+        <label htmlFor="level" className="dropdown-label"></label>
+        <select
+            id="level"
+            className="dropdown-select"
+            value={selectedLevel}
+            onChange={(e) => handleLevelChange(e.target.value)}
+        >
+            <option value="">Izaberi nivo</option>
+            
+            <option value="Početni">Početni</option>
+            <option value="Osnovni">Osnovni</option>
+            <option value="Srednji">Srednji</option>
+            <option value="Intermedijski">Intermedijski</option>
+            <option value="Napredni">Napredni</option>
+        </select>
+        </div>
+
+
+                <div className="input-cena">
+                    <input id="cenaOd" className="cena-input" placeholder="Unesite cenu od" />
+                </div>
+
+                <div className="input-cena">
+                    <input id="cenaDo" className="cena-input" placeholder="Unesite cenu do" />
+                </div>
+
+                <div className="primena-filtera">
+                <button className="primena-btn" onClick={handleApplyFilters}>
+                    Primeni filtere
+                </button>
+
+                </div>
+            </div>
+
 
 
             <div className="lista-kurseva">
@@ -122,9 +180,7 @@ function Kursevi() {
                                 <p>Predavac: {kurs.firstName} {kurs.lastName}</p>
                                 <p>Tip nastave: {kurs.type === 0 ? 'individualna' : 'grupna'}</p>
                                 <p>Cena: {kurs.price}  €</p>
-                                
-                                
-                               
+                           
 
                             </div>
                         </Link>
@@ -133,9 +189,26 @@ function Kursevi() {
                 ))}
             </div>
 
-            <Footer />
-        </div>
-    );
-}
 
-export default Kursevi;
+            <div className="pagination">
+                <button
+                    onClick={() => handleChangePage('previous')}
+                    disabled={currentPage === 1}
+                >
+                    Prethodna
+                </button>
+                <button
+                    onClick={() => handleChangePage('next')}
+                    disabled={currentPage === totalPages}
+                    >
+                        Sledeća
+                    </button>
+                </div>
+    
+    
+                <Footer />
+            </div>
+        );
+    }
+    
+    export default Kursevi;

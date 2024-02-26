@@ -99,7 +99,7 @@ public class CourseRepository : ICourseRepository
                         Description = course.Description,
                         Language = course.Language,
                         Level = course.Level,
-                        Type = course.Type,
+                        Available = course.Available,
                         Price = course.Price,
                         Duration = course.Duration,
                         Picture = course.Picture,
@@ -186,7 +186,6 @@ public class CourseRepository : ICourseRepository
                     Language = result.Course.Language,
                     Level = result.Course.Level,
                     Price = result.Course.Price,
-                    Type = result.Course.Type,
                     FirstName = result.Professor.FirstName,
                     LastName = result.Professor.LastName,
                     Picture = result.Course.Picture
@@ -277,7 +276,6 @@ public class CourseRepository : ICourseRepository
         }
 
         course.Description = updateCourseDto.Description;
-        course.Type = updateCourseDto.Type;
         course.Price = updateCourseDto.Price;
         course.Duration = updateCourseDto.Duration;
 
@@ -311,7 +309,6 @@ public class CourseRepository : ICourseRepository
                     Language = result.Course.Language,
                     Level = result.Course.Level,
                     Price = result.Course.Price,
-                    Type = result.Course.Type,
                     FirstName = result.Professor.FirstName,
                     LastName = result.Professor.LastName,
                     Picture = result.Course.Picture
@@ -345,7 +342,6 @@ public class CourseRepository : ICourseRepository
                     Language = result.Course.Language,
                     Level = result.Course.Level,
                     Price = result.Course.Price,
-                    Type = result.Course.Type,
                     FirstName = result.Professor.FirstName,
                     LastName = result.Professor.LastName,
                     Picture = result.Course.Picture
@@ -370,7 +366,6 @@ public class CourseRepository : ICourseRepository
                     Language = result.Course.Language,
                     Level = result.Course.Level,
                     Price = result.Course.Price,
-                    Type = result.Course.Type,
                     FirstName = result.Professor.FirstName,
                     LastName = result.Professor.LastName,
                     Picture = result.Course.Picture
@@ -405,7 +400,6 @@ public class CourseRepository : ICourseRepository
                     Language = result.Course.Language,
                     Level = result.Course.Level,
                     Price = result.Course.Price,
-                    Type = result.Course.Type,
                     FirstName = result.Professor.FirstName,
                     LastName = result.Professor.LastName,
                     Picture = result.Course.Picture
@@ -430,7 +424,6 @@ public class CourseRepository : ICourseRepository
                     Language = result.Course.Language,
                     Level = result.Course.Level,
                     Price = result.Course.Price,
-                    Type = result.Course.Type,
                     FirstName = result.Professor.FirstName,
                     LastName = result.Professor.LastName,
                     Picture = result.Course.Picture

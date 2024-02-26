@@ -25,7 +25,7 @@ public class CourseDto
 
     public string Level { get; set; }
 
-    public CourseType Type { get; set; }
+    public bool Available { get; set; }
 
     public decimal Price { get; set; }
 

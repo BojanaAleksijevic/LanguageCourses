@@ -9,7 +9,7 @@ function Profil() {
     const navigate = useNavigate();
     const isLogged = localStorage.getItem('isloged') === 'yes';
     const [enrolledCourses, setEnrolledCourses] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState('');
+    
     const [newProfessor, setNewProfessor] = useState({
         firstName: "",
         lastName: "",
@@ -20,7 +20,16 @@ function Profil() {
     });
     const [professorAddedMessage, setProfessorAddedMessage] = useState('');
 
+    const [isLoggedIn, setIsLoggedIn] = useState('');
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
+
+      
+            if (token) {
+                setIsLoggedIn(true);
+            }
+            
         const fetchEnrolledCourses = async () => {
             try {
                 const response = await axios.get('https://localhost:5001/api/Course/userEnrolled');

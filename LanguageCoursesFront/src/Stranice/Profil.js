@@ -4,16 +4,33 @@ import LoggedHeader from '../LoggedHeader.js';
 import Footer from '../Footer.js';
 import Header from "../Header.js";
 import axios from "axios";
+import { getByDisplayValue } from "@testing-library/react";
 
 function Profil() {
     const navigate = useNavigate();
     const isLogged = localStorage.getItem('isloged') === 'yes';
     const [kursDostupni, setKursDostupni] = useState([]);
     const [userProfile, setUserProfile] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState('');
+
+
     const [newProfileImage, setNewProfileImage] = useState(null);
 
+    const [isLoggedIn, setIsLoggedIn] = useState('');
+    const token = localStorage.getItem('token');
+
+
+
+
+
     useEffect(() => {
+
+        if (token) {
+            setIsLoggedIn(true);
+        }
+
+
+
+
         const fetchMojiKursevi = async () => {
             try {
                 const response = await axios.get('https://localhost:5001/api/Course/userEnrolled');
@@ -41,7 +58,7 @@ function Profil() {
         console.log('isLoggedIn changed:', isLoggedIn);
     }, [isLoggedIn]);
 
-    
+
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -53,13 +70,26 @@ function Profil() {
         }
     };
 
+
+    const handleDisabled = () => {
+        navigate(`/kurseviNedostupni`);
+    };
+
+    const handleAvailable = () => {
+        navigate(`/kurseviDostupni`);
+    };
+
+    const handleAddProfessor= () => {
+        navigate(`/dodajProf`);
+    };
+
     const handleUploadImage = async () => {
         try {
             if (newProfileImage) {
                 const file = await fetch(newProfileImage);
                 const blob = await file.blob();
                 const reader = new FileReader();
-                
+
                 reader.onloadend = async () => {
                     const base64Image = reader.result.split(",")[1]; // Dobijanje samo dela koji predstavlja base64
                     await axios.put(`https://localhost:5001/api/User/changePicture`, {
@@ -71,15 +101,15 @@ function Profil() {
                     // Opciono: Resetujte newProfileImage na null ako želite omogućiti izbor nove slike
                     setNewProfileImage(null);
                 };
-    
+
                 reader.readAsDataURL(blob);
             }
         } catch (error) {
             console.error('Error uploading image:', error);
         }
     };
-    
-    
+
+
 
     if (!isLogged) {
         return null;
@@ -88,9 +118,10 @@ function Profil() {
     return (
         <div className="main-container">
             <div>
+
                 {isLoggedIn ? <LoggedHeader /> : <Header />}
-                <div className="profil-box" style={{ margin:'20px', padding: '10px' }}>
-                    <h2>Licni podaci</h2>
+                <div className="profil-container" style={{ margin: '10px', padding: '10px', }}>
+
                     <div className="profil-info">
                         <div className="profil-slika">
                             <img
@@ -107,25 +138,63 @@ function Profil() {
                             <p><b>{userProfile.firstName} {userProfile.lastName}</b></p>
                             <p>Phone: {userProfile.phone}</p>
                             <p>Email: {userProfile.email}</p>
-                            <p>
-                            {userProfile.role === 0
-                                ? "Student"
-                                : userProfile.role === 1
-                                ? "Professor"
-                                : userProfile.role === 2
-                                ? "Admin"
-                                : ""}
+                            <p>Uloga:
+                                {userProfile.role === 0
+                                    ? " Student"
+                                    : userProfile.role === 1
+                                        ? " Professor"
+                                        : userProfile.role === 2
+                                            ? " Admin"
+                                            : ""}
                             </p>
                         </div>
+
                     </div>
+
+                   
+                    </div>
+                
+                    <div className="available">
+                        {localStorage.getItem('role') === "2" && (
+                            <h1 >Upravljaj kursevima</h1>
+                        )}
+
+                        {localStorage.getItem('role') === "1" && (
+                            <h1 >Upravljaj kursevima</h1>
+                        )}
+                        <div>
+                        {localStorage.getItem('role') === "1" && (
+                            <button onClick={handleDisabled} className='button-prijava2'>Nedostupni</button>
+                        )}
+
+                        {localStorage.getItem('role') === "2" && (
+                            <button onClick={handleDisabled} className='button-prijava2'>Nedostupni</button>
+                        )}
+
+
+                        {localStorage.getItem('role') === "1"   && (
+                            <button onClick={handleAvailable} className='button-prijava2'>Dostupni</button>
+                        )}
+                    
+                        {localStorage.getItem('role') === "2"   && (
+                            <button onClick={handleAvailable} className='button-prijava2'>Dostupni</button>
+                        )}
+                        
+                        {localStorage.getItem('role') === "2" && (
+                            <h1 >Dodaj profesora</h1>
+                        )}
+                        {localStorage.getItem('role') === "2"   && (
+                            <button onClick={handleAddProfessor} className='button-prijava2'>Dodaj profesora</button>
+                        )}
+                        </div>
                 </div>
-
-                <div style={{ margin: '20px', padding: '10px' }}>
                 <h2>Kursevi na koje si prijavljen</h2>
+                <div className="container2" style={{ margin: '20px', padding: '10px' }}>
+                    
 
-                {kursDostupni.map((kurs) => (
-                        <Link to={`/detaljiKursa/${kurs.id}`} className="kurs" key={kurs.id} style={{ width: '25%'}}>
-                            <div className="box-sa-strane" style={{ width: '25%', margin:'20px', padding: '10px' }} >
+                    {kursDostupni.map((kurs) => (
+                        <Link to={`/detaljiKursa/${kurs.id}`} className="" key={kurs.id} style={{ width: '25%' }}>
+                            <div className="box-sa-strane" style={{ width: '100%', margin: '20px', padding: '10px' }} >
                                 <div className="slova">
                                     <p style={{ fontSize: '25px' }}>{kurs.name}</p>
                                     <p>Jezik: {kurs.language}</p>
