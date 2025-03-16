@@ -8,7 +8,7 @@ Aplikacija koristi **React** za frontend i **C# (ASP.NET)** za backend, dok se z
 
 ## Funkcionalnosti aplikacije:
 - **Autentifikacija i autorizacija** – Korisnici se prijavljuju putem naloga, a u zavisnosti od uloge (**student, profesor, administrator**) imaju različite dozvole.
-- **Prikaz kurseva** – Korisnici mogu videti listu dostupnih kurseva, sa informacijama kao što su **jezik, nivo težine, termini održavanja, podaci o profesoru koji drži kurs, cena kursa**.
+- **Prikaz kurseva** – Korisnici mogu videti listu dostupnih kurseva, sa informacijama kao što su jezik, nivo težine, termini održavanja, podaci o profesoru koji drži kurs, cena kursa.
 - **Prijava na kurs** – Registrovani korisnici mogu da se prijave na željeni kurs i dobijaju potvrdu na svoj e-mail.
-- **Administracija kurseva** – Administratori mogu **dodavati, menjati i brisati kurseve, upravljati prijavama i korisnicima**.
-- **Dodavanje komentara** – Svaki registrovan korisnik može ostaviti komentar, odnosno svoje iskustvo, ispod određenog kursa."
+- **Administracija kurseva** – Administratori mogu dodavati, menjati i brisati kurseve, upravljati prijavama i korisnicima.
+- **Dodavanje komentara** – Svaki registrovan korisnik može ostaviti komentar, odnosno svoje iskustvo, ispod određenog kursa.
