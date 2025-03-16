@@ -3,6 +3,7 @@
 Tema: Škola stranih jezika
 
 Aplikacija “Škola stranih jezika” omogućava korisnicima da se informišu o samoj školi i o dostupnim kursevima stranih jezika. Aplikacija služi kao platforma za online prijavu na kurs i time olakšava proces i korisnicima i administratorima.
+
 Aplikacija koristi React za frontend i C# (ASP.NET) za backend, dok se za bazu podataka koristi SQL Server Management Studio. Interfejs je dizajniran za laku upotrebu. Frontend aplikacije šalje zahteve ka API-ju, koji dohvata i obrađuje podatke iz baze.
 
 Neke od funkcionalnosti apikacije:
